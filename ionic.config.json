@@ -1,0 +1,7 @@
+{
+  "name": "gfharvestFE",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
