@@ -8,19 +8,27 @@
   <ion-list>
     <ion-item>
       <ion-label position="stacked">Project Title</ion-label>
-      <ion-input [(ngModel)]="form.title"></ion-input>
+      <ion-input [(ngModel)]="form.title" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Presentation Date</ion-label>
-      <ion-input type="date" [(ngModel)]="form.presentationDate"></ion-input>
+      <ion-input type="date" [(ngModel)]="form.presentationDate" required></ion-input>
     </ion-item>
     <ion-item>
       <ion-label>Need Help?</ion-label>
-      <ion-input type="checkbox" [(ngModel)]="form.needsHelp"></ion-input>
+      <ion-checkbox [(ngModel)]="form.needsHelp"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Enjoyment (1-5)</ion-label>
-      <ion-input type="number" min="1" max="5" [(ngModel)]="form.enjoyment"></ion-input>
+      <ion-input type="number" min="1" max="5" [(ngModel)]="form.enjoyment" required></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Progress</ion-label>
+      <ion-select [(ngModel)]="form.progress">
+        <ion-select-option value="not started">Not Started</ion-select-option>
+        <ion-select-option value="in progress">In Progress</ion-select-option>
+        <ion-select-option value="completed">Completed</ion-select-option>
+      </ion-select>
     </ion-item>
   </ion-list>
   <div class="ion-padding">

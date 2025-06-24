@@ -3,6 +3,8 @@ export interface ProjectEntry {
   presentationDate: string;
   needsHelp: boolean;
   enjoyment: number;
+  progress: string;
+  quarter: string;
   userId?: string | null;
   date: string;
 }
