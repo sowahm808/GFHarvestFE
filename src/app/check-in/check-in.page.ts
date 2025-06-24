@@ -1,12 +1,28 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-check-in',
   standalone: true,
-  imports: [CommonModule, FormsModule, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonContent,
+    IonInput,
+    IonItem,
+    IonLabel,
+    IonButton,
+    IonList,
+    IonTextarea,
+    IonSegment,
+    IonSegmentButton,
+  ],
   templateUrl: './check-in.page.html',
   styleUrls: ['./check-in.page.scss'],
 })
@@ -25,8 +41,15 @@ export class CheckInPage {
     needsHelp: false,
   };
 
-  submit() {
-    console.log('Check-in data:', this.form);
-    // TODO: integrate with Firebase service
+  constructor(private fbService: FirebaseService) {}
+
+  async submit() {
+    const user = this.fbService.auth.currentUser;
+    await this.fbService.saveDailyCheckin({
+      ...this.form,
+      userId: user ? user.uid : null,
+      date: new Date().toISOString(),
+    });
+    console.log('Check-in saved');
   }
 }
