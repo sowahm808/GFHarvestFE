@@ -45,9 +45,13 @@ export class BibleQuizPage implements OnInit {
   }
 
   async submit() {
+    if (!this.question) {
+      console.error('No quiz question available');
+      return;
+    }
     const user = this.fb.auth.currentUser;
     await this.fb.saveBibleQuiz({
-      question: this.question,
+      question: this.question!,
       answer: this.answer,
       score: 200,
       userId: user ? user.uid : null,
