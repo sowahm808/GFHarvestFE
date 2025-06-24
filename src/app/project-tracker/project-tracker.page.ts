@@ -16,6 +16,7 @@ import {
   IonSelectOption,
   
 } from '@ionic/angular/standalone';
+import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ProjectEntry } from '../models/project-entry';
 
@@ -37,9 +38,13 @@ import { ProjectEntry } from '../models/project-entry';
     IonCheckbox,
     IonSelect,
     IonSelectOption,
+<<<<<<< HEAD
     CommonModule,
     ReactiveFormsModule,
     
+=======
+    IonPage,
+>>>>>>> 231b14d4467859036ab91f77de61f792e6c88742
   ],
   templateUrl: './project-tracker.page.html',
   styleUrls: ['./project-tracker.page.scss'],
