@@ -11,7 +11,6 @@ import {
   IonInput,
   IonList,
   IonButton,
-  IonPage,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { BibleQuestion } from '../models/bible-quiz';
@@ -22,7 +21,6 @@ import { BibleQuestion } from '../models/bible-quiz';
   imports: [
     CommonModule,
     FormsModule,
-    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,

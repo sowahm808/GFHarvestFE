@@ -8,7 +8,6 @@ import {
   IonList,
   IonItem,
   IonLabel,
-  IonPage,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { LeaderboardEntry } from '../models/user-stats';
@@ -18,7 +17,6 @@ import { LeaderboardEntry } from '../models/user-stats';
   standalone: true,
   imports: [
     CommonModule,
-    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
