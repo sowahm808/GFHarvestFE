@@ -15,7 +15,7 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular';
+import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ProjectEntry } from '../models/project-entry';
 
