@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 
@@ -21,7 +20,6 @@ import { Router } from '@angular/router';
     IonLabel,
     IonButton,
     IonList,
-    IonPage,
   ],
   templateUrl: './child-account.page.html',
   styleUrls: ['./child-account.page.scss'],
