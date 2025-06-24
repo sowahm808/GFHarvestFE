@@ -39,16 +39,16 @@
 - [x] Save to `/essays`
 
 ## 📚 Academic Progress
-- [ ] Test score input
-- [ ] Share result toggle
-- [ ] Needs help toggle
-- [ ] Save to `/schoolWork`
+- [x] Test score input
+- [x] Share result toggle
+- [x] Needs help toggle
+- [x] Save to `/schoolWork`
 
 ## 🎓 Project Tracker
-- [ ] Project title input
-- [ ] Presentation date picker
-- [ ] Help toggle & Enjoyment scale
-- [ ] Save to `/projects`
+- [x] Project title input
+- [x] Presentation date picker
+- [x] Help toggle & Enjoyment scale
+- [x] Save to `/projects`
 
 ## 🧪 Firebase Setup
 - [ ] Define Firestore collections

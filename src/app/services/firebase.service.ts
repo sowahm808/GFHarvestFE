@@ -40,6 +40,14 @@ export class FirebaseService {
     return addDoc(collection(this.db, 'essays'), data);
   }
 
+  saveAcademicProgress(data: any) {
+    return addDoc(collection(this.db, 'schoolWork'), data);
+  }
+
+  saveProject(data: any) {
+    return addDoc(collection(this.db, 'projects'), data);
+  }
+
   async getRandomBibleQuestion() {
     const snap = await getDocs(collection(this.db, 'bibleQuestions'));
     const docs = snap.docs;
