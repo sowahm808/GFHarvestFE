@@ -15,6 +15,7 @@ import {
   IonSelect,
   IonSelectOption,
 } from '@ionic/angular/standalone';
+import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { EssayEntry } from '../models/essay-entry';
 
@@ -36,6 +37,7 @@ import { EssayEntry } from '../models/essay-entry';
     IonButton,
     IonSelect,
     IonSelectOption,
+    IonPage,
   ],
   templateUrl: './essay-tracker.page.html',
   styleUrls: ['./essay-tracker.page.scss'],
