@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./child-account.page.scss'],
 })
 export class ChildAccountPage {
-  form = { email: '', password: '' };
+  form = { email: '', password: '', age: null as number | null };
 
   constructor(private fb: FirebaseService, private router: Router) {}
 
@@ -22,7 +22,15 @@ export class ChildAccountPage {
     if (!user) {
       return;
     }
-    await this.fb.createChildAccount(this.form.email, this.form.password, user.uid);
+    if (this.form.age === null) {
+      return;
+    }
+    await this.fb.createChildAccount(
+      this.form.email,
+      this.form.password,
+      user.uid,
+      this.form.age
+    );
     this.router.navigateByUrl('/home');
   }
 }

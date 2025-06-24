@@ -50,6 +50,11 @@ export const routes: Routes = [
       import('./project-tracker/project-tracker.page').then((m) => m.ProjectTrackerPage),
   },
   {
+    path: 'leaderboard',
+    loadComponent: () =>
+      import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
