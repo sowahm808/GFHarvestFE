@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Essay Tracker</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Essay Title</ion-label>
+      <ion-input [(ngModel)]="form.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Progress</ion-label>
+      <ion-select [(ngModel)]="form.progress">
+        <ion-select-option value="in progress">In Progress</ion-select-option>
+        <ion-select-option value="draft">Draft</ion-select-option>
+        <ion-select-option value="submitted">Submitted</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <ion-item>
+      <ion-label>Request Help?</ion-label>
+      <ion-input type="checkbox" [(ngModel)]="form.needHelp"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="submit()">Submit</ion-button>
+  </div>
+</ion-content>

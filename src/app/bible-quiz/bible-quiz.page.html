@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bible Quiz</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="question">
+    <ion-item>
+      <ion-label position="stacked">Question</ion-label>
+      <ion-label>{{ question.text }}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Your Answer</ion-label>
+      <ion-input [(ngModel)]="answer"></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="ion-padding">
+    <ion-button expand="block" (click)="submit()">Submit</ion-button>
+  </div>
+</ion-content>

@@ -21,22 +21,22 @@
 - [x] Form save to `/dailyCheckins`
 
 ## 🧠 Mental & Emotional Status
-- [ ] School and home treatment checkboxes
-- [ ] Bullying report with consent to notify parent
-- [ ] Suggestions field
-- [ ] Save to `/mentalStatus`
+- [x] School and home treatment checkboxes
+- [x] Bullying report with consent to notify parent
+- [x] Suggestions field
+- [x] Save to `/mentalStatus`
 
 ## 📖 Bible Quiz Module
-- [ ] Quiz prompt (daily)
-- [ ] Randomize from DB question pool
-- [ ] Score submission + 200 points
-- [ ] Save to `/bibleQuizzes`
+- [x] Quiz prompt (daily)
+- [x] Randomize from DB question pool
+- [x] Score submission + 200 points
+- [x] Save to `/bibleQuizzes`
 
 ## 📝 Essay Tracker
-- [ ] Essay title input
-- [ ] Progress selection (in progress, draft, submitted)
-- [ ] Request help toggle
-- [ ] Save to `/essays`
+- [x] Essay title input
+- [x] Progress selection (in progress, draft, submitted)
+- [x] Request help toggle
+- [x] Save to `/essays`
 
 ## 📚 Academic Progress
 - [ ] Test score input
