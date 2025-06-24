@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Auth, UserCredential } from 'firebase/auth';
-import { getFirestore, collection, addDoc } from 'firebase/firestore';
+import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -26,5 +26,27 @@ export class FirebaseService {
 
   saveDailyCheckin(data: any) {
     return addDoc(collection(this.db, 'dailyCheckins'), data);
+  }
+
+  saveMentalStatus(data: any) {
+    return addDoc(collection(this.db, 'mentalStatus'), data);
+  }
+
+  saveBibleQuiz(data: any) {
+    return addDoc(collection(this.db, 'bibleQuizzes'), data);
+  }
+
+  saveEssay(data: any) {
+    return addDoc(collection(this.db, 'essays'), data);
+  }
+
+  async getRandomBibleQuestion() {
+    const snap = await getDocs(collection(this.db, 'bibleQuestions'));
+    const docs = snap.docs;
+    if (docs.length === 0) {
+      return null;
+    }
+    const random = Math.floor(Math.random() * docs.length);
+    return { id: docs[random].id, ...docs[random].data() };
   }
 }
