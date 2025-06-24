@@ -9,7 +9,7 @@ import {
   IonLabel,
   IonRouterOutlet,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular';
+import { IonPage } from '@ionic/angular/standalone';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RoleService } from '../services/role.service';
 
