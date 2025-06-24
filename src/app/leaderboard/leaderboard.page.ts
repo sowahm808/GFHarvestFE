@@ -10,6 +10,7 @@ import {
   IonLabel,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { LeaderboardEntry } from '../models/user-stats';
 
 @Component({
   selector: 'app-leaderboard',
@@ -28,7 +29,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./leaderboard.page.scss'],
 })
 export class LeaderboardPage implements OnInit {
-  leaders: any[] = [];
+  leaders: LeaderboardEntry[] = [];
 
   constructor(private fb: FirebaseService) {}
 

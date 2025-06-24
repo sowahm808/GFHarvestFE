@@ -17,6 +17,14 @@ import {
   limit,
 } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
+import { DailyCheckin } from '../models/daily-checkin';
+import { MentalStatus } from '../models/mental-status';
+import { BibleQuizResult, BibleQuestion } from '../models/bible-quiz';
+import { EssayEntry } from '../models/essay-entry';
+import { AcademicProgressEntry } from '../models/academic-progress';
+import { ProjectEntry } from '../models/project-entry';
+import { LeaderboardEntry } from '../models/user-stats';
+import { ParentChildLink } from '../models/parent-child-link';
 
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
@@ -57,10 +65,10 @@ export class FirebaseService {
     if (snap.empty) {
       return null;
     }
-    return (snap.docs[0].data() as any).parentId || null;
+    return (snap.docs[0].data() as ParentChildLink).parentId || null;
   }
 
-  async saveDailyCheckin(data: any) {
+  async saveDailyCheckin(data: DailyCheckin) {
     const docRef = await addDoc(collection(this.db, 'dailyCheckins'), data);
     if (data.userId) {
       await this.updateStreak(data.userId);
@@ -68,7 +76,7 @@ export class FirebaseService {
     return docRef;
   }
 
-  async saveMentalStatus(data: any) {
+  async saveMentalStatus(data: MentalStatus) {
     const docRef = await addDoc(collection(this.db, 'mentalStatus'), data);
     if (data.userId) {
       const parentId = await this.getParentIdForChild(data.userId);
@@ -82,7 +90,7 @@ export class FirebaseService {
     return docRef;
   }
 
-  async saveBibleQuiz(data: any) {
+  async saveBibleQuiz(data: BibleQuizResult) {
     const docRef = await addDoc(collection(this.db, 'bibleQuizzes'), data);
     if (data.userId && data.score) {
       await this.addPoints(data.userId, data.score);
@@ -90,19 +98,19 @@ export class FirebaseService {
     return docRef;
   }
 
-  saveEssay(data: any) {
+  saveEssay(data: EssayEntry) {
     return addDoc(collection(this.db, 'essays'), data);
   }
 
-  saveAcademicProgress(data: any) {
+  saveAcademicProgress(data: AcademicProgressEntry) {
     return addDoc(collection(this.db, 'schoolWork'), data);
   }
 
-  saveProject(data: any) {
+  saveProject(data: ProjectEntry) {
     return addDoc(collection(this.db, 'projects'), data);
   }
 
-  async getRandomBibleQuestion() {
+  async getRandomBibleQuestion(): Promise<BibleQuestion | null> {
     const snap = await getDocs(collection(this.db, 'bibleQuestions'));
     const docs = snap.docs;
     if (docs.length === 0) {
@@ -137,7 +145,7 @@ export class FirebaseService {
       });
       return;
     }
-    const data = snap.data() as any;
+    const data = snap.data() as UserStats;
     let streak = 1;
     if (data.lastCheckInDate) {
       const last = new Date(data.lastCheckInDate);
@@ -159,13 +167,15 @@ export class FirebaseService {
     );
   }
 
-  async getLeaderboard(limitCount = 10) {
+  async getLeaderboard(limitCount = 10): Promise<LeaderboardEntry[]> {
     const q = query(
       collection(this.db, 'userStats'),
       orderBy('points', 'desc'),
       limit(limitCount)
     );
     const snap = await getDocs(q);
-    return snap.docs.map((d) => ({ id: d.id, ...(d.data() as any) }));
+    return snap.docs.map(
+      (d) => ({ id: d.id, ...(d.data() as Omit<LeaderboardEntry, 'id'>) })
+    );
   }
 }

@@ -13,6 +13,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { BibleQuestion } from '../models/bible-quiz';
 
 @Component({
   selector: 'app-bible-quiz',
@@ -34,7 +35,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./bible-quiz.page.scss'],
 })
 export class BibleQuizPage implements OnInit {
-  question: any = null;
+  question: BibleQuestion | null = null;
   answer = '';
 
   constructor(private fb: FirebaseService) {}

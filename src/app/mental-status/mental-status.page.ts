@@ -14,6 +14,7 @@ import {
   IonTextarea,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { MentalStatus } from '../models/mental-status';
 
 @Component({
   selector: 'app-mental-status',
@@ -36,7 +37,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./mental-status.page.scss'],
 })
 export class MentalStatusPage {
-  form = {
+  form: Omit<MentalStatus, 'userId' | 'parentId' | 'date'> = {
     treatmentSchool: false,
     treatmentHome: false,
     bullied: false,
