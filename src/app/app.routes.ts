@@ -40,6 +40,16 @@ export const routes: Routes = [
       import('./essay-tracker/essay-tracker.page').then((m) => m.EssayTrackerPage),
   },
   {
+    path: 'academic-progress',
+    loadComponent: () =>
+      import('./academic-progress/academic-progress.page').then((m) => m.AcademicProgressPage),
+  },
+  {
+    path: 'project-tracker',
+    loadComponent: () =>
+      import('./project-tracker/project-tracker.page').then((m) => m.ProjectTrackerPage),
+  },
+  {
     path: '',
     redirectTo: 'home',
     pathMatch: 'full',
