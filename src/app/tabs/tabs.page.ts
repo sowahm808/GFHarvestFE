@@ -16,7 +16,6 @@ import { RoleService } from '../services/role.service';
   standalone: true,
   imports: [
     CommonModule,
-    RouterOutlet,
     RouterLink,
     IonTabs,
     IonTabBar,
