@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { DailyCheckin } from '../models/daily-checkin';
 
 @Component({
   selector: 'app-check-in',
@@ -27,7 +28,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./check-in.page.scss'],
 })
 export class CheckInPage {
-  form = {
+  form: Omit<DailyCheckin, 'userId' | 'parentId' | 'date'> = {
     gratitude1: '',
     gratitude2: '',
     gratitude3: '',

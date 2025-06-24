@@ -13,6 +13,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { ProjectEntry } from '../models/project-entry';
 
 @Component({
   selector: 'app-project-tracker',
@@ -34,7 +35,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./project-tracker.page.scss'],
 })
 export class ProjectTrackerPage {
-  form = {
+  form: Omit<ProjectEntry, 'userId' | 'date'> = {
     title: '',
     presentationDate: '',
     needsHelp: false,

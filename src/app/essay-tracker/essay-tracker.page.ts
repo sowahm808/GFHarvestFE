@@ -15,6 +15,7 @@ import {
   IonSelectOption,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { EssayEntry } from '../models/essay-entry';
 
 @Component({
   selector: 'app-essay-tracker',
@@ -38,7 +39,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./essay-tracker.page.scss'],
 })
 export class EssayTrackerPage {
-  form = {
+  form: Omit<EssayEntry, 'userId' | 'date'> = {
     title: '',
     progress: 'in progress',
     needHelp: false,

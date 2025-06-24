@@ -13,6 +13,7 @@ import {
   IonButton,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { AcademicProgressEntry } from '../models/academic-progress';
 
 @Component({
   selector: 'app-academic-progress',
@@ -34,7 +35,7 @@ import { FirebaseService } from '../services/firebase.service';
   styleUrls: ['./academic-progress.page.scss'],
 })
 export class AcademicProgressPage {
-  form = {
+  form: Omit<AcademicProgressEntry, 'userId' | 'date'> = {
     testScore: null as number | null,
     shareResult: false,
     needsHelp: false,
