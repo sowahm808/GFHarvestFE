@@ -13,6 +13,7 @@ import {
   IonButton,
   IonSelect,
   IonSelectOption,
+  IonPage,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { EssayEntry } from '../models/essay-entry';
@@ -23,6 +24,7 @@ import { EssayEntry } from '../models/essay-entry';
   imports: [
     CommonModule,
     FormsModule,
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
