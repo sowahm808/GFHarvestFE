@@ -32,7 +32,23 @@
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Mood</ion-label>
-      <ion-input [(ngModel)]="form.mood" placeholder="😊"></ion-input>
+      <ion-segment [(ngModel)]="form.mood">
+        <ion-segment-button value="😀">
+          <ion-label>😀</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="🙂">
+          <ion-label>🙂</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="😐">
+          <ion-label>😐</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="☹️">
+          <ion-label>☹️</ion-label>
+        </ion-segment-button>
+        <ion-segment-button value="😭">
+          <ion-label>😭</ion-label>
+        </ion-segment-button>
+      </ion-segment>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Sleep Quality</ion-label>

@@ -2,23 +2,23 @@
 
 ## 🔐 Authentication
 - [x] Set up Firebase Authentication
-- [ ] Implement parent registration & login
-- [ ] Enable child account creation under parent
+- [x] Implement parent registration & login
+- [x] Enable child account creation under parent
 - [ ] Role-based access control in Firebase rules
 
 ## 👨‍👩‍👧 Onboarding
-- [ ] Parent creates or links child profile
+- [x] Parent creates or links child profile
 - [ ] Child logs in via invite or code
-- [ ] Store parent-child linkage in Firestore
+- [x] Store parent-child linkage in Firestore
 
 ## 📆 Daily Check-In (Child)
-- [ ] Gratitude prompt (3 inputs)
-- [ ] One wish entry
-- [ ] Weekly goal setting
-- [ ] Next birthday selector
-- [ ] Mood tracker with emojis
-- [ ] Sleep, appetite, mood descriptions
-- [ ] Form save to `/dailyCheckins`
+- [x] Gratitude prompt (3 inputs)
+- [x] One wish entry
+- [x] Weekly goal setting
+- [x] Next birthday selector
+- [x] Mood tracker with emojis
+- [x] Sleep, appetite, mood descriptions
+- [x] Form save to `/dailyCheckins`
 
 ## 🧠 Mental & Emotional Status
 - [ ] School and home treatment checkboxes
