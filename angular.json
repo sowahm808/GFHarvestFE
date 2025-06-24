@@ -109,7 +109,25 @@
                 "output": "assets"
               }
             ],
-            "styles": ["src/global.scss", "src/theme/variables.scss"],
+            "styles": [
+              
+  "node_modules/@ionic/angular/css/core.css",
+  "node_modules/@ionic/angular/css/normalize.css",
+  "node_modules/@ionic/angular/css/structure.css",
+  "node_modules/@ionic/angular/css/typography.css",
+  "node_modules/@ionic/angular/css/padding.css",
+  "node_modules/@ionic/angular/css/float-elements.css",
+  "node_modules/@ionic/angular/css/text-alignment.css",
+  "node_modules/@ionic/angular/css/text-transformation.css",
+  "node_modules/@ionic/angular/css/flex-utils.css",
+  "node_modules/@ionic/angular/css/display.css",
+  "src/theme/variables.scss",
+  "src/global.scss",
+
+
+              "src/global.scss", 
+              "src/theme/variables.scss"
+            ],
             "scripts": []
           },
           "configurations": {
@@ -129,7 +147,10 @@
     }
   },
   "cli": {
-    "schematicCollections": ["@ionic/angular-toolkit"]
+    "schematicCollections": [
+      "@ionic/angular-toolkit"
+    ],
+    "analytics": "1903b0fb-d434-4915-bb6c-78f9bd77438a"
   },
   "schematics": {
     "@ionic/angular-toolkit:component": {
