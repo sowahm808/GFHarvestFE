@@ -7,6 +7,7 @@ import {
   IonIcon,
   IonLabel,
   IonRouterOutlet,
+  IonPage,
 } from '@ionic/angular/standalone';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RoleService } from '../services/role.service';
@@ -17,6 +18,7 @@ import { RoleService } from '../services/role.service';
   imports: [
     CommonModule,
     RouterLink,
+    IonPage,
     IonTabs,
     IonTabBar,
     IonTabButton,

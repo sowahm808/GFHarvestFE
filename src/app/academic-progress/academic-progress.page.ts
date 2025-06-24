@@ -11,6 +11,7 @@ import {
   IonInput,
   IonList,
   IonButton,
+  IonPage,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { AcademicProgressEntry } from '../models/academic-progress';
@@ -21,6 +22,7 @@ import { AcademicProgressEntry } from '../models/academic-progress';
   imports: [
     CommonModule,
     FormsModule,
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,

@@ -1,13 +1,15 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Leaderboard</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-page>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Leaderboard</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
-<ion-content>
+  <ion-content>
   <ion-list>
     <ion-item *ngFor="let item of leaders; let i = index">
       <ion-label>{{ i + 1 }}. {{ item.id }} - {{ item.points }} pts (Streak: {{ item.streak || 0 }})</ion-label>
     </ion-item>
   </ion-list>
-</ion-content>
+  </ion-content>
+</ion-page>

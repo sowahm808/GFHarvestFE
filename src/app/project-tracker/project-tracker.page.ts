@@ -14,6 +14,7 @@ import {
   IonCheckbox,
   IonSelect,
   IonSelectOption,
+  IonPage,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ProjectEntry } from '../models/project-entry';
@@ -24,6 +25,7 @@ import { ProjectEntry } from '../models/project-entry';
   imports: [
     CommonModule,
     FormsModule,
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,

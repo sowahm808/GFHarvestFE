@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonSelect, IonSelectOption } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonSelect, IonSelectOption, IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
@@ -12,6 +12,7 @@ import { RoleService } from '../services/role.service';
   imports: [
     CommonModule,
     FormsModule,
+    IonPage,
     IonHeader,
     IonToolbar,
     IonTitle,
