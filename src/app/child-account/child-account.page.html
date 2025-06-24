@@ -14,6 +14,10 @@
       <ion-label position="stacked">Password</ion-label>
       <ion-input type="password" [(ngModel)]="form.password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Age</ion-label>
+      <ion-input type="number" [(ngModel)]="form.age"></ion-input>
+    </ion-item>
   </ion-list>
   <ion-button expand="block" (click)="create()">Create</ion-button>
 </ion-content>

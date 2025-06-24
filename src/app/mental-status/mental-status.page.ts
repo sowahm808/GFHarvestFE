@@ -48,9 +48,11 @@ export class MentalStatusPage {
 
   async submit() {
     const user = this.fb.auth.currentUser;
+    const parentId = user ? await this.fb.getParentIdForChild(user.uid) : null;
     await this.fb.saveMentalStatus({
       ...this.form,
       userId: user ? user.uid : null,
+      parentId,
       date: new Date().toISOString(),
     });
     console.log('Mental status saved');

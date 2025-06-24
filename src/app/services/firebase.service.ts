@@ -1,7 +1,21 @@
 import { Injectable } from '@angular/core';
 import { initializeApp } from 'firebase/app';
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, Auth, UserCredential } from 'firebase/auth';
-import { getFirestore, collection, addDoc, getDocs } from 'firebase/firestore';
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  increment,
+  query,
+  orderBy,
+  where,
+  limit,
+} from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -18,22 +32,62 @@ export class FirebaseService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  async createChildAccount(email: string, password: string, parentId: string) {
+  async createChildAccount(
+    email: string,
+    password: string,
+    parentId: string,
+    age: number
+  ) {
     const cred = await createUserWithEmailAndPassword(this.auth, email, password);
-    await addDoc(collection(this.db, 'parentChildLinks'), { parentId, childId: cred.user.uid });
+    await addDoc(collection(this.db, 'parentChildLinks'), {
+      parentId,
+      childId: cred.user.uid,
+    });
+    await setDoc(doc(this.db, 'childProfiles', cred.user.uid), { age });
     return cred;
   }
 
-  saveDailyCheckin(data: any) {
-    return addDoc(collection(this.db, 'dailyCheckins'), data);
+  async getParentIdForChild(childId: string): Promise<string | null> {
+    const q = query(
+      collection(this.db, 'parentChildLinks'),
+      where('childId', '==', childId),
+      limit(1)
+    );
+    const snap = await getDocs(q);
+    if (snap.empty) {
+      return null;
+    }
+    return (snap.docs[0].data() as any).parentId || null;
   }
 
-  saveMentalStatus(data: any) {
-    return addDoc(collection(this.db, 'mentalStatus'), data);
+  async saveDailyCheckin(data: any) {
+    const docRef = await addDoc(collection(this.db, 'dailyCheckins'), data);
+    if (data.userId) {
+      await this.updateStreak(data.userId);
+    }
+    return docRef;
   }
 
-  saveBibleQuiz(data: any) {
-    return addDoc(collection(this.db, 'bibleQuizzes'), data);
+  async saveMentalStatus(data: any) {
+    const docRef = await addDoc(collection(this.db, 'mentalStatus'), data);
+    if (data.userId) {
+      const parentId = await this.getParentIdForChild(data.userId);
+      if (parentId && (data.bullied || data.notifyParent)) {
+        await this.sendNotification(
+          parentId,
+          'Your child reported a concern in mental status form.'
+        );
+      }
+    }
+    return docRef;
+  }
+
+  async saveBibleQuiz(data: any) {
+    const docRef = await addDoc(collection(this.db, 'bibleQuizzes'), data);
+    if (data.userId && data.score) {
+      await this.addPoints(data.userId, data.score);
+    }
+    return docRef;
   }
 
   saveEssay(data: any) {
@@ -56,5 +110,62 @@ export class FirebaseService {
     }
     const random = Math.floor(Math.random() * docs.length);
     return { id: docs[random].id, ...docs[random].data() };
+  }
+
+  async sendNotification(parentId: string, message: string) {
+    return addDoc(collection(this.db, 'notifications'), {
+      parentId,
+      message,
+      date: new Date().toISOString(),
+    });
+  }
+
+  async addPoints(userId: string, points: number) {
+    const ref = doc(this.db, 'userStats', userId);
+    await setDoc(ref, { points: increment(points) }, { merge: true });
+  }
+
+  async updateStreak(userId: string) {
+    const ref = doc(this.db, 'userStats', userId);
+    const snap = await getDoc(ref);
+    const today = new Date().toISOString().split('T')[0];
+    if (!snap.exists()) {
+      await setDoc(ref, {
+        streak: 1,
+        lastCheckInDate: today,
+        points: 10,
+      });
+      return;
+    }
+    const data = snap.data() as any;
+    let streak = 1;
+    if (data.lastCheckInDate) {
+      const last = new Date(data.lastCheckInDate);
+      const diff =
+        (new Date(today).getTime() - last.setHours(0, 0, 0, 0)) /
+        (1000 * 60 * 60 * 24);
+      if (diff === 1) {
+        streak = (data.streak || 0) + 1;
+      }
+    }
+    let points = (data.points || 0) + 10;
+    if (streak % 7 === 0) {
+      points += 50;
+    }
+    await setDoc(
+      ref,
+      { streak, lastCheckInDate: today, points },
+      { merge: true }
+    );
+  }
+
+  async getLeaderboard(limitCount = 10) {
+    const q = query(
+      collection(this.db, 'userStats'),
+      orderBy('points', 'desc'),
+      limit(limitCount)
+    );
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, ...(d.data() as any) }));
   }
 }

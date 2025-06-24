@@ -45,9 +45,11 @@ export class CheckInPage {
 
   async submit() {
     const user = this.fbService.auth.currentUser;
+    const parentId = user ? await this.fbService.getParentIdForChild(user.uid) : null;
     await this.fbService.saveDailyCheckin({
       ...this.form,
       userId: user ? user.uid : null,
+      parentId,
       date: new Date().toISOString(),
     });
     console.log('Check-in saved');
