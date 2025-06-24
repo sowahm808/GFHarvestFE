@@ -23,7 +23,7 @@ import { BibleQuizResult, BibleQuestion } from '../models/bible-quiz';
 import { EssayEntry } from '../models/essay-entry';
 import { AcademicProgressEntry } from '../models/academic-progress';
 import { ProjectEntry } from '../models/project-entry';
-import { LeaderboardEntry } from '../models/user-stats';
+import { LeaderboardEntry, UserStats } from '../models/user-stats';
 import { ParentChildLink } from '../models/parent-child-link';
 
 @Injectable({ providedIn: 'root' })
