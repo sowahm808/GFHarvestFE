@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
+import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { DailyCheckin } from '../models/daily-checkin';
 
@@ -9,6 +9,7 @@ import { DailyCheckin } from '../models/daily-checkin';
   selector: 'app-check-in',
   standalone: true,
   imports: [
+    IonPage,
     CommonModule,
     FormsModule,
     IonHeader,

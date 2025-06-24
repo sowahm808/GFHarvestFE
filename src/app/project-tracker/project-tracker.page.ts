@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
+  IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -22,6 +23,7 @@ import { ProjectEntry } from '../models/project-entry';
   selector: 'app-project-tracker',
   standalone: true,
   imports: [
+    IonPage,
     CommonModule,
     FormsModule,
     IonHeader,
