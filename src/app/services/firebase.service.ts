@@ -117,7 +117,10 @@ export class FirebaseService {
       return null;
     }
     const random = Math.floor(Math.random() * docs.length);
-    return { id: docs[random].id, ...docs[random].data() };
+    return {
+      id: docs[random].id,
+      ...(docs[random].data() as Omit<BibleQuestion, 'id'>),
+    } as BibleQuestion;
   }
 
   async sendNotification(parentId: string, message: string) {
