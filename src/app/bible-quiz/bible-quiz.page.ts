@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -20,7 +19,6 @@ import { BibleQuestion } from '../models/bible-quiz';
   selector: 'app-bible-quiz',
   standalone: true,
   imports: [
-    IonPage,
     CommonModule,
     FormsModule,
     IonHeader,

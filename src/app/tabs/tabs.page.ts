@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonTabs,
-  IonPage,
+ 
   IonTabBar,
   IonTabButton,
   IonIcon,
@@ -16,7 +16,7 @@ import { RoleService } from '../services/role.service';
   selector: 'app-tabs',
   standalone: true,
   imports: [
-    IonPage,
+   
     CommonModule,
     RouterLink,
     IonTabs,

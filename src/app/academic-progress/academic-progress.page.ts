@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -20,7 +19,6 @@ import { AcademicProgressEntry } from '../models/academic-progress';
   selector: 'app-academic-progress',
   standalone: true,
   imports: [
-    IonPage,
     CommonModule,
     FormsModule,
     IonHeader,

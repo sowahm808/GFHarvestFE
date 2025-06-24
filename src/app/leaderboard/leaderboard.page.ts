@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  IonPage,
+  
   IonHeader,
   IonToolbar,
   IonTitle,
@@ -17,7 +17,7 @@ import { LeaderboardEntry } from '../models/user-stats';
   selector: 'app-leaderboard',
   standalone: true,
   imports: [
-    IonPage,
+    
     CommonModule,
     IonHeader,
     IonToolbar,
