@@ -14,7 +14,6 @@ import {
   IonButton,
   IonTextarea,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { MentalStatus } from '../models/mental-status';
 
@@ -35,7 +34,6 @@ import { MentalStatus } from '../models/mental-status';
     IonList,
     IonButton,
     IonTextarea,
-    IonPage,
   ],
   templateUrl: './mental-status.page.html',
   styleUrls: ['./mental-status.page.scss'],
