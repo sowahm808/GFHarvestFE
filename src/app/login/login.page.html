@@ -15,6 +15,13 @@
       <ion-label position="stacked">Password</ion-label>
       <ion-input type="password" [(ngModel)]="form.password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Role</ion-label>
+      <ion-select [(ngModel)]="selectedRole">
+        <ion-select-option value="parent">Parent</ion-select-option>
+        <ion-select-option value="child">Child</ion-select-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
   <ion-button expand="block" (click)="login()">Login</ion-button>
   <ion-button routerLink="/register" fill="clear" expand="block">
