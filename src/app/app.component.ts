@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ import { FirebaseService } from './services/firebase.service';
     IonButton,
     IonIcon,
     IonTitle,
+    NgIf
   ],
 })
 export class AppComponent {

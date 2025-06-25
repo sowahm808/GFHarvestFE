@@ -11,6 +11,7 @@ import {
   IonCol,
 } from '@ionic/angular/standalone';
 import { RoleService } from '../services/role.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -27,6 +28,7 @@ import { RoleService } from '../services/role.service';
     IonRow,
     IonCol,
     RouterLink,
+    NgIf
   ],
 })
 export class HomePage {
