@@ -37,13 +37,12 @@ export class ChildAccountPage {
     if (this.form.age === null) {
       return;
     }
-    const cred = await this.fb.createChildAccount(
+    await this.fb.createChildAccount(
       this.form.email,
       this.form.password,
       user.uid,
       this.form.age
     );
-    await this.fb.saveUser(cred.user.uid, this.form.email, 'child');
     this.router.navigateByUrl('/home');
   }
 }

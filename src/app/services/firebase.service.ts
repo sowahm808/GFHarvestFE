@@ -40,27 +40,6 @@ export class FirebaseService {
     return signInWithEmailAndPassword(this.auth, email, password);
   }
 
-  saveUser(uid: string, email: string, role: string) {
-    return setDoc(doc(this.db, 'users', uid), { email, role }, { merge: true });
-  }
-
-  async getUserRole(uid: string): Promise<string | null> {
-    const snap = await getDoc(doc(this.db, 'users', uid));
-    if (!snap.exists()) {
-      return null;
-    }
-    return (snap.data() as { role?: string }).role || null;
-  }
-
-  setUserRole(uid: string, role: string) {
-    return setDoc(doc(this.db, 'users', uid), { role }, { merge: true });
-  }
-
-  async getAllUsers(): Promise<{ id: string; email: string; role: string }[]> {
-    const snap = await getDocs(collection(this.db, 'users'));
-    return snap.docs.map((d) => ({ id: d.id, ...(d.data() as any) }));
-  }
-
   async createChildAccount(
     email: string,
     password: string,
