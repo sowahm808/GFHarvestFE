@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {
@@ -42,6 +42,8 @@ import { ProjectEntry } from '../models/project-entry';
   ],
   templateUrl: './project-tracker.page.html',
   styleUrls: ['./project-tracker.page.scss'],
+    schemas: [CUSTOM_ELEMENTS_SCHEMA], // 👉 this line allows <ion-page>
+
 })
 export class ProjectTrackerPage {
   form: Omit<ProjectEntry, 'userId' | 'date' | 'quarter'> = {

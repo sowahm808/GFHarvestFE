@@ -1,39 +1,38 @@
-
 <ion-tabs>
-  <ion-router-outlet></ion-router-outlet>
+
   <ion-tab-bar slot="bottom">
     <ng-container *ngIf="role === 'parent'; else childTabs">
-      <ion-tab-button tab="home" routerLink="/tabs/home">
+      <ion-tab-button tab="home" href="/tabs/home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>Home</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="child-account" routerLink="/tabs/child-account">
+      <ion-tab-button tab="child-account" href="/tabs/child-account">
         <ion-icon name="person-add-outline"></ion-icon>
         <ion-label>Child</ion-label>
       </ion-tab-button>
-      <ion-tab-button tab="leaderboard" routerLink="/tabs/leaderboard">
+      <ion-tab-button tab="leaderboard" href="/tabs/leaderboard">
         <ion-icon name="trophy-outline"></ion-icon>
         <ion-label>Scores</ion-label>
       </ion-tab-button>
     </ng-container>
     <ng-template #childTabs>
-        <ion-tab-button tab="check-in" routerLink="/tabs/check-in">
+      <ion-tab-button tab="check-in" href="/tabs/check-in">
         <ion-icon name="calendar-outline"></ion-icon>
         <ion-label>Check-In</ion-label>
       </ion-tab-button>
-        <ion-tab-button tab="bible-quiz" routerLink="/tabs/bible-quiz">
+      <ion-tab-button tab="bible-quiz" href="/tabs/bible-quiz">
         <ion-icon name="help-outline"></ion-icon>
         <ion-label>Quiz</ion-label>
       </ion-tab-button>
-        <ion-tab-button tab="essay-tracker" routerLink="/tabs/essay-tracker">
+      <ion-tab-button tab="essay-tracker" href="/tabs/essay-tracker">
         <ion-icon name="create-outline"></ion-icon>
         <ion-label>Essay</ion-label>
       </ion-tab-button>
-        <ion-tab-button tab="project-tracker" routerLink="/tabs/project-tracker">
+      <ion-tab-button tab="project-tracker" href="/tabs/project-tracker">
         <ion-icon name="list-outline"></ion-icon>
         <ion-label>Projects</ion-label>
       </ion-tab-button>
     </ng-template>
   </ion-tab-bar>
-</ion-tabs>
 
+</ion-tabs>
