@@ -51,6 +51,12 @@ export class FirebaseService {
     return signOut(this.auth);
   }
 
+  async isChildAccount(userId: string): Promise<boolean> {
+    const ref = doc(this.db, 'childProfiles', userId);
+    const snap = await getDoc(ref);
+    return snap.exists();
+  }
+
   async createChildAccount(
     email: string,
     password: string,
