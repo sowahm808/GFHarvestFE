@@ -32,6 +32,7 @@ export class TabsPage {
   constructor(public roleSvc: RoleService, private fb: FirebaseService) {}
 
   logout() {
+    this.roleSvc.setRole(null);
     this.fb.logout();
   }
 
