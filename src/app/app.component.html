@@ -1,6 +1,11 @@
 <ion-app>
   <ion-header *ngIf="loggedIn">
     <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-button routerLink="/tabs">
+          <ion-icon name="home-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
       <ion-title>Kids Faith Tracker</ion-title>
       <ion-buttons slot="end">
         <ion-button (click)="logout()">

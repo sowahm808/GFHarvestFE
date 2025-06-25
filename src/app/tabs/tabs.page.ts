@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { RoleService } from '../services/role.service';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-tabs',
@@ -28,7 +29,11 @@ import { RoleService } from '../services/role.service';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage {
-  constructor(public roleSvc: RoleService) {}
+  constructor(public roleSvc: RoleService, private fb: FirebaseService) {}
+
+  logout() {
+    this.fb.logout();
+  }
 
   get role(): string | null {
     return this.roleSvc.role;
