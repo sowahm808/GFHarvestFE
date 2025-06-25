@@ -1,0 +1,15 @@
+.tile-grid {
+  --ion-grid-column-padding: 8px;
+  --ion-grid-row-padding: 8px;
+}
+
+.tile-button {
+  width: 100%;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  --background: var(--ion-color-secondary);
+  --color: var(--ion-color-light);
+  border-radius: 8px;
+}

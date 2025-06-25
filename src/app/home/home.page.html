@@ -1,4 +1,3 @@
-
   <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-title>
@@ -14,24 +13,24 @@
       </ion-toolbar>
     </ion-header>
 
-    <ion-grid>
+    <ion-grid class="tile-grid">
       <!-- Unauthenticated -->
       <ion-row *ngIf="!role">
         <ion-col size="6">
-          <ion-button routerLink="/login" expand="block">Login</ion-button>
+          <ion-button class="tile-button" routerLink="/login" expand="block">Login</ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button routerLink="/register" expand="block">Register</ion-button>
+          <ion-button class="tile-button" routerLink="/register" expand="block">Register</ion-button>
         </ion-col>
       </ion-row>
 
       <!-- Parent Buttons -->
       <ion-row *ngIf="role === 'parent'">
         <ion-col size="6">
-          <ion-button routerLink="/child-account" expand="block">Create Child</ion-button>
+          <ion-button class="tile-button" routerLink="/child-account" expand="block">Create Child</ion-button>
         </ion-col>
         <ion-col size="6">
-          <ion-button routerLink="/leaderboard" expand="block">Leaderboard</ion-button>
+          <ion-button class="tile-button" routerLink="/leaderboard" expand="block">Leaderboard</ion-button>
         </ion-col>
       </ion-row>
 
@@ -39,31 +38,31 @@
       <ng-container *ngIf="role === 'child'">
         <ion-row>
           <ion-col size="6">
-            <ion-button routerLink="/check-in" expand="block">Daily Check-In</ion-button>
+            <ion-button class="tile-button" routerLink="/check-in" expand="block">Daily Check-In</ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button routerLink="/mental-status" expand="block">Mental Status</ion-button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6">
-            <ion-button routerLink="/bible-quiz" expand="block">Bible Quiz</ion-button>
-          </ion-col>
-          <ion-col size="6">
-            <ion-button routerLink="/essay-tracker" expand="block">Essay Tracker</ion-button>
+            <ion-button class="tile-button" routerLink="/mental-status" expand="block">Mental Status</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-            <ion-button routerLink="/academic-progress" expand="block">Academic Progress</ion-button>
+            <ion-button class="tile-button" routerLink="/bible-quiz" expand="block">Bible Quiz</ion-button>
           </ion-col>
           <ion-col size="6">
-            <ion-button routerLink="/project-tracker" expand="block">Project Tracker</ion-button>
+            <ion-button class="tile-button" routerLink="/essay-tracker" expand="block">Essay Tracker</ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-            <ion-button routerLink="/leaderboard" expand="block">Leaderboard</ion-button>
+            <ion-button class="tile-button" routerLink="/academic-progress" expand="block">Academic Progress</ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button class="tile-button" routerLink="/project-tracker" expand="block">Project Tracker</ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button class="tile-button" routerLink="/leaderboard" expand="block">Leaderboard</ion-button>
           </ion-col>
         </ion-row>
       </ng-container>
