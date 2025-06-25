@@ -37,12 +37,8 @@ import { ProjectEntry } from '../models/project-entry';
     IonCheckbox,
     IonSelect,
     IonSelectOption,
-<<<<<<< HEAD
     CommonModule,
-    ReactiveFormsModule,
-    
-=======
->>>>>>> 231b14d4467859036ab91f77de61f792e6c88742
+    ReactiveFormsModule
   ],
   templateUrl: './project-tracker.page.html',
   styleUrls: ['./project-tracker.page.scss'],

@@ -7,7 +7,7 @@ import {  IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, RouterLink]
+  imports: [ IonHeader, IonToolbar, IonTitle, IonContent, IonButton, RouterLink]
 })
 export class HomePage {
   constructor() {}
