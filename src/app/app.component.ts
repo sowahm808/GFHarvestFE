@@ -1,16 +1,37 @@
 import { Component } from '@angular/core';
-import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
+import {
+  IonApp,
+  IonRouterOutlet,
+  IonHeader,
+  IonToolbar,
+  IonButtons,
+  IonButton,
+  IonIcon,
+  IonTitle,
+} from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
-  imports: [IonApp, IonRouterOutlet],
+  imports: [
+    IonApp,
+    IonRouterOutlet,
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonTitle,
+  ],
 })
 export class AppComponent {
+  loggedIn = false;
+
   constructor(private router: Router, private fb: FirebaseService) {
     this.fb.auth.onAuthStateChanged((user) => {
+      this.loggedIn = !!user;
       const url = this.router.url;
       if (!user) {
         if (!url.startsWith('/login') && !url.startsWith('/register')) {
@@ -20,5 +41,9 @@ export class AppComponent {
         this.router.navigateByUrl('/tabs');
       }
     });
+  }
+
+  logout() {
+    this.fb.logout();
   }
 }
