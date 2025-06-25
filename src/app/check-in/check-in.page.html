@@ -67,6 +67,10 @@
       <ion-label>Need Help?</ion-label>
       <ion-checkbox slot="start" [(ngModel)]="form.needsHelp"></ion-checkbox>
     </ion-item>
+    <ion-item *ngIf="form.needsHelp">
+      <ion-label position="stacked">How can we help?</ion-label>
+      <ion-textarea [(ngModel)]="form.helpRequest"></ion-textarea>
+    </ion-item>
   </ion-list>
   <div class="ion-padding">
     <ion-button expand="block" (click)="submit()">Submit</ion-button>

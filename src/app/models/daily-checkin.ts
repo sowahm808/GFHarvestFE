@@ -10,6 +10,7 @@ export interface DailyCheckin {
   appetite: string;
   treatment: string;
   needsHelp: boolean;
+  helpRequest: string;
   userId?: string | null;
   parentId?: string | null;
   date: string;
