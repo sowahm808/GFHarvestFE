@@ -9,19 +9,19 @@
   <ion-list>
     <ion-item>
       <ion-label>Well Treated at School</ion-label>
-      <ion-input type="checkbox" [(ngModel)]="form.treatmentSchool"></ion-input>
+      <ion-checkbox slot="start" [(ngModel)]="form.treatmentSchool"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Well Treated at Home</ion-label>
-      <ion-input type="checkbox" [(ngModel)]="form.treatmentHome"></ion-input>
+      <ion-checkbox slot="start" [(ngModel)]="form.treatmentHome"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Were you bullied?</ion-label>
-      <ion-input type="checkbox" [(ngModel)]="form.bullied"></ion-input>
+      <ion-checkbox slot="start" [(ngModel)]="form.bullied"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label>Notify Parent if bullied?</ion-label>
-      <ion-input type="checkbox" [(ngModel)]="form.notifyParent"></ion-input>
+      <ion-checkbox slot="start" [(ngModel)]="form.notifyParent"></ion-checkbox>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">Suggestions</ion-label>
