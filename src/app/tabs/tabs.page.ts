@@ -23,7 +23,6 @@ import { RoleService } from '../services/role.service';
     IonTabButton,
     IonIcon,
     IonLabel,
-    IonRouterOutlet,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
