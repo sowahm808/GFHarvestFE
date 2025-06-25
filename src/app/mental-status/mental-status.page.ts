@@ -30,7 +30,7 @@ import { MentalStatus } from '../models/mental-status';
     IonContent,
     IonItem,
     IonLabel,
-    IonInput,
+    
     IonList,
     IonButton,
     IonTextarea,

@@ -11,6 +11,7 @@ import {
   IonInput,
   IonList,
   IonButton,
+  IonCheckbox,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { AcademicProgressEntry } from '../models/academic-progress';
@@ -30,6 +31,8 @@ import { AcademicProgressEntry } from '../models/academic-progress';
     IonInput,
     IonList,
     IonButton,
+    IonCheckbox,
+
   ],
   templateUrl: './academic-progress.page.html',
   styleUrls: ['./academic-progress.page.scss'],
