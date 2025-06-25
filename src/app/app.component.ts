@@ -11,6 +11,7 @@ import {
 } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
+import { RoleService } from './services/role.service';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -31,7 +32,7 @@ import { NgIf } from '@angular/common';
 export class AppComponent {
   loggedIn = false;
 
-  constructor(private router: Router, private fb: FirebaseService) {
+  constructor(private router: Router, private fb: FirebaseService, private roleSvc: RoleService) {
     this.fb.auth.onAuthStateChanged((user) => {
       this.loggedIn = !!user;
       const url = this.router.url;
@@ -46,6 +47,7 @@ export class AppComponent {
   }
 
   logout() {
+    this.roleSvc.setRole(null);
     this.fb.logout();
   }
 }

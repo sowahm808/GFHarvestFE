@@ -15,6 +15,10 @@ import {
   helpOutline,
   createOutline,
   listOutline,
+  homeOutline,
+  logOutOutline,
+  personAddOutline,
+  trophyOutline,
 } from 'ionicons/icons';
 
 import { routes } from './app/app.routes';
@@ -25,6 +29,10 @@ addIcons({
   helpOutline,
   createOutline,
   listOutline,
+  homeOutline,
+  logOutOutline,
+  personAddOutline,
+  trophyOutline,
 });
 
 bootstrapApplication(AppComponent, {
