@@ -33,7 +33,8 @@ export class RegisterPage {
   constructor(private fb: FirebaseService, private router: Router) {}
 
   async register() {
-    await this.fb.register(this.form.email, this.form.password);
+    const cred = await this.fb.register(this.form.email, this.form.password);
+    await this.fb.saveUser(cred.user.uid, this.form.email, 'parent');
     this.router.navigateByUrl('/login');
   }
 }

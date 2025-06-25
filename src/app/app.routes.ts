@@ -53,6 +53,11 @@ export const routes: Routes = [
           import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
       },
       {
+        path: 'manage-roles',
+        loadComponent: () =>
+          import('./manage-roles/manage-roles.page').then((m) => m.ManageRolesPage),
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',

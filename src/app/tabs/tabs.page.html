@@ -1,7 +1,7 @@
 <ion-tabs>
 
   <ion-tab-bar slot="bottom">
-    <ng-container *ngIf="role === 'parent'; else childTabs">
+    <ng-container *ngIf="role === 'parent' || role === 'admin'; else childTabs">
       <ion-tab-button tab="home" href="/tabs/home">
         <ion-icon name="home-outline"></ion-icon>
         <ion-label>Home</ion-label>
@@ -13,6 +13,14 @@
       <ion-tab-button tab="leaderboard" href="/tabs/leaderboard">
         <ion-icon name="trophy-outline"></ion-icon>
         <ion-label>Scores</ion-label>
+      </ion-tab-button>
+      <ion-tab-button
+        tab="manage-roles"
+        href="/tabs/manage-roles"
+        *ngIf="role === 'admin'"
+      >
+        <ion-icon name="shield-checkmark-outline"></ion-icon>
+        <ion-label>Roles</ion-label>
       </ion-tab-button>
     </ng-container>
     <ng-template #childTabs>
