@@ -43,6 +43,6 @@ export class ChildAccountPage {
       user.uid,
       this.form.age
     );
-    this.router.navigateByUrl('/home');
+    this.router.navigateByUrl('/tabs/home');
   }
 }

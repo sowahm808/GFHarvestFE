@@ -50,7 +50,14 @@ export const routes: Routes = [
       {
         path: 'leaderboard',
         loadComponent: () =>
-          import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
+      import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
+      },
+      {
+        path: 'mental-status',
+        loadComponent: () =>
+          import('./mental-status/mental-status.page').then(
+            (m) => m.MentalStatusPage
+          ),
       },
       {
         path: '',
@@ -67,11 +74,6 @@ export const routes: Routes = [
     path: 'register',
     loadComponent: () =>
       import('./register/register.page').then((m) => m.RegisterPage),
-  },
-  {
-    path: 'mental-status',
-    loadComponent: () =>
-      import('./mental-status/mental-status.page').then((m) => m.MentalStatusPage),
   },
   {
     path: '',
