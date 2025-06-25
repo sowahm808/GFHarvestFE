@@ -41,6 +41,7 @@ export class CheckInPage {
     appetite: '',
     treatment: '',
     needsHelp: false,
+    helpRequest: '',
   };
 
   constructor(private fbService: FirebaseService) {}
