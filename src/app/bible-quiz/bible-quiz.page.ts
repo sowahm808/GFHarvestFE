@@ -56,10 +56,14 @@ export class BibleQuizPage implements OnInit {
       return;
     }
     const user = this.fb.auth.currentUser;
+    const correctAnswer = (this.question.answer || '').trim().toLowerCase();
+    const userAnswer = this.answer.trim().toLowerCase();
     await this.fb.saveBibleQuiz({
-      questionId: this.question.id,
+      question: this.question,
       answer: this.answer,
+      score: correctAnswer && userAnswer === correctAnswer ? 200 : 0,
       userId: user ? user.uid : null,
+      date: new Date().toISOString(),
     });
     console.log('Quiz submitted');
   }
