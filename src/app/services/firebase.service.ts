@@ -134,6 +134,25 @@ export class FirebaseService {
     } as BibleQuestion;
   }
 
+  async getBibleQuizHistory(childId: string): Promise<BibleQuizResult[]> {
+    const q = query(
+      collection(this.db, 'bibleQuizzes'),
+      where('childId', '==', childId),
+      orderBy('date', 'desc')
+    );
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => d.data() as BibleQuizResult);
+  }
+
+  gradeQuizAnswer(question: BibleQuestion, answer: string): number {
+    if (!question.answer) {
+      return 0;
+    }
+    return question.answer.trim().toLowerCase() === answer.trim().toLowerCase()
+      ? 200
+      : 0;
+  }
+
   async sendNotification(parentId: string, message: string) {
     return addDoc(collection(this.db, 'notifications'), {
       parentId,
