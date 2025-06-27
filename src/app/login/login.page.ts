@@ -32,7 +32,9 @@ import { RoleService } from '../services/role.service';
 })
 export class LoginPage {
   form = { email: '', password: '' };
-  selectedRole = 'parent';
+  // Default to 'child' so that quiz and other child-specific features work
+  // correctly even if the role selector is not changed.
+  selectedRole = 'child';
 
   constructor(
     private fb: FirebaseService,
