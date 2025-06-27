@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
 import {
   IonHeader,
   IonToolbar,
@@ -16,7 +15,6 @@ import {
   IonRadioGroup,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
-import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
 
 @Component({
@@ -25,7 +23,6 @@ import { BibleQuestion } from '../models/bible-quiz';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -45,13 +42,12 @@ export class BibleQuizPage implements OnInit {
   question: BibleQuestion | null = null;
   answer = '';
 
-  constructor(
-    private fb: FirebaseService,
-    private api: BibleQuizApiService
-  ) {}
+  constructor(private fb: FirebaseService) {}
 
   ngOnInit() {
-    this.api.getTodayQuiz().subscribe((q) => (this.question = q));
+    this.fb
+      .getRandomBibleQuestion()
+      .then((q) => (this.question = q));
   }
 
   async submit() {
@@ -60,12 +56,11 @@ export class BibleQuizPage implements OnInit {
       return;
     }
     const user = this.fb.auth.currentUser;
-    this.api
-      .submitQuiz({
-        questionId: this.question.id,
-        answer: this.answer,
-        userId: user ? user.uid : null,
-      })
-      .subscribe(() => console.log('Quiz submitted'));
+    await this.fb.saveBibleQuiz({
+      questionId: this.question.id,
+      answer: this.answer,
+      userId: user ? user.uid : null,
+    });
+    console.log('Quiz submitted');
   }
 }
