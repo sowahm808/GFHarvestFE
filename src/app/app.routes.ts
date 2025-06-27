@@ -20,6 +20,13 @@ export const routes: Routes = [
           import('./bible-quiz/bible-quiz.page').then((m) => m.BibleQuizPage),
       },
       {
+        path: 'quiz-history',
+        loadComponent: () =>
+          import('./quiz-history/quiz-history.page').then(
+            (m) => m.QuizHistoryPage
+          ),
+      },
+      {
         path: 'essay-tracker',
         loadComponent: () =>
           import('./essay-tracker/essay-tracker.page').then(

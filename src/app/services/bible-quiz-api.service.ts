@@ -8,15 +8,22 @@ import { BibleQuestion, BibleQuizResult } from '../models/bible-quiz';
 export class BibleQuizApiService {
   constructor(private http: HttpClient) {}
 
+  /**
+   * All quiz related endpoints are served under the `/api` prefix.
+   */
   getTodayQuiz(): Observable<BibleQuestion> {
-    return this.http.get<BibleQuestion>(`${environment.apiUrl}/quizzes/today`);
+    return this.http.get<BibleQuestion>(
+      `${environment.apiUrl}/api/quizzes/today`
+    );
   }
 
   submitQuiz(data: unknown): Observable<unknown> {
-    return this.http.post(`${environment.apiUrl}/quizzes/submit`, data);
+    return this.http.post(`${environment.apiUrl}/api/quizzes/submit`, data);
   }
 
   getHistory(childId: string): Observable<BibleQuizResult[]> {
-    return this.http.get<BibleQuizResult[]>(`${environment.apiUrl}/quizzes/history/${childId}`);
+    return this.http.get<BibleQuizResult[]>(
+      `${environment.apiUrl}/api/quizzes/history/${childId}`
+    );
   }
 }
