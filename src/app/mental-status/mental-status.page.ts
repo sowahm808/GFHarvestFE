@@ -39,7 +39,7 @@ import { MentalStatus } from '../models/mental-status';
   styleUrls: ['./mental-status.page.scss'],
 })
 export class MentalStatusPage {
-  form: Omit<MentalStatus, 'userId' | 'parentId' | 'date'> = {
+  form: Omit<MentalStatus, 'childId' | 'parentId' | 'date'> = {
     treatmentSchool: false,
     treatmentHome: false,
     bullied: false,
@@ -54,7 +54,7 @@ export class MentalStatusPage {
     const parentId = user ? await this.fb.getParentIdForChild(user.uid) : null;
     await this.fb.saveMentalStatus({
       ...this.form,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       parentId,
       date: new Date().toISOString(),
     });

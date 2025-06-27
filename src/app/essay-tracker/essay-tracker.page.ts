@@ -43,7 +43,7 @@ import { EssayEntry } from '../models/essay-entry';
   styleUrls: ['./essay-tracker.page.scss'],
 })
 export class EssayTrackerPage {
-  form: Omit<EssayEntry, 'userId' | 'date'> = {
+  form: Omit<EssayEntry, 'childId' | 'date'> = {
     title: '',
     progress: 'in progress',
     needHelp: false,
@@ -55,7 +55,7 @@ export class EssayTrackerPage {
     const user = this.fb.auth.currentUser;
     await this.fb.saveEssay({
       ...this.form,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
     console.log('Essay saved');

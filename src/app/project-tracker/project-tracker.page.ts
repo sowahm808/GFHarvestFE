@@ -46,7 +46,7 @@ import { ProjectEntry } from '../models/project-entry';
 
 })
 export class ProjectTrackerPage {
-  form: Omit<ProjectEntry, 'userId' | 'date' | 'quarter'> = {
+  form: Omit<ProjectEntry, 'childId' | 'date' | 'quarter'> = {
     title: '',
     presentationDate: '',
     needsHelp: false,
@@ -66,7 +66,7 @@ export class ProjectTrackerPage {
     await this.fb.saveProject({
       ...this.form,
       quarter,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
     console.log('Project saved');

@@ -81,16 +81,16 @@ export class FirebaseService {
 
   async saveDailyCheckin(data: DailyCheckin) {
     const docRef = await addDoc(collection(this.db, 'dailyCheckins'), data);
-    if (data.userId) {
-      await this.updateStreak(data.userId);
+    if (data.childId) {
+      await this.updateStreak(data.childId);
     }
     return docRef;
   }
 
   async saveMentalStatus(data: MentalStatus) {
     const docRef = await addDoc(collection(this.db, 'mentalStatus'), data);
-    if (data.userId) {
-      const parentId = await this.getParentIdForChild(data.userId);
+    if (data.childId) {
+      const parentId = await this.getParentIdForChild(data.childId);
       if (parentId && (data.bullied || data.notifyParent)) {
         await this.sendNotification(
           parentId,
@@ -103,8 +103,8 @@ export class FirebaseService {
 
   async saveBibleQuiz(data: BibleQuizResult) {
     const docRef = await addDoc(collection(this.db, 'bibleQuizzes'), data);
-    if (data.userId && data.score) {
-      await this.addPoints(data.userId, data.score);
+    if (data.childId && data.score) {
+      await this.addPoints(data.childId, data.score);
     }
     return docRef;
   }
@@ -142,13 +142,13 @@ export class FirebaseService {
     });
   }
 
-  async addPoints(userId: string, points: number) {
-    const ref = doc(this.db, 'userStats', userId);
+  async addPoints(childId: string, points: number) {
+    const ref = doc(this.db, 'userStats', childId);
     await setDoc(ref, { points: increment(points) }, { merge: true });
   }
 
-  async updateStreak(userId: string) {
-    const ref = doc(this.db, 'userStats', userId);
+  async updateStreak(childId: string) {
+    const ref = doc(this.db, 'userStats', childId);
     const snap = await getDoc(ref);
     const today = new Date().toISOString().split('T')[0];
     if (!snap.exists()) {

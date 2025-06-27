@@ -2,6 +2,6 @@ export interface AcademicProgressEntry {
   testScore: number | null;
   shareResult: boolean;
   needsHelp: boolean;
-  userId?: string | null;
+  childId?: string | null;
   date: string;
 }

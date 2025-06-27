@@ -4,7 +4,7 @@ export interface MentalStatus {
   bullied: boolean;
   notifyParent: boolean;
   suggestions: string;
-  userId?: string | null;
+  childId?: string | null;
   parentId?: string | null;
   date: string;
 }

@@ -18,6 +18,6 @@ export interface BibleQuizResult {
   question: BibleQuestion;
   answer: string;
   score: number;
-  userId?: string | null;
+  childId?: string | null;
   date: string;
 }

@@ -11,7 +11,7 @@ export interface DailyCheckin {
   treatment: string;
   needsHelp: boolean;
   helpRequest: string;
-  userId?: string | null;
+  childId?: string | null;
   parentId?: string | null;
   date: string;
 }

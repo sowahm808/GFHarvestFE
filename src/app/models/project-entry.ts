@@ -5,6 +5,6 @@ export interface ProjectEntry {
   enjoyment: number;
   progress: string;
   quarter: string;
-  userId?: string | null;
+  childId?: string | null;
   date: string;
 }
