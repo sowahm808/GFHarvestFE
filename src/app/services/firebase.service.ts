@@ -218,10 +218,10 @@ export class FirebaseService {
 
   async getChildForMentor(mentorId: string): Promise<string[]> {
     const q = query(
-      collection(this.db, 'mentorChildLink'),
+      collection(this.db, 'mentorChildLinks'),
       where('mentorId', '==', mentorId)
     );
-    const snap =await getDocs(q);
-    return snap.docs.map((d) => (d.data() as MentorChildLink).childId)
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => (d.data() as MentorChildLink).childId);
   }
 }
