@@ -14,9 +14,8 @@ import {
   IonCheckbox,
   IonSelect,
   IonSelectOption,
-
+  
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ProjectEntry } from '../models/project-entry';
 
@@ -29,7 +28,6 @@ import { ProjectEntry } from '../models/project-entry';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonPage,
     IonContent,
     IonItem,
     IonLabel,
