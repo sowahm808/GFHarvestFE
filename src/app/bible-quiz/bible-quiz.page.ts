@@ -51,7 +51,7 @@ export class BibleQuizPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.api.getRandomQuestion().subscribe((q) => (this.question = q));
+    this.api.getTodayQuiz().subscribe((q) => (this.question = q));
   }
 
   async submit() {
@@ -60,13 +60,12 @@ export class BibleQuizPage implements OnInit {
       return;
     }
     const user = this.fb.auth.currentUser;
-    await this.fb.saveBibleQuiz({
-      question: this.question!,
-      answer: this.answer,
-      score: 200,
-      userId: user ? user.uid : null,
-      date: new Date().toISOString(),
-    });
-    console.log('Quiz saved');
+    this.api
+      .submitQuiz({
+        questionId: this.question.id,
+        answer: this.answer,
+        userId: user ? user.uid : null,
+      })
+      .subscribe(() => console.log('Quiz submitted'));
   }
 }

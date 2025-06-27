@@ -4,7 +4,7 @@ import { BibleQuizPage } from './bible-quiz.page';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 
 class MockQuizApiService {
-  getRandomQuestion() {
+  getTodayQuiz() {
     return of(null);
   }
 }
