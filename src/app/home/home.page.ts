@@ -10,7 +10,7 @@ import {
   IonRow,
   IonCol,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular';
+import { IonPage } from '@ionic/angular/standalone';
 import { RoleService } from '../services/role.service';
 import { NgIf } from '@angular/common';
 

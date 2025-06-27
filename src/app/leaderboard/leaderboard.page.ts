@@ -10,7 +10,7 @@ import {
   IonItem,
   IonLabel,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular';
+import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { LeaderboardEntry } from '../models/user-stats';
 
