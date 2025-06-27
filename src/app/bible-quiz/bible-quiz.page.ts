@@ -54,7 +54,7 @@ export class BibleQuizPage implements OnInit {
       return;
     }
     this.api
-      .submitQuiz({ questionId: this.question.id, answer: this.answer })
+      .submitQuiz({ question: this.question, answer: this.answer })
       .subscribe(() => {
         console.log('Quiz submitted');
       });
