@@ -9,7 +9,7 @@
   <ion-list *ngIf="question">
     <ion-item>
       <ion-label position="stacked">Question</ion-label>
-      <ion-label>{{ question.text }}</ion-label>
+      <ion-label>{{ question.text || question.question }}</ion-label>
     </ion-item>
     <ion-radio-group [(ngModel)]="answer" *ngIf="question.options?.length">
       <ion-item *ngFor="let opt of question.options">
