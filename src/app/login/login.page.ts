@@ -47,4 +47,10 @@ export class LoginPage {
     this.roleSvc.setRole(this.selectedRole);
     this.router.navigateByUrl('/tabs');
   }
+
+  async loginWithGoogle() {
+    await this.fb.loginWithGoogle();
+    this.roleSvc.setRole(this.selectedRole);
+    this.router.navigateByUrl('/tabs');
+  }
 }
