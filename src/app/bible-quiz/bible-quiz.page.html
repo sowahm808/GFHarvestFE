@@ -1,4 +1,3 @@
-<ion-page>
 
   <ion-header>
     <ion-toolbar>
@@ -10,7 +9,7 @@
   <ion-list *ngIf="question">
     <ion-item>
       <ion-label position="stacked">Question</ion-label>
-      <ion-text>{{ question.text || question.question }}</ion-text>
+      <ion-label>{{ question.text || question.question }}</ion-label>
     </ion-item>
     <ion-radio-group [(ngModel)]="answer" *ngIf="question.options?.length">
       <ion-item *ngFor="let opt of question.options">
@@ -28,4 +27,3 @@
   </div>
   </ion-content>
 
-</ion-page>

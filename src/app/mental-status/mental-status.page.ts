@@ -14,7 +14,6 @@ import {
   IonButton,
   IonTextarea,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { MentalStatus } from '../models/mental-status';
 
@@ -28,7 +27,6 @@ import { MentalStatus } from '../models/mental-status';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonPage,
     IonContent,
     IonItem,
     IonLabel,

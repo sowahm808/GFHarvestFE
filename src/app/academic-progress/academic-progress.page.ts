@@ -13,7 +13,6 @@ import {
   IonButton,
   IonCheckbox,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { AcademicProgressEntry } from '../models/academic-progress';
 
@@ -26,7 +25,6 @@ import { AcademicProgressEntry } from '../models/academic-progress';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonPage,
     IonContent,
     IonItem,
     IonLabel,

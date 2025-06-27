@@ -16,7 +16,6 @@ import {
   IonSelectOption,
   IonCheckbox,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { EssayEntry } from '../models/essay-entry';
 
@@ -30,7 +29,6 @@ import { EssayEntry } from '../models/essay-entry';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonPage,
     IonContent,
     IonItem,
     IonLabel,

@@ -13,9 +13,7 @@ import {
   IonButton,
   IonRadio,
   IonRadioGroup,
-  IonText,
 } from '@ionic/angular/standalone';
-import { IonPage } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { BibleQuestion } from '../models/bible-quiz';
 
@@ -28,7 +26,6 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonPage,
     IonContent,
     IonItem,
     IonLabel,
@@ -37,7 +34,6 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonButton,
     IonRadio,
     IonRadioGroup,
-    IonText,
   ],
   templateUrl: './bible-quiz.page.html',
   styleUrls: ['./bible-quiz.page.scss'],
