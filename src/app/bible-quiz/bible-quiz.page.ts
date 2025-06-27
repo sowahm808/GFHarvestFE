@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import {
   IonHeader,
   IonToolbar,
@@ -11,8 +12,11 @@ import {
   IonInput,
   IonList,
   IonButton,
+  IonRadio,
+  IonRadioGroup,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
 
 @Component({
@@ -21,6 +25,7 @@ import { BibleQuestion } from '../models/bible-quiz';
   imports: [
     CommonModule,
     FormsModule,
+    HttpClientModule,
     IonHeader,
     IonToolbar,
     IonTitle,
@@ -30,6 +35,8 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonInput,
     IonList,
     IonButton,
+    IonRadio,
+    IonRadioGroup,
   ],
   templateUrl: './bible-quiz.page.html',
   styleUrls: ['./bible-quiz.page.scss'],
@@ -38,10 +45,13 @@ export class BibleQuizPage implements OnInit {
   question: BibleQuestion | null = null;
   answer = '';
 
-  constructor(private fb: FirebaseService) {}
+  constructor(
+    private fb: FirebaseService,
+    private api: BibleQuizApiService
+  ) {}
 
-  async ngOnInit() {
-    this.question = await this.fb.getRandomBibleQuestion();
+  ngOnInit() {
+    this.api.getRandomQuestion().subscribe((q) => (this.question = q));
   }
 
   async submit() {

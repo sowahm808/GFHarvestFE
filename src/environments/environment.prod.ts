@@ -5,4 +5,5 @@ export const environment = {
     authDomain: 'YOUR_AUTH_DOMAIN',
     projectId: 'YOUR_PROJECT_ID',
   },
+  apiUrl: 'https://api.example.com'
 };
