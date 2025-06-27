@@ -32,7 +32,7 @@ import { AcademicProgressEntry } from '../models/academic-progress';
 import { ProjectEntry } from '../models/project-entry';
 import { LeaderboardEntry, UserStats } from '../models/user-stats';
 import { ParentChildLink } from '../models/parent-child-link';
-
+import { MentorChildLink } from '../models/mentor-child-link';
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   private app = initializeApp(environment.firebase);
@@ -210,5 +210,18 @@ export class FirebaseService {
     return snap.docs.map(
       (d) => ({ id: d.id, ...(d.data() as Omit<LeaderboardEntry, 'id'>) })
     );
+  }
+
+  assignMentor(mentorId: string, childId: string){
+    return addDoc(collection(this.db, 'mentorChildLinks'), {mentorId, childId});
+  }
+
+  async getChildForMentor(mentorId: string): Promise<string[]> {
+    const q = query(
+      collection(this.db, 'mentorChildLink'),
+      where('mentorId', '==', mentorId)
+    );
+    const snap =await getDocs(q);
+    return snap.docs.map((d) => (d.data() as MentorChildLink).childId)
   }
 }
