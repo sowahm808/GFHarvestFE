@@ -26,11 +26,13 @@ export class BibleQuizApiService {
   }
 
   submitQuiz(data: { question: BibleQuestion; answer: string }): Observable<unknown> {
+    const payload = {
+      childId: this.fb.auth.currentUser?.uid || null,
+      quizId: data.question.id,
+      answers: [data.answer],
+    };
     return this.http
-      .post(`${environment.apiUrl}/api/quizzes/submit`, {
-        questionId: data.question.id,
-        answer: data.answer,
-      })
+      .post(`${environment.apiUrl}/api/quizzes/submit`, payload)
       .pipe(
         catchError(() => {
           const score = this.fb.gradeQuizAnswer(data.question, data.answer);
