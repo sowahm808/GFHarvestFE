@@ -14,7 +14,7 @@ import {
   IonRadio,
   IonRadioGroup,
 } from '@ionic/angular/standalone';
-import { FirebaseService } from '../services/firebase.service';
+import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
 
 @Component({
@@ -42,29 +42,21 @@ export class BibleQuizPage implements OnInit {
   question: BibleQuestion | null = null;
   answer = '';
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private api: BibleQuizApiService) {}
 
   ngOnInit() {
-    this.fb
-      .getRandomBibleQuestion()
-      .then((q) => (this.question = q));
+    this.api.getTodayQuiz().subscribe((q) => (this.question = q));
   }
 
-  async submit() {
+  submit() {
     if (!this.question) {
       console.error('No quiz question available');
       return;
     }
-    const user = this.fb.auth.currentUser;
-    const correctAnswer = (this.question.answer || '').trim().toLowerCase();
-    const userAnswer = this.answer.trim().toLowerCase();
-    await this.fb.saveBibleQuiz({
-      question: this.question,
-      answer: this.answer,
-      score: correctAnswer && userAnswer === correctAnswer ? 200 : 0,
-      childId: user ? user.uid : null,
-      date: new Date().toISOString(),
-    });
-    console.log('Quiz submitted');
+    this.api
+      .submitQuiz({ questionId: this.question.id, answer: this.answer })
+      .subscribe(() => {
+        console.log('Quiz submitted');
+      });
   }
 }
