@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  
+
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonPage,
   IonContent,
   IonList,
   IonItem,
   IonLabel,
 } from '@ionic/angular/standalone';
+import { IonPage } from '@ionic/angular';
 import { FirebaseService } from '../services/firebase.service';
 import { LeaderboardEntry } from '../models/user-stats';
 

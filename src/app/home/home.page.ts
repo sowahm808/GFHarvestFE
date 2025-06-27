@@ -5,12 +5,12 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-  IonPage,
   IonButton,
   IonGrid,
   IonRow,
   IonCol,
 } from '@ionic/angular/standalone';
+import { IonPage } from '@ionic/angular';
 import { RoleService } from '../services/role.service';
 import { NgIf } from '@angular/common';
 
