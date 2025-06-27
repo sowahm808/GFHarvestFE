@@ -13,7 +13,7 @@ export const environment = {
     messagingSenderId: "1234567890",
     appId: "1:1234567890:web:abc123xyz"
   },
-  apiUrl: 'http://localhost:3000/'
+  apiUrl: 'http://localhost:3000'
 };
 
 
