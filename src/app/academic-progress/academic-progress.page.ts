@@ -38,7 +38,7 @@ import { AcademicProgressEntry } from '../models/academic-progress';
   styleUrls: ['./academic-progress.page.scss'],
 })
 export class AcademicProgressPage {
-  form: Omit<AcademicProgressEntry, 'userId' | 'date'> = {
+  form: Omit<AcademicProgressEntry, 'childId' | 'date'> = {
     testScore: null as number | null,
     shareResult: false,
     needsHelp: false,
@@ -50,7 +50,7 @@ export class AcademicProgressPage {
     const user = this.fb.auth.currentUser;
     await this.fb.saveAcademicProgress({
       ...this.form,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
     console.log('Academic progress saved');

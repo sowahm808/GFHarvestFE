@@ -29,7 +29,7 @@ import { DailyCheckin } from '../models/daily-checkin';
   styleUrls: ['./check-in.page.scss'],
 })
 export class CheckInPage {
-  form: Omit<DailyCheckin, 'userId' | 'parentId' | 'date'> = {
+  form: Omit<DailyCheckin, 'childId' | 'parentId' | 'date'> = {
     gratitude1: '',
     gratitude2: '',
     gratitude3: '',
@@ -51,7 +51,7 @@ export class CheckInPage {
     const parentId = user ? await this.fbService.getParentIdForChild(user.uid) : null;
     await this.fbService.saveDailyCheckin({
       ...this.form,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       parentId,
       date: new Date().toISOString(),
     });

@@ -2,6 +2,6 @@ export interface EssayEntry {
   title: string;
   progress: string;
   needHelp: boolean;
-  userId?: string | null;
+  childId?: string | null;
   date: string;
 }

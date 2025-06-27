@@ -62,7 +62,7 @@ export class BibleQuizPage implements OnInit {
       question: this.question,
       answer: this.answer,
       score: correctAnswer && userAnswer === correctAnswer ? 200 : 0,
-      userId: user ? user.uid : null,
+      childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
     console.log('Quiz submitted');
