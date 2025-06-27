@@ -7,6 +7,8 @@ import {
   signOut,
   Auth,
   UserCredential,
+  GoogleAuthProvider,
+  signInWithPopup,
 } from 'firebase/auth';
 import {
   getFirestore,
@@ -45,6 +47,14 @@ export class FirebaseService {
 
   login(email: string, password: string): Promise<UserCredential> {
     return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  /**
+   * Sign in or register using Google authentication.
+   */
+  loginWithGoogle(): Promise<UserCredential> {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(this.auth, provider);
   }
 
   logout(): Promise<void> {

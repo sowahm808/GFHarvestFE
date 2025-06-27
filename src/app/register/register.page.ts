@@ -36,4 +36,9 @@ export class RegisterPage {
     await this.fb.register(this.form.email, this.form.password);
     this.router.navigateByUrl('/login');
   }
+
+  async registerWithGoogle() {
+    await this.fb.loginWithGoogle();
+    this.router.navigateByUrl('/login');
+  }
 }
