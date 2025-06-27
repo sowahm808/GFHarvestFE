@@ -8,12 +8,21 @@ import { FirebaseService } from './firebase.service';
 
 @Injectable({ providedIn: 'root' })
 export class BibleQuizApiService {
+  /** Flag indicating whether REST API calls should be attempted. */
+  private apiEnabled = !!environment.apiUrl;
+
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
   /**
-   * All quiz related endpoints are served under the `/api` prefix.
-   */
+  * All quiz related endpoints are served under the `/api` prefix.
+  */
   getTodayQuiz(): Observable<BibleQuestion> {
+    if (!this.apiEnabled) {
+      return from(this.fb.getRandomBibleQuestion()).pipe(
+        map((q) => q as BibleQuestion)
+      );
+    }
+
     return this.http
       .get<BibleQuestion>(`${environment.apiUrl}/api/quizzes/today`)
       .pipe(
@@ -26,6 +35,19 @@ export class BibleQuizApiService {
   }
 
   submitQuiz(data: { question: BibleQuestion; answer: string }): Observable<unknown> {
+    const score = this.fb.gradeQuizAnswer(data.question, data.answer);
+
+    if (!this.apiEnabled) {
+      const result: BibleQuizResult = {
+        question: data.question,
+        answer: data.answer,
+        score,
+        childId: this.fb.auth.currentUser?.uid || null,
+        date: new Date().toISOString(),
+      };
+      return from(this.fb.saveBibleQuiz(result));
+    }
+
     const payload = {
       childId: this.fb.auth.currentUser?.uid || null,
       quizId: data.question.id,
@@ -35,7 +57,6 @@ export class BibleQuizApiService {
       .post(`${environment.apiUrl}/api/quizzes/submit`, payload)
       .pipe(
         catchError(() => {
-          const score = this.fb.gradeQuizAnswer(data.question, data.answer);
           const result: BibleQuizResult = {
             question: data.question,
             answer: data.answer,
@@ -49,6 +70,10 @@ export class BibleQuizApiService {
   }
 
   getHistory(childId: string): Observable<BibleQuizResult[]> {
+    if (!this.apiEnabled) {
+      return from(this.fb.getBibleQuizHistory(childId));
+    }
+
     return this.http
       .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/history/${childId}`)
       .pipe(
