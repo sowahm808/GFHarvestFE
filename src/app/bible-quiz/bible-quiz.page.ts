@@ -41,11 +41,25 @@ import { BibleQuestion } from '../models/bible-quiz';
 export class BibleQuizPage implements OnInit {
   question: BibleQuestion | null = null;
   answer = '';
+  loading = false;
 
   constructor(private api: BibleQuizApiService) {}
 
   ngOnInit() {
-    this.api.getTodayQuiz().subscribe((q) => (this.question = q));
+    this.loadQuiz();
+  }
+
+  loadQuiz() {
+    this.loading = true;
+    this.api.getTodayQuiz().subscribe({
+      next: (q) => {
+        this.question = q;
+        this.loading = false;
+      },
+      error: () => {
+        this.loading = false;
+      },
+    });
   }
 
   submit() {

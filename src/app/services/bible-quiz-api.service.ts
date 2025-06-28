@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, from } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, timeout } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { BibleQuestion, BibleQuizResult } from '../models/bible-quiz';
 import { FirebaseService } from './firebase.service';
@@ -26,6 +26,7 @@ export class BibleQuizApiService {
     return this.http
       .get<BibleQuestion>(`${environment.apiUrl}/api/quizzes/today`)
       .pipe(
+        timeout(5000),
         catchError(() =>
           from(this.fb.getRandomBibleQuestion()).pipe(
             map((q) => q as BibleQuestion)
@@ -56,6 +57,7 @@ export class BibleQuizApiService {
     return this.http
       .post(`${environment.apiUrl}/api/quizzes/submit`, payload)
       .pipe(
+        timeout(5000),
         catchError(() => {
           const result: BibleQuizResult = {
             question: data.question,
@@ -77,6 +79,7 @@ export class BibleQuizApiService {
     return this.http
       .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/history/${childId}`)
       .pipe(
+        timeout(5000),
         catchError(() => from(this.fb.getBibleQuizHistory(childId)))
       );
   }
