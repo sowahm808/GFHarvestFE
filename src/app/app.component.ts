@@ -4,7 +4,13 @@ import {
   IonRouterOutlet,
   IonHeader,
   IonToolbar,
+  IonMenu,
+  IonContent,
+  IonList,
+  IonItem,
+  IonMenuToggle,
   IonButtons,
+  IonMenuButton,
   IonButton,
   IonIcon,
   IonTitle,
@@ -13,6 +19,7 @@ import { Router } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
 import { RoleService } from './services/role.service';
 import { NgIf } from '@angular/common';
+import { BreadcrumbsComponent } from './components/breadcrumbs.component';
 
 @Component({
   selector: 'app-root',
@@ -20,13 +27,20 @@ import { NgIf } from '@angular/common';
   imports: [
     IonApp,
     IonRouterOutlet,
+    IonMenu,
+    IonContent,
+    IonList,
+    IonItem,
+    IonMenuToggle,
     IonHeader,
     IonToolbar,
     IonButtons,
+    IonMenuButton,
     IonButton,
     IonIcon,
     IonTitle,
-    NgIf
+    NgIf,
+    BreadcrumbsComponent
   ],
 })
 export class AppComponent {

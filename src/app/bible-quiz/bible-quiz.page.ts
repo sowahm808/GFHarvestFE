@@ -5,6 +5,8 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonButtons,
+  IonMenuButton,
   IonContent,
   IonItem,
   IonLabel,
@@ -17,6 +19,7 @@ import {
 } from '@ionic/angular/standalone';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-bible-quiz',
@@ -27,6 +30,8 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonButtons,
+    IonMenuButton,
     IonContent,
     IonItem,
     IonLabel,
@@ -35,7 +40,8 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonButton,
     IonRadio,
     IonRadioGroup,
-    IonSpinner
+    IonSpinner,
+    BreadcrumbsComponent
   ],
   templateUrl: './bible-quiz.page.html',
   styleUrls: ['./bible-quiz.page.scss'],

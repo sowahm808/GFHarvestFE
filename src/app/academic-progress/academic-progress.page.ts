@@ -5,6 +5,8 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonButtons,
+  IonMenuButton,
   IonContent,
   IonItem,
   IonLabel,
@@ -15,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { AcademicProgressEntry } from '../models/academic-progress';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-academic-progress',
@@ -25,6 +28,8 @@ import { AcademicProgressEntry } from '../models/academic-progress';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonButtons,
+    IonMenuButton,
     IonContent,
     IonItem,
     IonLabel,
@@ -32,7 +37,7 @@ import { AcademicProgressEntry } from '../models/academic-progress';
     IonList,
     IonButton,
     IonCheckbox,
-
+    BreadcrumbsComponent,
   ],
   templateUrl: './academic-progress.page.html',
   styleUrls: ['./academic-progress.page.scss'],
