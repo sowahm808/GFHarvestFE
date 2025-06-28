@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import {
   IonTabs,
   IonRouterOutlet,
+
   IonTabBar,
   IonTabButton,
   IonHeader,
@@ -14,11 +14,6 @@ import {
   IonButton,
   IonIcon,
   IonLabel,
-  IonMenu,
-  IonContent,
-  IonList,
-  IonItem,
-  IonMenuToggle,
 } from '@ionic/angular/standalone';
 
 import { RoleService } from '../services/role.service';
@@ -43,13 +38,7 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonButton,
     IonIcon,
     IonLabel,
-    IonMenu,
-    IonContent,
-    IonList,
-    IonItem,
-    IonMenuToggle,
     BreadcrumbsComponent,
-    RouterLink,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
