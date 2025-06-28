@@ -5,11 +5,11 @@ import {
  
   IonTabBar,
   IonTabButton,
+  IonButton,
   IonIcon,
   IonLabel,
-  IonRouterOutlet,
 } from '@ionic/angular/standalone';
-import { RouterLink, RouterOutlet } from '@angular/router';
+
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
 
@@ -17,11 +17,12 @@ import { FirebaseService } from '../services/firebase.service';
   selector: 'app-tabs',
   standalone: true,
   imports: [
-   
+
     CommonModule,
     IonTabs,
     IonTabBar,
     IonTabButton,
+    IonButton,
     IonIcon,
     IonLabel,
   ],
