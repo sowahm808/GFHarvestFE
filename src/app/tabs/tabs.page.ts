@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonTabs,
+  IonRouterOutlet,
 
   IonTabBar,
   IonTabButton,
@@ -26,6 +27,7 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
     CommonModule,
     IonTabs,
+    IonRouterOutlet,
     IonTabBar,
     IonTabButton,
     IonHeader,

@@ -15,7 +15,7 @@ import {
   IonIcon,
   IonTitle,
 } from '@ionic/angular/standalone';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
 import { RoleService } from './services/role.service';
 import { NgIf } from '@angular/common';
@@ -40,7 +40,8 @@ import { BreadcrumbsComponent } from './components/breadcrumbs.component';
     IonIcon,
     IonTitle,
     NgIf,
-    BreadcrumbsComponent
+    BreadcrumbsComponent,
+    RouterLink
   ],
 })
 export class AppComponent {
