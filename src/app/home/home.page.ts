@@ -4,8 +4,6 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButtons,
-  IonMenuButton,
   IonContent,
   IonButton,
   IonGrid,
@@ -15,7 +13,6 @@ import {
 } from '@ionic/angular/standalone';
 import { RoleService } from '../services/role.service';
 import { NgIf } from '@angular/common';
-import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-home',
@@ -26,8 +23,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonButtons,
-    IonMenuButton,
     IonContent,
     IonButton,
     IonGrid,
@@ -35,8 +30,7 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonCol,
     RouterLink,
     NgIf,
-    IonSpinner,
-    BreadcrumbsComponent
+    IonSpinner
   ],
 })
 export class HomePage {

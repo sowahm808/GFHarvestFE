@@ -6,8 +6,6 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButtons,
-  IonMenuButton,
   IonContent,
   IonItem,
   IonLabel,
@@ -20,20 +18,17 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { EssayEntry } from '../models/essay-entry';
-import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-essay-tracker',
   standalone: true,
   imports: [
-
+    
     CommonModule,
     FormsModule,
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonButtons,
-    IonMenuButton,
     IonContent,
     IonItem,
     IonLabel,
@@ -43,7 +38,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonSelect,
     IonSelectOption,
     IonCheckbox,
-    BreadcrumbsComponent,
   ],
   templateUrl: './essay-tracker.page.html',
   styleUrls: ['./essay-tracker.page.scss'],

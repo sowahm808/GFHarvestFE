@@ -6,8 +6,6 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
-  IonButtons,
-  IonMenuButton,
   IonContent,
   IonItem,
   IonLabel,
@@ -19,7 +17,6 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { MentalStatus } from '../models/mental-status';
-import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-mental-status',
@@ -31,8 +28,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonButtons,
-    IonMenuButton,
     IonContent,
     IonItem,
     IonLabel,
@@ -41,7 +36,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonButton,
     IonCheckbox,
     IonTextarea,
-    BreadcrumbsComponent,
   ],
   templateUrl: './mental-status.page.html',
   styleUrls: ['./mental-status.page.scss'],
