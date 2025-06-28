@@ -1,42 +1,5 @@
 <ion-app>
-  <ion-menu contentId="main">
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content>
-      <ion-list>
-        <ion-menu-toggle auto-hide="true">
-          <ion-item routerLink="/tabs/home">Home</ion-item>
-          <ion-item routerLink="/tabs/check-in">Daily Check-In</ion-item>
-          <ion-item routerLink="/tabs/bible-quiz">Bible Quiz</ion-item>
-          <ion-item routerLink="/tabs/essay-tracker">Essay Tracker</ion-item>
-          <ion-item routerLink="/tabs/project-tracker">Project Tracker</ion-item>
-          <ion-item routerLink="/tabs/leaderboard">Leaderboard</ion-item>
-        </ion-menu-toggle>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
-
-  <div id="main">
-    <ion-header *ngIf="loggedIn">
-      <ion-toolbar>
-        <ion-buttons slot="start">
-          <ion-menu-button></ion-menu-button>
-          <ion-button routerLink="/tabs">
-            <ion-icon name="home-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-        <ion-title>Kids Faith Tracker</ion-title>
-        <ion-buttons slot="end">
-          <ion-button (click)="logout()">
-            <ion-icon name="log-out-outline"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-toolbar>
-      <app-breadcrumbs></app-breadcrumbs>
-    </ion-header>
+  <div>
     <ion-router-outlet></ion-router-outlet>
   </div>
 </ion-app>
