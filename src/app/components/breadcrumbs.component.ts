@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd, RouterLink } from '@angular/router';
 import { IonBreadcrumb, IonBreadcrumbs } from '@ionic/angular/standalone';
 import { NgFor } from '@angular/common';
 import { filter } from 'rxjs/operators';
@@ -14,7 +14,7 @@ import { filter } from 'rxjs/operators';
     </ion-breadcrumbs>
   `,
   standalone: true,
-  imports: [IonBreadcrumbs, IonBreadcrumb, NgFor],
+  imports: [IonBreadcrumbs, IonBreadcrumb, NgFor, RouterLink],
 })
 export class BreadcrumbsComponent {
   breadcrumbs: { label: string; url: string }[] = [];
