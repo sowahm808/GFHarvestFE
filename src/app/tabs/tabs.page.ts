@@ -9,6 +9,7 @@ import {
   IonToolbar,
   IonTitle,
   IonButtons,
+  IonMenuButton,
   IonButton,
   IonIcon,
   IonLabel,
@@ -16,6 +17,7 @@ import {
 
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-tabs',
@@ -30,9 +32,11 @@ import { FirebaseService } from '../services/firebase.service';
     IonToolbar,
     IonTitle,
     IonButtons,
+    IonMenuButton,
     IonButton,
     IonIcon,
     IonLabel,
+    BreadcrumbsComponent,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],

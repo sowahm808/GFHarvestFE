@@ -5,6 +5,8 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonButtons,
+  IonMenuButton,
   IonContent,
   IonList,
   IonItem,
@@ -12,6 +14,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { LeaderboardEntry } from '../models/user-stats';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-leaderboard',
@@ -22,10 +25,13 @@ import { LeaderboardEntry } from '../models/user-stats';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonButtons,
+    IonMenuButton,
     IonContent,
     IonList,
     IonItem,
     IonLabel,
+    BreadcrumbsComponent,
   ],
   templateUrl: './leaderboard.page.html',
   styleUrls: ['./leaderboard.page.scss'],

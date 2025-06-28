@@ -4,6 +4,8 @@ import {
   IonHeader,
   IonToolbar,
   IonTitle,
+  IonButtons,
+  IonMenuButton,
   IonContent,
   IonList,
   IonItem,
@@ -13,6 +15,7 @@ import { firstValueFrom } from 'rxjs';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { FirebaseService } from '../services/firebase.service';
 import { BibleQuizResult } from '../models/bible-quiz';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-quiz-history',
@@ -22,10 +25,13 @@ import { BibleQuizResult } from '../models/bible-quiz';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonButtons,
+    IonMenuButton,
     IonContent,
     IonList,
     IonItem,
     IonLabel,
+    BreadcrumbsComponent,
   ],
   templateUrl: './quiz-history.page.html',
   styleUrls: ['./quiz-history.page.scss'],

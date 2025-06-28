@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList } from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +17,8 @@ import { Router } from '@angular/router';
     IonHeader,
     IonToolbar,
     IonTitle,
+    IonButtons,
+    IonMenuButton,
     IonContent,
     IonInput,
     IonItem,
@@ -23,6 +26,7 @@ import { Router } from '@angular/router';
     IonButton,
     IonList,
     RouterLink,
+    BreadcrumbsComponent,
   ],
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
