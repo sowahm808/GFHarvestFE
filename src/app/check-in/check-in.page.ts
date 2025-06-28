@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {  IonHeader, IonToolbar, IonTitle, IonButtons, IonMenuButton, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton, IonCheckbox } from '@ionic/angular/standalone';
+import {  IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton, IonCheckbox } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { DailyCheckin } from '../models/daily-checkin';
-import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
 
 @Component({
   selector: 'app-check-in',
@@ -15,8 +14,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonButtons,
-    IonMenuButton,
     IonContent,
     IonInput,
     IonItem,
@@ -27,7 +24,6 @@ import { BreadcrumbsComponent } from '../components/breadcrumbs.component';
     IonSegment,
     IonSegmentButton,
     IonCheckbox,
-    BreadcrumbsComponent,
   ],
   templateUrl: './check-in.page.html',
   styleUrls: ['./check-in.page.scss'],
