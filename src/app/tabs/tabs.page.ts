@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonTabs,
- 
+
   IonTabBar,
   IonTabButton,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonButtons,
   IonButton,
   IonIcon,
   IonLabel,
@@ -22,6 +26,10 @@ import { FirebaseService } from '../services/firebase.service';
     IonTabs,
     IonTabBar,
     IonTabButton,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
+    IonButtons,
     IonButton,
     IonIcon,
     IonLabel,
