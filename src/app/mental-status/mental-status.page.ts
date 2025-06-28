@@ -12,6 +12,7 @@ import {
   IonInput,
   IonList,
   IonButton,
+  IonCheckbox,
   IonTextarea,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
@@ -30,9 +31,10 @@ import { MentalStatus } from '../models/mental-status';
     IonContent,
     IonItem,
     IonLabel,
-    
+
     IonList,
     IonButton,
+    IonCheckbox,
     IonTextarea,
   ],
   templateUrl: './mental-status.page.html',
