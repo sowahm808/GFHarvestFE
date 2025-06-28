@@ -77,7 +77,7 @@ export class BibleQuizApiService {
     }
 
     return this.http
-      .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/history/${childId}`)
+      .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/${childId}/history`)
       .pipe(
         timeout(5000),
         catchError(() => from(this.fb.getBibleQuizHistory(childId)))
