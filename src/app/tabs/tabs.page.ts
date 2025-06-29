@@ -55,6 +55,13 @@ export class TabsPage {
       }
     });
 
+    // Initialize page title based on the current active route
+    let initialChild = this.route.firstChild;
+    while (initialChild?.firstChild) {
+      initialChild = initialChild.firstChild;
+    }
+    this.pageTitle = initialChild?.snapshot.data['title'] || 'Kids Faith Tracker';
+
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(() => {
