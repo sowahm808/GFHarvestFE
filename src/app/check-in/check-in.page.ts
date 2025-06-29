@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {  IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton, IonCheckbox } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
+import { ToastController } from '@ionic/angular';
 import { DailyCheckin } from '../models/daily-checkin';
 
 @Component({
@@ -44,7 +45,7 @@ export class CheckInPage {
     helpRequest: '',
   };
 
-  constructor(private fbService: FirebaseService) {}
+  constructor(private fbService: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
     const user = this.fbService.auth.currentUser;
@@ -55,6 +56,11 @@ export class CheckInPage {
       parentId,
       date: new Date().toISOString(),
     });
-    console.log('Check-in saved');
+    const toast = await this.toastCtrl.create({
+      message: 'Check-in saved',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

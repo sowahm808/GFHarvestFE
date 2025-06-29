@@ -6,6 +6,7 @@ import { RouterLink } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { RoleService } from '../services/role.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -39,18 +40,31 @@ export class LoginPage {
   constructor(
     private fb: FirebaseService,
     private router: Router,
-    private roleSvc: RoleService
+    private roleSvc: RoleService,
+    private toastCtrl: ToastController
   ) {}
 
   async login() {
     await this.fb.login(this.form.email, this.form.password);
     this.roleSvc.setRole(this.selectedRole);
+    const toast = await this.toastCtrl.create({
+      message: 'Logged in',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
     this.router.navigateByUrl('/tabs');
   }
 
   async loginWithGoogle() {
     await this.fb.loginWithGoogle();
     this.roleSvc.setRole(this.selectedRole);
+    const toast = await this.toastCtrl.create({
+      message: 'Logged in with Google',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
     this.router.navigateByUrl('/tabs');
   }
 }
