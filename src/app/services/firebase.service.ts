@@ -144,6 +144,19 @@ export class FirebaseService {
     } as BibleQuestion;
   }
 
+  async getRandomBibleQuestions(count: number): Promise<BibleQuestion[]> {
+    const snap = await getDocs(collection(this.db, 'bibleQuestions'));
+    const docs = snap.docs;
+    if (docs.length === 0) {
+      return [];
+    }
+    const shuffled = docs.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count).map((d) => ({
+      id: d.id,
+      ...(d.data() as Omit<BibleQuestion, 'id'>),
+    })) as BibleQuestion[];
+  }
+
   async getBibleQuizHistory(childId: string): Promise<BibleQuizResult[]> {
     const q = query(
       collection(this.db, 'bibleQuizzes'),
