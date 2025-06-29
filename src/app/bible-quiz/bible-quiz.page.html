@@ -15,7 +15,7 @@
     <ion-radio-group [(ngModel)]="answer" *ngIf="question.options?.length">
       <ion-item *ngFor="let opt of question.options">
         <ion-label>{{ opt }}</ion-label>
-        <ion-radio slot="end" [value]="opt"></ion-radio>
+        <ion-radio slot="start" [value]="opt"></ion-radio>
       </ion-item>
     </ion-radio-group>
     <ion-item *ngIf="!question.options?.length">
