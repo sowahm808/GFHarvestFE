@@ -1,18 +1,18 @@
-import { TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { HomePage } from './home.page';
 
 describe('HomePage', () => {
-  beforeEach(() =>
-    TestBed.configureTestingModule({
-      imports: [HomePage],
-      providers: [provideRouter([])],
-    })
-  );
+  let component: HomePage;
+  let fixture: ComponentFixture<HomePage>;
+
+  beforeEach(async () => {
+    fixture = TestBed.createComponent(HomePage);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
 
   it('should create', () => {
-    const fixture = TestBed.createComponent(HomePage);
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 });

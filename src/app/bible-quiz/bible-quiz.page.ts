@@ -13,7 +13,6 @@ import {
   IonButton,
   IonRadio,
   IonRadioGroup,
-  IonSpinner,
 } from '@ionic/angular/standalone';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
@@ -35,7 +34,6 @@ import { BibleQuestion } from '../models/bible-quiz';
     IonButton,
     IonRadio,
     IonRadioGroup,
-    IonSpinner
   ],
   templateUrl: './bible-quiz.page.html',
   styleUrls: ['./bible-quiz.page.scss'],
