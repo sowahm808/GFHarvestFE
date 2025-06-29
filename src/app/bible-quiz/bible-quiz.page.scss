@@ -13,3 +13,23 @@ ion-spinner.center-spinner {
   display: flex;
   justify-content: space-between;
 }
+ion-radio {
+  --color: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+ion-checkbox {
+  --checkmark-color: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  --background-checked: var(--ion-color-primary);
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+ion-item ion-label {
+  color: var(--ion-text-color, #000);
+}
