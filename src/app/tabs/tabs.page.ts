@@ -14,6 +14,7 @@ import {
   IonIcon,
   IonLabel,
 } from '@ionic/angular/standalone';
+import { RouterLink } from '@angular/router';
 
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
@@ -35,6 +36,7 @@ import { FirebaseService } from '../services/firebase.service';
     IonButton,
     IonIcon,
     IonLabel,
+    RouterLink,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
