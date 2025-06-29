@@ -51,4 +51,6 @@ ion-radio,
 ion-checkbox {
   --color: var(--ion-color-dark);
   --color-checked: var(--ion-color-primary);
+  --border-color: var(--ion-color-dark); /* ensure controls are visible */
+  --border-color-checked: var(--ion-color-primary);
 }
