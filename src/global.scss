@@ -46,3 +46,9 @@ ion-tab-bar {
   --color: var(--ion-color-dark);
   --color-selected: var(--ion-color-primary);
 }
+ion-page,
+ion-content {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
