@@ -42,9 +42,14 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./bible-quiz.page.scss'],
 })
 export class BibleQuizPage implements OnInit {
-  question: BibleQuestion | null = null;
+  questions: BibleQuestion[] = [];
+  currentIndex = 0;
   answer = '';
   loading = false;
+
+  get currentQuestion(): BibleQuestion | null {
+    return this.questions[this.currentIndex] || null;
+  }
 
   constructor(private api: BibleQuizApiService, private toastCtrl: ToastController) {}
 
@@ -54,9 +59,10 @@ export class BibleQuizPage implements OnInit {
 
   loadQuiz() {
     this.loading = true;
-    this.api.getTodayQuiz().subscribe({
-      next: (q) => {
-        this.question = q;
+    this.api.getTodayQuizzes(5).subscribe({
+      next: (qs) => {
+        this.questions = qs;
+        this.currentIndex = 0;
         this.loading = false;
       },
       error: () => {
@@ -66,12 +72,13 @@ export class BibleQuizPage implements OnInit {
   }
 
   submit() {
-    if (!this.question) {
+    const question = this.currentQuestion;
+    if (!question) {
       console.error('No quiz question available');
       return;
     }
     this.api
-      .submitQuiz({ question: this.question, answer: this.answer })
+      .submitQuiz({ question, answer: this.answer })
       .subscribe(async () => {
         const toast = await this.toastCtrl.create({
           message: 'Quiz submitted',
@@ -79,6 +86,16 @@ export class BibleQuizPage implements OnInit {
           position: 'bottom',
         });
         await toast.present();
+        this.answer = '';
+        this.currentIndex++;
+        if (this.currentIndex >= this.questions.length) {
+          const doneToast = await this.toastCtrl.create({
+            message: "You've completed today's quiz!",
+            duration: 2000,
+            position: 'bottom',
+          });
+          await doneToast.present();
+        }
       });
   }
 }

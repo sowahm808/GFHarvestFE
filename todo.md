@@ -29,6 +29,7 @@
 ## 📖 Bible Quiz Module
 - [x] Quiz prompt (daily)
 - [x] Randomize from DB question pool
+- [x] Limit to five questions per day
 - [x] Score submission + 200 points
 - [x] Save to `/bibleQuizzes`
 
