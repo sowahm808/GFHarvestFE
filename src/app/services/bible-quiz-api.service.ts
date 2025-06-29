@@ -14,7 +14,7 @@ export class BibleQuizApiService {
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
   /**
-  * All quiz related endpoints are served under the `/api` prefix.
+  * All quiz related endpoints are served directly under the backend base URL.
   */
   getTodayQuiz(): Observable<BibleQuestion> {
     if (!this.apiEnabled) {
@@ -24,7 +24,7 @@ export class BibleQuizApiService {
     }
 
     return this.http
-      .get<BibleQuestion>(`${environment.apiUrl}/api/quizzes/today`)
+      .get<BibleQuestion>(`${environment.apiUrl}/quizzes/today`)
       .pipe(
         timeout(5000),
         catchError(() =>
@@ -55,7 +55,7 @@ export class BibleQuizApiService {
       answers: [data.answer],
     };
     return this.http
-      .post(`${environment.apiUrl}/api/quizzes/submit`, payload)
+      .post(`${environment.apiUrl}/quizzes/submit`, payload)
       .pipe(
         timeout(5000),
         catchError(() => {
@@ -77,7 +77,7 @@ export class BibleQuizApiService {
     }
 
     return this.http
-      .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/${childId}/history`)
+      .get<BibleQuizResult[]>(`${environment.apiUrl}/quizzes/${childId}/history`)
       .pipe(
         timeout(5000),
         catchError(() => from(this.fb.getBibleQuizHistory(childId)))
