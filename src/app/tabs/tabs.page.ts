@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule, NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import {
   IonTabs,
   IonTabBar,
@@ -12,17 +12,15 @@ import {
   IonToolbar,
   IonHeader,
 } from '@ionic/angular/standalone';
-
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
-import { filter } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-tabs',
   standalone: true,
   imports: [
-
     CommonModule,
     IonTabs,
     IonTabBar,
@@ -30,11 +28,10 @@ import { filter } from 'rxjs';
     IonButton,
     IonIcon,
     IonLabel,
-    NgIf,
     IonButtons,
     IonTitle,
     IonToolbar,
-    IonHeader
+    IonHeader,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
@@ -42,8 +39,15 @@ import { filter } from 'rxjs';
 export class TabsPage {
   loggedIn = false;
   pageTitle = 'Kids Faith Tracker';
-  constructor(private router: Router, private route: ActivatedRoute, public roleSvc: RoleService, private fb: FirebaseService) {
-       this.fb.auth.onAuthStateChanged((user) => {
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    public roleSvc: RoleService,
+    private fb: FirebaseService
+  ) {
+    // Monitor Firebase Auth State
+    this.fb.auth.onAuthStateChanged((user) => {
       this.loggedIn = !!user;
       const url = this.router.url;
       if (!user) {
@@ -51,31 +55,26 @@ export class TabsPage {
           this.router.navigateByUrl('/login');
         }
       } else if (url === '/login' || url === '/register' || url === '/') {
-        this.router.navigateByUrl('/tabs');
+        this.router.navigateByUrl('/tabs/home');
       }
     });
 
-    // Initialize page title based on the current active route
-    let initialChild = this.route.firstChild;
-    while (initialChild?.firstChild) {
-      initialChild = initialChild.firstChild;
-    }
-    this.pageTitle = initialChild?.snapshot.data['title'] || 'Kids Faith Tracker';
-
+    // Update page title based on the deepest child route
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(() => {
-        let child = this.route.firstChild;
-        while (child?.firstChild) {
+        let child = this.route;
+        while (child.firstChild) {
           child = child.firstChild;
         }
-        this.pageTitle = child?.snapshot.data['title'] || 'Kids Faith Tracker';
+        this.pageTitle = child.snapshot.data['title'] || 'Kids Faith Tracker';
       });
   }
 
   logout() {
     this.roleSvc.setRole(null);
     this.fb.logout();
+    this.router.navigateByUrl('/login');
   }
 
   get role(): string | null {
