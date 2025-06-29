@@ -28,7 +28,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
-              }
+              },
+              "src/_redirects"
             ],
             "styles": [
               "node_modules/@ionic/angular/css/core.css",
@@ -115,7 +116,8 @@
                 "glob": "**/*",
                 "input": "src/assets",
                 "output": "assets"
-              }
+              },
+              "src/_redirects"
             ],
             "styles": [
               "node_modules/@ionic/angular/css/core.css",
