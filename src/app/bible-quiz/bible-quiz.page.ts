@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
+import { forkJoin } from 'rxjs';
 import { ToastController } from '@ionic/angular';
 
 @Component({
@@ -44,7 +45,7 @@ import { ToastController } from '@ionic/angular';
 export class BibleQuizPage implements OnInit {
   questions: BibleQuestion[] = [];
   currentIndex = 0;
-  answer = '';
+  answers: string[] = [];
   loading = false;
 
   get currentQuestion(): BibleQuestion | null {
@@ -63,6 +64,7 @@ export class BibleQuizPage implements OnInit {
       next: (qs) => {
         this.questions = qs;
         this.currentIndex = 0;
+        this.answers = new Array(qs.length).fill('');
         this.loading = false;
       },
       error: () => {
@@ -71,31 +73,39 @@ export class BibleQuizPage implements OnInit {
     });
   }
 
-  submit() {
-    const question = this.currentQuestion;
-    if (!question) {
-      console.error('No quiz question available');
-      return;
+  nextQuestion() {
+    if (this.currentIndex < this.questions.length - 1) {
+      this.currentIndex++;
     }
-    this.api
-      .submitQuiz({ question, answer: this.answer })
-      .subscribe(async () => {
-        const toast = await this.toastCtrl.create({
-          message: 'Quiz submitted',
-          duration: 1500,
-          position: 'bottom',
-        });
-        await toast.present();
-        this.answer = '';
-        this.currentIndex++;
-        if (this.currentIndex >= this.questions.length) {
-          const doneToast = await this.toastCtrl.create({
-            message: "You've completed today's quiz!",
-            duration: 2000,
-            position: 'bottom',
-          });
-          await doneToast.present();
-        }
+  }
+
+  prevQuestion() {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    }
+  }
+
+  allAnswered(): boolean {
+    return (
+      this.answers.length === this.questions.length &&
+      this.answers.every((a) => !!a && a.trim().length > 0)
+    );
+  }
+
+  submitAll() {
+    const submissions = this.questions.map((q, idx) =>
+      this.api.submitQuiz({ question: q, answer: this.answers[idx] })
+    );
+
+    forkJoin(submissions).subscribe(async () => {
+      const toast = await this.toastCtrl.create({
+        message: "You've completed today's quiz!",
+        duration: 2000,
+        position: 'bottom',
       });
+      await toast.present();
+      this.currentIndex = 0;
+      this.answers = new Array(this.questions.length).fill('');
+    });
   }
 }

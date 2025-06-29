@@ -3,3 +3,13 @@ ion-spinner.center-spinner {
   justify-content: center;
   margin-top: 2rem;
 }
+
+.reference {
+  color: var(--ion-color-secondary);
+  font-style: italic;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+}
