@@ -9,7 +9,6 @@ import {
   IonGrid,
   IonRow,
   IonCol,
-  
 } from '@ionic/angular/standalone';
 import { RoleService } from '../services/role.service';
 import { NgIf } from '@angular/common';
@@ -29,7 +28,7 @@ import { NgIf } from '@angular/common';
     IonRow,
     IonCol,
     RouterLink,
-    NgIf,
+    NgIf
   ],
 })
 export class HomePage {

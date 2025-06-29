@@ -2,19 +2,13 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   IonTabs,
-  IonRouterOutlet,
-
+ 
   IonTabBar,
   IonTabButton,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonButtons,
   IonButton,
   IonIcon,
   IonLabel,
 } from '@ionic/angular/standalone';
-import { RouterLink } from '@angular/router';
 
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
@@ -26,17 +20,11 @@ import { FirebaseService } from '../services/firebase.service';
 
     CommonModule,
     IonTabs,
-    IonRouterOutlet,
     IonTabBar,
     IonTabButton,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonButtons,
     IonButton,
     IonIcon,
     IonLabel,
-    RouterLink,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
