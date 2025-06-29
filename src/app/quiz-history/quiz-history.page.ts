@@ -44,5 +44,6 @@ export class QuizHistoryPage implements OnInit {
       return;
     }
     this.results = await firstValueFrom(this.api.getHistory(user.uid));
+    console.log('History:', this.results)
   }
 }
