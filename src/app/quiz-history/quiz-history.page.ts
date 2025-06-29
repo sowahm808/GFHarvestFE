@@ -39,11 +39,20 @@ export class QuizHistoryPage implements OnInit {
   ) {}
 
   async ngOnInit() {
+    await this.loadHistory();
+  }
+
+  async ionViewWillEnter() {
+    await this.loadHistory();
+  }
+
+  private async loadHistory() {
     const user = this.fb.auth.currentUser;
     if (!user) {
+      this.results = [];
       return;
     }
     this.results = await firstValueFrom(this.api.getHistory(user.uid));
-    console.log('History:', this.results)
+    console.log('History:', this.results);
   }
 }
