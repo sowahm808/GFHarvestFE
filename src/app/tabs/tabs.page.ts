@@ -15,7 +15,8 @@ import {
 
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-tabs',
@@ -39,9 +40,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./tabs.page.scss'],
 })
 export class TabsPage {
-    loggedIn = false;
-
-  constructor(private router: Router,public roleSvc: RoleService, private fb: FirebaseService) {
+  loggedIn = false;
+  pageTitle = 'Kids Faith Tracker';
+  constructor(private router: Router, private route: ActivatedRoute, public roleSvc: RoleService, private fb: FirebaseService) {
        this.fb.auth.onAuthStateChanged((user) => {
       this.loggedIn = !!user;
       const url = this.router.url;
@@ -53,6 +54,16 @@ export class TabsPage {
         this.router.navigateByUrl('/tabs');
       }
     });
+
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe(() => {
+        let child = this.route.firstChild;
+        while (child?.firstChild) {
+          child = child.firstChild;
+        }
+        this.pageTitle = child?.snapshot.data['title'] || 'Kids Faith Tracker';
+      });
   }
 
   logout() {
