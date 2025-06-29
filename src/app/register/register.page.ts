@@ -5,6 +5,7 @@ import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabe
 import { RouterLink } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-register',
@@ -30,15 +31,31 @@ import { Router } from '@angular/router';
 export class RegisterPage {
   form = { email: '', password: '' };
 
-  constructor(private fb: FirebaseService, private router: Router) {}
+  constructor(
+    private fb: FirebaseService,
+    private router: Router,
+    private toastCtrl: ToastController
+  ) {}
 
   async register() {
     await this.fb.register(this.form.email, this.form.password);
+    const toast = await this.toastCtrl.create({
+      message: 'Registration successful',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
     this.router.navigateByUrl('/login');
   }
 
   async registerWithGoogle() {
     await this.fb.loginWithGoogle();
+    const toast = await this.toastCtrl.create({
+      message: 'Registered with Google',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
     this.router.navigateByUrl('/login');
   }
 }

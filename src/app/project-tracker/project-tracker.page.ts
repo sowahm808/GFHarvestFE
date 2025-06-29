@@ -18,6 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ProjectEntry } from '../models/project-entry';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-project-tracker',
@@ -54,7 +55,7 @@ export class ProjectTrackerPage {
     progress: 'in progress',
   };
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
     if (!this.form.title || !this.form.presentationDate || !this.form.enjoyment) {
@@ -69,7 +70,12 @@ export class ProjectTrackerPage {
       childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
-    console.log('Project saved');
+    const toast = await this.toastCtrl.create({
+      message: 'Project saved',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
     this.form = {
       title: '',
       presentationDate: '',

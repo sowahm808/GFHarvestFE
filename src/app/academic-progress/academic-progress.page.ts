@@ -15,6 +15,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { AcademicProgressEntry } from '../models/academic-progress';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-academic-progress',
@@ -44,7 +45,7 @@ export class AcademicProgressPage {
     needsHelp: false,
   };
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
     const user = this.fb.auth.currentUser;
@@ -53,6 +54,11 @@ export class AcademicProgressPage {
       childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
-    console.log('Academic progress saved');
+    const toast = await this.toastCtrl.create({
+      message: 'Academic progress saved',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

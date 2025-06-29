@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { BibleQuizApiService } from '../services/bible-quiz-api.service';
 import { BibleQuestion } from '../models/bible-quiz';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-bible-quiz',
@@ -45,7 +46,7 @@ export class BibleQuizPage implements OnInit {
   answer = '';
   loading = false;
 
-  constructor(private api: BibleQuizApiService) {}
+  constructor(private api: BibleQuizApiService, private toastCtrl: ToastController) {}
 
   ngOnInit() {
     this.loadQuiz();
@@ -71,8 +72,13 @@ export class BibleQuizPage implements OnInit {
     }
     this.api
       .submitQuiz({ question: this.question, answer: this.answer })
-      .subscribe(() => {
-        console.log('Quiz submitted');
+      .subscribe(async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Quiz submitted',
+          duration: 1500,
+          position: 'bottom',
+        });
+        await toast.present();
       });
   }
 }
