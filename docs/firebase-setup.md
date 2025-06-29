@@ -29,3 +29,13 @@ Copy these files into your Firebase project and deploy them using the Firebase C
 firebase deploy --only firestore:rules
 firebase deploy --only firestore:indexes
 ```
+
+## Authorized Domains
+
+If the application is hosted on a custom domain (for example
+`kidsfaithtracker.netlify.app`), that domain must be added to the **Authorized
+domains** list in the Firebase console. Navigate to **Authentication →
+Settings** in your Firebase project and add the domain under "Authorized
+domains". Without this step OAuth-based sign in (such as Google login) will
+fail and pages that rely on the authenticated user—like the quiz history—will
+appear empty.

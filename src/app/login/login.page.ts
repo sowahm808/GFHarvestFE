@@ -45,26 +45,46 @@ export class LoginPage {
   ) {}
 
   async login() {
-    await this.fb.login(this.form.email, this.form.password);
-    this.roleSvc.setRole(this.selectedRole);
-    const toast = await this.toastCtrl.create({
-      message: 'Logged in',
-      duration: 1500,
-      position: 'bottom',
-    });
-    await toast.present();
-    this.router.navigateByUrl('/tabs');
+    try {
+      await this.fb.login(this.form.email, this.form.password);
+      this.roleSvc.setRole(this.selectedRole);
+      const toast = await this.toastCtrl.create({
+        message: 'Logged in',
+        duration: 1500,
+        position: 'bottom',
+      });
+      await toast.present();
+      this.router.navigateByUrl('/tabs');
+    } catch (err: any) {
+      const toast = await this.toastCtrl.create({
+        message: err?.message || 'Login failed',
+        duration: 1500,
+        position: 'bottom',
+        color: 'danger',
+      });
+      await toast.present();
+    }
   }
 
   async loginWithGoogle() {
-    await this.fb.loginWithGoogle();
-    this.roleSvc.setRole(this.selectedRole);
-    const toast = await this.toastCtrl.create({
-      message: 'Logged in with Google',
-      duration: 1500,
-      position: 'bottom',
-    });
-    await toast.present();
-    this.router.navigateByUrl('/tabs');
+    try {
+      await this.fb.loginWithGoogle();
+      this.roleSvc.setRole(this.selectedRole);
+      const toast = await this.toastCtrl.create({
+        message: 'Logged in with Google',
+        duration: 1500,
+        position: 'bottom',
+      });
+      await toast.present();
+      this.router.navigateByUrl('/tabs');
+    } catch (err: any) {
+      const toast = await this.toastCtrl.create({
+        message: err?.message || 'Google login failed',
+        duration: 1500,
+        position: 'bottom',
+        color: 'danger',
+      });
+      await toast.present();
+    }
   }
 }
