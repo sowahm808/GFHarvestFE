@@ -29,15 +29,15 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 addIcons({
-  'calendar-outline': calendarOutline,
-  'help-outline': helpOutline,
-  'create-outline': createOutline,
-  'list-outline': listOutline,
-  'home-outline': homeOutline,
-  'log-out-outline': logOutOutline,
-  'person-add-outline': personAddOutline,
-  'trophy-outline': trophyOutline,
-  'time-outline': timeOutline,
+  calendarOutline,
+  helpOutline,
+  createOutline,
+  listOutline,
+  homeOutline,
+  logOutOutline,
+  personAddOutline,
+  trophyOutline,
+  timeOutline,
 });
 
 bootstrapApplication(AppComponent, {
