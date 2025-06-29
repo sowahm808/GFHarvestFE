@@ -32,6 +32,9 @@ import { BibleQuizResult } from '../models/bible-quiz';
 })
 export class QuizHistoryPage implements OnInit {
   results: BibleQuizResult[] = [];
+  correctResults: BibleQuizResult[] = [];
+  wrongResults: BibleQuizResult[] = [];
+  totalScore = 0;
 
   constructor(
     private api: BibleQuizApiService,
@@ -50,9 +53,27 @@ export class QuizHistoryPage implements OnInit {
     const user = this.fb.auth.currentUser;
     if (!user) {
       this.results = [];
+      this.correctResults = [];
+      this.wrongResults = [];
+      this.totalScore = 0;
       return;
     }
-    this.results = await firstValueFrom(this.api.getHistory(user.uid));
+    const history = await firstValueFrom(this.api.getHistory(user.uid));
+    const map = new Map<string, BibleQuizResult>();
+
+    for (const r of history) {
+      const key =
+        r.question.id || r.question.text || r.question.question || '';
+      const existing = map.get(key);
+      if (!existing || r.score > existing.score) {
+        map.set(key, r);
+      }
+    }
+
+    this.results = Array.from(map.values());
+    this.correctResults = this.results.filter((r) => r.score > 0);
+    this.wrongResults = this.results.filter((r) => r.score === 0);
+    this.totalScore = this.results.reduce((sum, r) => sum + r.score, 0);
     console.log('History:', this.results);
   }
 }
