@@ -12,12 +12,13 @@ This document describes the Firestore collections and provides basic security ru
 - **schoolWork** – academic progress entries. Store `childId`, `parentId` and `timestamp`.
 - **projects** – project tracker entries. Store `childId`, `parentId` and `timestamp`.
 - **bibleQuestions** – pool of quiz questions. No user‑specific fields required.
+- **userStats** – points and streak information used for the leaderboard. Document ID matches the child's UID.
 
 Every document that references a child should include `childId` and `parentId`. This allows security rules to verify ownership.
 
 ## Security Rules
 
-A set of sample Firestore rules is provided in `firebase/firestore.rules`. These rules grant each parent read access to their child’s documents while allowing the child to create and read their own data.
+A set of sample Firestore rules is provided in `firebase/firestore.rules`. These rules grant each parent read access to their child’s documents while allowing the child to create and read their own data. The `userStats` collection, used for the leaderboard, is readable by any authenticated user while write access is limited to the child’s UID.
 
 ## Indexes
 
