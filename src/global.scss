@@ -46,3 +46,9 @@ ion-tab-bar {
   --color: var(--ion-color-dark);
   --color-selected: var(--ion-color-primary);
 }
+
+ion-radio,
+ion-checkbox {
+  --color: var(--ion-color-dark);
+  --color-checked: var(--ion-color-primary);
+}
