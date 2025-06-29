@@ -20,13 +20,13 @@ import { NgIf } from '@angular/common';
   imports: [
     IonApp,
     IonRouterOutlet,
-    // IonHeader,
-    // IonToolbar,
-    // IonButtons,
-    // IonButton,
-    // IonIcon,
-    // IonTitle,
-    // NgIf
+    IonHeader,
+    IonToolbar,
+    IonButtons,
+    IonButton,
+    IonIcon,
+    IonTitle,
+    NgIf
   ],
 })
 export class AppComponent {
