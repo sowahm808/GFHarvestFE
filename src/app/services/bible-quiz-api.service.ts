@@ -14,22 +14,24 @@ export class BibleQuizApiService {
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
   /**
-  * All quiz related endpoints are served under the `/api` prefix.
+  * All quiz related endpoints are served directly under the backend base URL.
   */
-  getTodayQuiz(): Observable<BibleQuestion> {
+  getTodayQuizzes(count = 5): Observable<BibleQuestion[]> {
     if (!this.apiEnabled) {
-      return from(this.fb.getRandomBibleQuestion()).pipe(
-        map((q) => q as BibleQuestion)
+      return from(this.fb.getRandomBibleQuestions(count)).pipe(
+        map((q) => q as BibleQuestion[])
       );
     }
 
     return this.http
-      .get<BibleQuestion>(`${environment.apiUrl}/api/quizzes/today`)
+      .get<BibleQuestion[]>(
+        `${environment.apiUrl}/api/quizzes/today?count=${count}`
+      )
       .pipe(
         timeout(5000),
         catchError(() =>
-          from(this.fb.getRandomBibleQuestion()).pipe(
-            map((q) => q as BibleQuestion)
+          from(this.fb.getRandomBibleQuestions(count)).pipe(
+            map((q) => q as BibleQuestion[])
           )
         )
       );

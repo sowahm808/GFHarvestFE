@@ -7,11 +7,6 @@
   </ion-header>
 
   <ion-content [fullscreen]="true">
-    <ion-header collapse="condense">
-      <ion-toolbar>
-        <ion-title size="large">Blank</ion-title>
-      </ion-toolbar>
-    </ion-header>
 
     <ion-grid class="tile-grid">
       <!-- Unauthenticated -->
@@ -38,34 +33,50 @@
       <ng-container *ngIf="role === 'child'">
         <ion-row>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/check-in" expand="block">Daily Check-In</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/check-in" expand="block">
+            <img src="assets/tiles/dailycheckins.svg" alt="Daily Check-In" />
+          </ion-button>
           </ion-col>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/mental-status" expand="block">Mental Status</ion-button>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/bible-quiz" expand="block">Bible Quiz</ion-button>
-          </ion-col>
-          <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/essay-tracker" expand="block">Essay Tracker</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/mental-status" expand="block">
+            <img src="assets/tiles/moodappraisal.svg" alt="Mood Appraisal" />
+          </ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/academic-progress" expand="block">Academic Progress</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/bible-quiz" expand="block">
+            <img src="assets/tiles/spiritualnourishment.svg" alt="Spiritual Nourishment" />
+          </ion-button>
           </ion-col>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/project-tracker" expand="block">Project Tracker</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/essay-tracker" expand="block">
+            <img src="assets/tiles/essaytracker.svg" alt="Essay Tracker" />
+          </ion-button>
           </ion-col>
         </ion-row>
         <ion-row>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/leaderboard" expand="block">Leaderboard</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/academic-progress" expand="block">
+          <img src="assets/tiles/academicenhancement.svg" alt="Academic Enhancement" />
+          </ion-button>
           </ion-col>
           <ion-col size="6">
-          <ion-button class="tile-button" routerLink="/tabs/quiz-history" expand="block">Quiz History</ion-button>
+          <ion-button class="tile-button" routerLink="/tabs/project-tracker" expand="block">
+            <img src="assets/tiles/creativityincubator.svg" alt="Creativity Incubator" />
+          </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+          <ion-button class="tile-button" routerLink="/tabs/leaderboard" expand="block">
+            <img src="assets/tiles/leaderboard.svg" alt="Leadership Board" />
+          </ion-button>
+          </ion-col>
+          <ion-col size="6">
+          <ion-button class="tile-button" routerLink="/tabs/quiz-history" expand="block">
+            <img src="assets/tiles/quizhistory.svg" alt="Quiz History" />
+          </ion-button>
           </ion-col>
         </ion-row>
       </ng-container>

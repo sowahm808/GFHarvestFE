@@ -7,24 +7,29 @@
 
   <ion-content>
   <ion-spinner *ngIf="loading" name="dots" class="center-spinner"></ion-spinner>
-  <ion-list *ngIf="!loading && question">
+  <ion-list *ngIf="!loading && currentQuestion">
     <ion-item>
-      <ion-label position="stacked">Question</ion-label>
-      <ion-label>{{ question.text || question.question }}</ion-label>
+      <ion-label position="stacked">Question {{ currentIndex + 1 }} of {{ questions.length }}</ion-label>
+      <ion-label>{{ currentQuestion.text || currentQuestion.question }}</ion-label>
     </ion-item>
-    <ion-radio-group [(ngModel)]="answer" *ngIf="question.options?.length">
-      <ion-item *ngFor="let opt of question.options">
+    <ion-radio-group [(ngModel)]="answers[currentIndex]" *ngIf="currentQuestion.options?.length">
+      <ion-item *ngFor="let opt of currentQuestion.options">
         <ion-label>{{ opt }}</ion-label>
-        <ion-radio slot="end" [value]="opt"></ion-radio>
+        <ion-radio slot="start" [value]="opt"></ion-radio>
       </ion-item>
     </ion-radio-group>
-    <ion-item *ngIf="!question.options?.length">
+    <ion-item *ngIf="!currentQuestion.options?.length">
       <ion-label position="stacked">Your Answer</ion-label>
-      <ion-input [(ngModel)]="answer"></ion-input>
+      <ion-input [(ngModel)]="answers[currentIndex]"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="currentQuestion.reference">
+      <ion-label class="reference">{{ currentQuestion.reference }}</ion-label>
     </ion-item>
   </ion-list>
-  <div class="ion-padding">
-    <ion-button expand="block" (click)="submit()">Submit</ion-button>
+  <div class="ion-padding navigation-buttons">
+    <ion-button (click)="prevQuestion()" [disabled]="currentIndex === 0">Back</ion-button>
+    <ion-button *ngIf="currentIndex < questions.length - 1" (click)="nextQuestion()" [disabled]="!answers[currentIndex]">Next</ion-button>
+    <ion-button *ngIf="currentIndex === questions.length - 1" (click)="submitAll()" [disabled]="!allAnswered()">Submit</ion-button>
   </div>
   </ion-content>
 

@@ -3,3 +3,33 @@ ion-spinner.center-spinner {
   justify-content: center;
   margin-top: 2rem;
 }
+
+.reference {
+  color: var(--ion-color-secondary);
+  font-style: italic;
+}
+
+.navigation-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+ion-radio {
+  --color: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+ion-checkbox {
+  --checkmark-color: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  --background-checked: var(--ion-color-primary);
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+ion-item ion-label {
+  color: var(--ion-text-color, #000);
+}

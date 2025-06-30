@@ -18,6 +18,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { EssayEntry } from '../models/essay-entry';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-essay-tracker',
@@ -49,7 +50,7 @@ export class EssayTrackerPage {
     needHelp: false,
   };
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
     const user = this.fb.auth.currentUser;
@@ -58,6 +59,11 @@ export class EssayTrackerPage {
       childId: user ? user.uid : null,
       date: new Date().toISOString(),
     });
-    console.log('Essay saved');
+    const toast = await this.toastCtrl.create({
+      message: 'Essay saved',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

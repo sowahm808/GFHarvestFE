@@ -17,6 +17,7 @@ import {
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { MentalStatus } from '../models/mental-status';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-mental-status',
@@ -49,7 +50,7 @@ export class MentalStatusPage {
     suggestions: '',
   };
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
     const user = this.fb.auth.currentUser;
@@ -60,6 +61,11 @@ export class MentalStatusPage {
       parentId,
       date: new Date().toISOString(),
     });
-    console.log('Mental status saved');
+    const toast = await this.toastCtrl.create({
+      message: 'Mental status saved',
+      duration: 1500,
+      position: 'bottom',
+    });
+    await toast.present();
   }
 }

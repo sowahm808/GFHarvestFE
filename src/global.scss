@@ -46,3 +46,24 @@ ion-tab-bar {
   --color: var(--ion-color-dark);
   --color-selected: var(--ion-color-primary);
 }
+
+ion-radio,
+ion-checkbox {
+  --color: var(--ion-color-primary);
+  --color-checked: var(--ion-color-primary);
+  --border-color: var(--ion-color-primary);
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto;
+}
+
+ion-radio::part(container),
+ion-checkbox::part(container) {
+  border: 2px solid var(--ion-color-primary);
+  background-color: white;
+}
+
+ion-radio,
+ion-checkbox {
+  transform: scale(1.2); // optional for better visibility
+}
