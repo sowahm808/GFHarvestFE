@@ -36,6 +36,7 @@ import { LeaderboardEntry, UserStats } from '../models/user-stats';
 import { ParentChildLink } from '../models/parent-child-link';
 import { MentorChildLink } from '../models/mentor-child-link';
 import { MentorRecord } from '../models/mentor-record';
+import { AppNotification } from '../models/notification';
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   private app = initializeApp(environment.firebase);
@@ -185,9 +186,41 @@ export class FirebaseService {
     });
   }
 
+  async getNotifications(userId: string, limitCount = 10): Promise<AppNotification[]> {
+    const parentQuery = query(
+      collection(this.db, 'notifications'),
+      where('parentId', '==', userId),
+      orderBy('date', 'desc'),
+      limit(limitCount)
+    );
+    const childQuery = query(
+      collection(this.db, 'notifications'),
+      where('childId', '==', userId),
+      orderBy('date', 'desc'),
+      limit(limitCount)
+    );
+    const [parentSnap, childSnap] = await Promise.all([
+      getDocs(parentQuery),
+      getDocs(childQuery),
+    ]);
+    const docs = [...parentSnap.docs, ...childSnap.docs];
+    return docs
+      .sort((a, b) =>
+        (b.data().date || '').localeCompare(a.data().date || '')
+      )
+      .slice(0, limitCount)
+      .map((d) => ({ id: d.id, ...(d.data() as Omit<AppNotification, 'id'>) }));
+  }
+
   async addPoints(childId: string, points: number) {
     const ref = doc(this.db, 'userStats', childId);
     await setDoc(ref, { points: increment(points) }, { merge: true });
+  }
+
+  async getUserStats(childId: string): Promise<UserStats | null> {
+    const ref = doc(this.db, 'userStats', childId);
+    const snap = await getDoc(ref);
+    return snap.exists() ? (snap.data() as UserStats) : null;
   }
 
   async updateStreak(childId: string) {
