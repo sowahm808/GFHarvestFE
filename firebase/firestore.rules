@@ -67,5 +67,15 @@ service cloud.firestore {
       allow create, update: if request.auth != null && (request.auth.uid == userId || isAdmin());
       allow delete: if false;
     }
+
+    match /mentorRecords/{docId} {
+      // Child linked to the record or the mentor who created it may read
+      allow read: if request.auth != null &&
+        (request.auth.uid == resource.data.childId || request.auth.uid == resource.data.mentorId);
+      // Only the mentor who created the record (or admins) may add new ones
+      allow create: if request.auth != null &&
+        (request.auth.uid == request.resource.data.mentorId || isAdmin());
+      allow update, delete: if false;
+    }
   }
 }
