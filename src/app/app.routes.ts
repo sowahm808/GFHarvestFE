@@ -77,6 +77,14 @@ export const routes: Routes = [
         data: { title: 'Leaderboard' },
       },
       {
+        path: 'reward-center',
+        loadComponent: () =>
+          import('./reward-center/reward-center.page').then(
+            (m) => m.RewardCenterPage
+          ),
+        data: { title: 'Reward Center' },
+      },
+      {
         path: 'mental-status',
         loadComponent: () =>
           import('./mental-status/mental-status.page').then(
