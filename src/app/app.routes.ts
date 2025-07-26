@@ -47,6 +47,14 @@ export const routes: Routes = [
         data: { title: 'Project Tracker' },
       },
       {
+        path: 'mentor-record',
+        loadComponent: () =>
+          import('./mentor-record/mentor-record.page').then(
+            (m) => m.MentorRecordPage
+          ),
+        data: { title: 'Mentor Board' },
+      },
+      {
         path: 'academic-progress',
         loadComponent: () =>
           import('./academic-progress/academic-progress.page').then(

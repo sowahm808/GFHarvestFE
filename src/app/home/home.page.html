@@ -28,6 +28,11 @@
           <ion-button class="tile-button" routerLink="/tabs/leaderboard" expand="block">Leaderboard</ion-button>
         </ion-col>
       </ion-row>
+      <ion-row *ngIf="role === 'parent'">
+        <ion-col size="6">
+          <ion-button class="tile-button" routerLink="/tabs/mentor-record" expand="block">Mentor Board</ion-button>
+        </ion-col>
+      </ion-row>
 
       <!-- Child Buttons -->
       <ng-container *ngIf="role === 'child'">
@@ -84,6 +89,13 @@
           <ion-button class="tile-button" routerLink="/tabs/quiz-history" expand="block">
             <!-- <img src="assets/tiles/quizhistory.svg" alt="Quiz History" /> -->
             <span>Quiz History</span>
+          </ion-button>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col size="6">
+          <ion-button class="tile-button" routerLink="/tabs/mentor-record" expand="block">
+            <span>Mentor Board</span>
           </ion-button>
           </ion-col>
         </ion-row>
