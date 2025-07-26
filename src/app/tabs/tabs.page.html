@@ -29,6 +29,10 @@
         <ion-icon name="trophy-outline"></ion-icon>
         <ion-label>Scores</ion-label>
       </ion-tab-button>
+      <ion-tab-button tab="mentor-record" href="/tabs/mentor-record">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        <ion-label>Mentor</ion-label>
+      </ion-tab-button>
     </ng-container>
     <ng-template #childTabs>
       <ion-tab-button tab="check-in" href="/tabs/check-in">
@@ -50,6 +54,10 @@
       <ion-tab-button tab="quiz-history" href="/tabs/quiz-history">
         <ion-icon name="time-outline"></ion-icon>
         <ion-label>History</ion-label>
+      </ion-tab-button>
+      <ion-tab-button tab="mentor-record" href="/tabs/mentor-record">
+        <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+        <ion-label>Mentor</ion-label>
       </ion-tab-button>
     </ng-template>
       <ion-button fill="clear" (click)="logout()">
