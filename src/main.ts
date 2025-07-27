@@ -17,6 +17,8 @@ import {
   helpOutline,
   createOutline,
   listOutline,
+  schoolOutline,
+  happyOutline,
   homeOutline,
   logOutOutline,
   personAddOutline,
@@ -42,6 +44,8 @@ addIcons({
   timeOutline,
   giftOutline,
   chatbubbleEllipsesOutline,
+  schoolOutline,
+  happyOutline,
 });
 
 bootstrapApplication(AppComponent, {
