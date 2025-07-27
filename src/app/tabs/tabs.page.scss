@@ -1,0 +1,13 @@
+ion-tab-bar {
+  display: flex;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+ion-tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+ion-tab-button {
+  flex: 0 0 auto;
+}
