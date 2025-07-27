@@ -9,6 +9,7 @@ import {
   IonList,
   IonItem,
   IonMenuToggle,
+  IonTitle,
   IonIcon,
   IonLabel,
 } from '@ionic/angular/standalone';
@@ -29,6 +30,7 @@ import { RoleService } from './services/role.service';
     IonList,
     IonItem,
     IonMenuToggle,
+    IonTitle,
     IonIcon,
     IonLabel,
   ],
