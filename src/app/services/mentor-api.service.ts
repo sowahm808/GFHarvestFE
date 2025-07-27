@@ -9,7 +9,7 @@ import { MentorAssignment, MentorChildren } from '../models/mentor-assignment';
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
   private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/mentor`;
+  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
