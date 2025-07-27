@@ -9,7 +9,7 @@ import { MentorRecord } from '../models/mentor-record';
 @Injectable({ providedIn: 'root' })
 export class MentorRecordApiService {
   private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/mentorship`;
+  private readonly baseUrl = `${environment.apiUrl}/api/mentor`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
