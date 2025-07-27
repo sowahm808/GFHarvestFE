@@ -34,20 +34,20 @@ import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 
 addIcons({
-  calendarOutline,
-  helpOutline,
-  createOutline,
-  listOutline,
-  homeOutline,
-  logOutOutline,
-  personAddOutline,
-  trophyOutline,
-  timeOutline,
-  giftOutline,
-  chatbubbleEllipsesOutline,
-  schoolOutline,
-  happyOutline,
-  menuOutline,
+  'calendar-outline': calendarOutline,
+  'help-outline': helpOutline,
+  'create-outline': createOutline,
+  'list-outline': listOutline,
+  'school-outline': schoolOutline,
+  'happy-outline': happyOutline,
+  'home-outline': homeOutline,
+  'log-out-outline': logOutOutline,
+  'person-add-outline': personAddOutline,
+  'trophy-outline': trophyOutline,
+  'time-outline': timeOutline,
+  'gift-outline': giftOutline,
+  'chatbubble-ellipses-outline': chatbubbleEllipsesOutline,
+  'menu-outline': menuOutline,
 });
 
 bootstrapApplication(AppComponent, {
