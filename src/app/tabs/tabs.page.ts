@@ -11,6 +11,12 @@ import {
   IonTitle,
   IonToolbar,
   IonHeader,
+  IonMenu,
+  IonMenuToggle,
+  IonMenuButton,
+  IonList,
+  IonItem,
+  IonContent,
 } from '@ionic/angular/standalone';
 import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { RoleService } from '../services/role.service';
@@ -32,6 +38,12 @@ import { filter } from 'rxjs/operators';
     IonTitle,
     IonToolbar,
     IonHeader,
+    IonMenu,
+    IonMenuToggle,
+    IonMenuButton,
+    IonList,
+    IonItem,
+    IonContent,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
