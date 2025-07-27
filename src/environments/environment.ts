@@ -14,8 +14,10 @@ export const environment = {
     appId: "1:54742577057:web:cfca5e902ab173a77025e0",
     measurementId: "G-91V8B05X5E"
   },
-  // Leave apiUrl empty when no backend service is available.
-  apiUrl: 'https://gfharvestbackend-1.onrender.com'
+  // Leave apiUrl empty when no backend service is available. Using an empty
+  // string ensures the application falls back to Firebase when the backend
+  // API is not running during local development.
+  apiUrl: ''
 };
 
 
