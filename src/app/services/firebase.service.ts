@@ -206,7 +206,7 @@ export class FirebaseService {
     const docs = [...parentSnap.docs, ...childSnap.docs];
     return docs
       .sort((a, b) =>
-        (b.data().date || '').localeCompare(a.data().date || '')
+        (b.data()['date'] || '').localeCompare(a.data()['date'] || '')
       )
       .slice(0, limitCount)
       .map((d) => ({ id: d.id, ...(d.data() as Omit<AppNotification, 'id'>) }));
