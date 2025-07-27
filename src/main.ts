@@ -22,6 +22,8 @@ import {
   personAddOutline,
   trophyOutline,
   timeOutline,
+  giftOutline,
+  chatbubbleEllipsesOutline,
 } from 'ionicons/icons';
 import { AuthInterceptor } from './app/services/auth.interceptor';
 
@@ -38,6 +40,8 @@ addIcons({
   personAddOutline,
   trophyOutline,
   timeOutline,
+  giftOutline,
+  chatbubbleEllipsesOutline,
 });
 
 bootstrapApplication(AppComponent, {
