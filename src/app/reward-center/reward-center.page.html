@@ -6,6 +6,7 @@
 
 <ion-content>
   <div class="stats" *ngIf="stats">
+    <app-points-jar [points]="stats.points" [animate]="animateJar"></app-points-jar>
     <h2>{{ stats.points }} pts</h2>
     <p>Streak: {{ stats.streak || 0 }}</p>
   </div>
@@ -15,4 +16,14 @@
       <ion-label>{{ note.message }} - {{ note.date | date:'short' }}</ion-label>
     </ion-item>
   </ion-list>
+
+  <div *ngIf="groups.length">
+    <h3 class="group-header">Group Points</h3>
+    <ion-list>
+      <ion-item *ngFor="let g of groups">
+        <ion-label>{{ g.name }} ({{ g.points }} pts)</ion-label>
+        <ion-progress-bar [value]="g.points / maxGroupPoints"></ion-progress-bar>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>

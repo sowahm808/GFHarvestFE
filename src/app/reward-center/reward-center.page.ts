@@ -8,10 +8,15 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonProgressBar,
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { UserStats } from '../models/user-stats';
 import { AppNotification } from '../models/notification';
+import { PointsJarComponent } from './points-jar/points-jar.component';
+import { GroupApiService } from '../services/group-api.service';
+import { GroupPoints } from '../models/group-stats';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-reward-center',
@@ -25,6 +30,8 @@ import { AppNotification } from '../models/notification';
     IonList,
     IonItem,
     IonLabel,
+    IonProgressBar,
+    PointsJarComponent,
   ],
   templateUrl: './reward-center.page.html',
   styleUrls: ['./reward-center.page.scss'],
@@ -32,8 +39,11 @@ import { AppNotification } from '../models/notification';
 export class RewardCenterPage implements OnInit {
   stats: UserStats | null = null;
   notifications: AppNotification[] = [];
+  groups: GroupPoints[] = [];
+  animateJar = false;
+  maxGroupPoints = 1;
 
-  constructor(private fb: FirebaseService) {}
+  constructor(private fb: FirebaseService, private groupApi: GroupApiService) {}
 
   async ngOnInit() {
     await this.loadData();
@@ -48,12 +58,20 @@ export class RewardCenterPage implements OnInit {
     if (!user) {
       this.stats = null;
       this.notifications = [];
+      this.groups = [];
       return;
     }
     this.stats = await this.fb.getUserStats(user.uid);
+    const last = Number(localStorage.getItem('lastPoints')) || 0;
+    if (this.stats && this.stats.points > last) {
+      this.animateJar = true;
+    }
+    localStorage.setItem('lastPoints', String(this.stats?.points || 0));
     const parentId = await this.fb.getParentIdForChild(user.uid);
     if (parentId) {
       this.notifications = await this.fb.getNotifications(parentId);
     }
+    this.groups = await firstValueFrom(this.groupApi.getGroupPoints());
+    this.maxGroupPoints = Math.max(...this.groups.map((g) => g.points), 1);
   }
 }

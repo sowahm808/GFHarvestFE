@@ -297,4 +297,19 @@ export class FirebaseService {
       (d) => ({ id: d.id, ...(d.data() as Omit<MentorRecord, 'id'>) })
     );
   }
+
+  /**
+   * Temporary fallback implementation for group point data. In a real
+   * application, groups would be aggregated by Cloud Functions. This
+   * method returns a static snapshot so the UI can render without the
+   * backend service.
+   */
+  async getGroupPointSnapshot() {
+    return [
+      { id: 'A', name: 'Group A', points: 12000 },
+      { id: 'B', name: 'Group B', points: 9500 },
+      { id: 'C', name: 'Group C', points: 7000 },
+      { id: 'D', name: 'Group D', points: 4000 },
+    ];
+  }
 }
