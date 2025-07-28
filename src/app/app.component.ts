@@ -11,7 +11,8 @@ import {
   IonMenuToggle,
   IonTitle,
   IonIcon,
-  IonLabel
+  IonLabel,
+  IonRouterLink
   
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
@@ -34,7 +35,7 @@ import { RoleService } from './services/role.service';
     IonTitle,
     IonIcon,
     IonLabel,
-    RouterLink
+    IonRouterLink
    
   ],
 })
