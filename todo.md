@@ -1,4 +1,4 @@
-# 📌 TODO List: Kids Faith Tracker App
+# 📌 TODO List: Grounded and Fruitful App
 
 ## 🔐 Authentication
 - [x] Set up Firebase Authentication

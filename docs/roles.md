@@ -1,6 +1,6 @@
 # Role Assignment Guide
 
-This document explains how to assign user roles in the Kids Faith & Well-being Tracker App.
+This document explains how to assign user roles in the Grounded and Fruitful App.
 
 ## Roles Overview
 
