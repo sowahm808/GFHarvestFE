@@ -12,8 +12,13 @@ import {
   IonToolbar,
   IonHeader,
   IonMenuButton,
+  IonMenuToggle,
+  IonMenu,
+  IonContent,
+  IonList,
+  IonItem,
 } from '@ionic/angular/standalone';
-import { Router, ActivatedRoute, NavigationEnd } from '@angular/router';
+import { Router, ActivatedRoute, NavigationEnd, RouterLink } from '@angular/router';
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
 import { filter } from 'rxjs/operators';
@@ -34,7 +39,12 @@ import { filter } from 'rxjs/operators';
     IonToolbar,
     IonHeader,
     IonMenuButton,
-    
+    RouterLink,
+    IonMenuToggle,
+    IonMenu,
+    IonContent,
+    IonList, 
+    IonItem,
   ],
   templateUrl: './tabs.page.html',
   styleUrls: ['./tabs.page.scss'],
