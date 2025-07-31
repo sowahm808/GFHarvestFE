@@ -37,10 +37,6 @@ import { filter } from 'rxjs/operators';
     IonToolbar,
     IonHeader,
     IonMenuButton,
-    RouterLink,
-    IonMenuToggle,
-    IonMenu,
-    IonContent,
     
   ],
   templateUrl: './tabs.page.html',
