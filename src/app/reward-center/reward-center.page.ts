@@ -16,6 +16,7 @@ import { AppNotification } from '../models/notification';
 import { PointsJarComponent } from './points-jar/points-jar.component';
 import { GroupBarChartComponent } from './group-bar-chart/group-bar-chart.component';
 import { GroupApiService } from '../services/group-api.service';
+import { PointsApiService } from '../services/points-api.service';
 import { GroupPoints } from '../models/group-stats';
 import { firstValueFrom } from 'rxjs';
 
@@ -45,7 +46,11 @@ export class RewardCenterPage implements OnInit {
   animateJar = false;
   maxGroupPoints = 1;
 
-  constructor(private fb: FirebaseService, private groupApi: GroupApiService) {}
+  constructor(
+    private fb: FirebaseService,
+    private groupApi: GroupApiService,
+    private pointsApi: PointsApiService
+  ) {}
 
   async ngOnInit() {
     await this.loadData();
@@ -63,7 +68,9 @@ export class RewardCenterPage implements OnInit {
       this.groups = [];
       return;
     }
-    this.stats = await this.fb.getUserStats(user.uid);
+    this.stats = await firstValueFrom(
+      this.pointsApi.getChildPoints(user.uid)
+    );
     const last = Number(localStorage.getItem('lastPoints')) || 0;
     if (this.stats && this.stats.points > last) {
       this.animateJar = true;
