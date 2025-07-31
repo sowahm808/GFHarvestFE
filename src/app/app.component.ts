@@ -12,7 +12,8 @@ import {
   IonTitle,
   IonIcon,
   IonLabel,
-  
+  IonRouterLink,
+
 } from '@ionic/angular/standalone';
 import { Router, RouterLink } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
@@ -34,7 +35,8 @@ import { RoleService } from './services/role.service';
     IonTitle,
     IonIcon,
     IonLabel,
-   
+    IonRouterLink,
+
   ],
 })
 export class AppComponent {
