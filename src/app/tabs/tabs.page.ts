@@ -44,7 +44,7 @@ import { filter } from 'rxjs/operators';
 })
 export class TabsPage {
   loggedIn = false;
-  pageTitle = 'Kids Faith Tracker';
+  pageTitle = 'Grounded and Fruitful';
 
   constructor(
     private router: Router,
@@ -73,7 +73,7 @@ export class TabsPage {
         while (child.firstChild) {
           child = child.firstChild;
         }
-        this.pageTitle = child.snapshot.data['title'] || 'Kids Faith Tracker';
+        this.pageTitle = child.snapshot.data['title'] || 'Grounded and Fruitful';
       });
   }
 
