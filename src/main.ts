@@ -27,6 +27,7 @@ import {
   giftOutline,
   chatbubbleEllipsesOutline,
   menuOutline,
+  menu,
 } from 'ionicons/icons';
 import { AuthInterceptor } from './app/services/auth.interceptor';
 
@@ -48,6 +49,7 @@ addIcons({
   'gift-outline': giftOutline,
   'chatbubble-ellipses-outline': chatbubbleEllipsesOutline,
   'menu-outline': menuOutline,
+  'menu': menu,
 });
 
 bootstrapApplication(AppComponent, {
