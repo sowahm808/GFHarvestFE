@@ -220,7 +220,15 @@ export class FirebaseService {
   async getUserStats(childId: string): Promise<UserStats | null> {
     const ref = doc(this.db, 'userStats', childId);
     const snap = await getDoc(ref);
-    return snap.exists() ? (snap.data() as UserStats) : null;
+    if (!snap.exists()) {
+      return null;
+    }
+    const data = snap.data() as Partial<UserStats>;
+    return {
+      streak: data.streak || 0,
+      lastCheckInDate: data.lastCheckInDate || '',
+      points: data.points || 0,
+    };
   }
 
   async updateStreak(childId: string) {
