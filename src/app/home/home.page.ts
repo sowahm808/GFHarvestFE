@@ -28,7 +28,6 @@ import { NgIf } from '@angular/common';
     IonRow,
     IonCol,
     RouterLink,
-    
     NgIf
   ],
 })
