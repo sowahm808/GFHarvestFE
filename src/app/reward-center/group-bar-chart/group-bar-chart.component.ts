@@ -27,7 +27,17 @@ export class GroupBarChartComponent {
   ];
 
   get maxValue(): number {
-    return Math.max(...this.groups.flatMap(g => [g.faith, g.discipline, g.knowledge, g.prayer, g.obedience, g.composite]), 100);
+    return Math.max(
+      ...this.groups.flatMap((g: GroupData) => [
+        g.faith,
+        g.discipline,
+        g.knowledge,
+        g.prayer,
+        g.obedience,
+        g.composite,
+      ]),
+      100,
+    );
   }
 }
 
