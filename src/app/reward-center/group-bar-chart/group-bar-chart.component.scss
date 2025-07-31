@@ -1,0 +1,21 @@
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.category {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  height: 8px;
+  background: var(--ion-color-primary);
+  margin: 2px 0;
+}
+
+.bar.composite {
+  background: var(--ion-color-secondary);
+  height: 10px;
+}
