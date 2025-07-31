@@ -1,0 +1,11 @@
+<div class="chart">
+  <div class="category" *ngFor="let g of groups">
+    <h4>{{ g.name }}</h4>
+    <div class="bar" [style.width.%]="(g.faith / maxValue) * 100" title="Faith: {{g.faith}}"></div>
+    <div class="bar" [style.width.%]="(g.discipline / maxValue) * 100" title="Discipline: {{g.discipline}}"></div>
+    <div class="bar" [style.width.%]="(g.knowledge / maxValue) * 100" title="Knowledge: {{g.knowledge}}"></div>
+    <div class="bar" [style.width.%]="(g.prayer / maxValue) * 100" title="Prayer: {{g.prayer}}"></div>
+    <div class="bar" [style.width.%]="(g.obedience / maxValue) * 100" title="Obedience: {{g.obedience}}"></div>
+    <div class="bar composite" [style.width.%]="(g.composite / maxValue) * 100" title="Composite: {{g.composite}}"></div>
+  </div>
+</div>

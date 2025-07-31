@@ -14,6 +14,7 @@ import { FirebaseService } from '../services/firebase.service';
 import { UserStats } from '../models/user-stats';
 import { AppNotification } from '../models/notification';
 import { PointsJarComponent } from './points-jar/points-jar.component';
+import { GroupBarChartComponent } from './group-bar-chart/group-bar-chart.component';
 import { GroupApiService } from '../services/group-api.service';
 import { GroupPoints } from '../models/group-stats';
 import { firstValueFrom } from 'rxjs';
@@ -32,6 +33,7 @@ import { firstValueFrom } from 'rxjs';
     IonLabel,
     IonProgressBar,
     PointsJarComponent,
+    GroupBarChartComponent,
   ],
   templateUrl: './reward-center.page.html',
   styleUrls: ['./reward-center.page.scss'],
