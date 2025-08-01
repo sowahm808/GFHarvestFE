@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {  IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton, IonCheckbox } from '@ionic/angular/standalone';
+import {  IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList, IonTextarea, IonSegment, IonSegmentButton, IonCheckbox } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
 import { ToastController } from '@ionic/angular';
 import { DailyCheckin } from '../models/daily-checkin';
@@ -12,6 +12,9 @@ import { DailyCheckin } from '../models/daily-checkin';
   imports: [
     CommonModule,
     FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
     IonContent,
     IonInput,
     IonItem,

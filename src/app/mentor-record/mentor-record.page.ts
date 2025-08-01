@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
-  
-  
-  
+  IonHeader,
+  IonToolbar,
+  IonTitle,
   IonContent,
   IonList,
   IonItem,
@@ -18,6 +18,9 @@ import { MentorRecord } from '../models/mentor-record';
   standalone: true,
   imports: [
     CommonModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
     IonContent,
     IonList,
     IonItem,

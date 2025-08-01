@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
-  
-  
-  
+  IonHeader,
+  IonToolbar,
+  IonTitle,
   IonContent,
   IonItem,
   IonLabel,
@@ -23,6 +23,9 @@ import { ToastController } from '@ionic/angular';
   imports: [
     CommonModule,
     FormsModule,
+    IonHeader,
+    IonToolbar,
+    IonTitle,
     IonContent,
     IonItem,
     IonLabel,
@@ -30,6 +33,7 @@ import { ToastController } from '@ionic/angular';
     IonList,
     IonButton,
     IonCheckbox,
+
   ],
   templateUrl: './academic-progress.page.html',
   styleUrls: ['./academic-progress.page.scss'],
