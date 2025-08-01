@@ -65,7 +65,11 @@
     </ion-item>
     <ion-item>
       <ion-label>Need Help?</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.needsHelp"></ion-checkbox>
+      <ion-checkbox
+        slot="start"
+        [checked]="form.needsHelp"
+        (ionChange)="form.needsHelp = $event.detail.checked"
+      ></ion-checkbox>
     </ion-item>
     <ion-item *ngIf="form.needsHelp">
       <ion-label position="stacked">How can we help?</ion-label>
