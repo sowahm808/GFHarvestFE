@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
+  
+  
+  
   IonContent,
   IonButton,
   IonGrid,
@@ -19,9 +19,6 @@ import { NgIf } from '@angular/common';
   styleUrls: ['home.page.scss'],
   standalone: true,
   imports: [
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonButton,
     IonGrid,

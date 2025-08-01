@@ -3,9 +3,9 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
 
-  IonHeader,
-  IonToolbar,
-  IonTitle,
+  
+  
+  
   IonContent,
   IonItem,
   IonLabel,
@@ -24,12 +24,8 @@ import { ToastController } from '@ionic/angular';
   selector: 'app-essay-tracker',
   standalone: true,
   imports: [
-    
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonItem,
     IonLabel,

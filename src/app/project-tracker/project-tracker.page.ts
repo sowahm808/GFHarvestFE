@@ -2,9 +2,9 @@ import { Component, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {
-  IonHeader,
-  IonToolbar,
-  IonTitle,
+  
+  
+  
   IonContent,
   IonItem,
   IonLabel,
@@ -26,9 +26,6 @@ import { ToastController } from '@ionic/angular';
   imports: [
     CommonModule,
     FormsModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonItem,
     IonLabel,
