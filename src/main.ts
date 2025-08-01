@@ -12,7 +12,7 @@ import {
   provideIonicAngular,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { defineCustomElements as defineIonIcons } from 'ionicons/loader';
+import { defineCustomElements as defineIonIcons } from 'ionicons/dist/loader';
 import {
   calendarOutline,
   helpOutline,
