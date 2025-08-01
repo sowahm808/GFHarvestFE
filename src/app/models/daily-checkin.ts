@@ -6,8 +6,8 @@ export interface DailyCheckin {
   goal: string;
   birthday: string;
   mood: string;
-  sleepQuality: string;
-  appetite: string;
+  sleepQuality: number | null;
+  appetite: number | null;
   treatment: string;
   needsHelp: boolean;
   helpRequest: string;
