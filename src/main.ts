@@ -12,6 +12,7 @@ import {
   provideIonicAngular,
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
+import { defineCustomElements as defineIonIcons } from 'ionicons/loader';
 import {
   calendarOutline,
   helpOutline,
@@ -33,6 +34,8 @@ import { AuthInterceptor } from './app/services/auth.interceptor';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
+
+defineIonIcons(window);
 
 addIcons({
   'calendar-outline': calendarOutline,
