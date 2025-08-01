@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
   
-  IonHeader,
-  IonToolbar,
-  IonTitle,
+  
+  
+  
   IonContent,
   IonList,
   IonItem,
@@ -17,11 +17,7 @@ import { LeaderboardEntry } from '../models/user-stats';
   selector: 'app-leaderboard',
   standalone: true,
   imports: [
-    
     CommonModule,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
     IonContent,
     IonList,
     IonItem,
