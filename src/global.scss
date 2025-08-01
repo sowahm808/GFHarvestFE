@@ -52,6 +52,8 @@ ion-checkbox {
   --color: var(--ion-color-primary);
   --color-checked: var(--ion-color-primary);
   --border-color: var(--ion-color-primary);
+  --checkmark-color: var(--ion-color-light);
+  --background-checked: var(--ion-color-primary);
   visibility: visible !important;
   opacity: 1 !important;
   pointer-events: auto;
@@ -60,7 +62,6 @@ ion-checkbox {
 ion-radio::part(container),
 ion-checkbox::part(container) {
   border: 2px solid var(--ion-color-primary);
-  background-color: white;
 }
 
 ion-radio,
