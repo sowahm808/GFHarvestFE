@@ -108,11 +108,13 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('./login/login.page').then((m) => m.LoginPage),
+    data: { title: 'Login' },
   },
   {
     path: 'register',
     loadComponent: () =>
       import('./register/register.page').then((m) => m.RegisterPage),
+    data: { title: 'Register' },
   },
   {
     path: '',
