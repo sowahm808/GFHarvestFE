@@ -71,9 +71,15 @@ export const routes: Routes = [
         data: { title: 'Create Child Account' },
       },
       {
+        path: 'group',
+        loadComponent: () =>
+          import('./group/group.page').then((m) => m.GroupPage),
+        data: { title: 'Group Selection' },
+      },
+      {
         path: 'leaderboard',
         loadComponent: () =>
-      import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
+          import('./leaderboard/leaderboard.page').then((m) => m.LeaderboardPage),
         data: { title: 'Leaderboard' },
       },
       {
