@@ -22,7 +22,11 @@
       <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
       <ion-label>Mentor</ion-label>
     </ion-tab-button>
-    <ion-tab-button tab="reward-center" href="/tabs/reward-center">
+    <ion-tab-button
+      tab="reward-center"
+      href="/tabs/reward-center"
+      *ngIf="role !== 'mentor'"
+    >
       <ion-icon name="gift-outline"></ion-icon>
       <ion-label>Rewards</ion-label>
     </ion-tab-button>
