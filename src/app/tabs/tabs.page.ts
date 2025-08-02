@@ -20,6 +20,7 @@ import { Router, ActivatedRoute, NavigationEnd, RouterLink } from '@angular/rout
 import { RoleService } from '../services/role.service';
 import { FirebaseService } from '../services/firebase.service';
 import { filter } from 'rxjs/operators';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tabs',
@@ -44,13 +45,14 @@ import { filter } from 'rxjs/operators';
 })
 export class TabsPage {
   loggedIn = false;
-  pageTitle = 'Grounded and Fruitful';
+  appTitle = 'Grounded and Fruitful';
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     public roleSvc: RoleService,
-    private fb: FirebaseService
+    private fb: FirebaseService,
+    private title: Title,
   ) {
     // Monitor Firebase Auth State
     this.fb.auth.onAuthStateChanged((user) => {
@@ -73,7 +75,10 @@ export class TabsPage {
         while (child.firstChild) {
           child = child.firstChild;
         }
-        this.pageTitle = child.snapshot.data['title'] || 'Grounded and Fruitful';
+        const baseTitle = 'Grounded and Fruitful';
+        const routeTitle = child.snapshot.data['title'];
+        this.appTitle = routeTitle || baseTitle;
+        this.title.setTitle(routeTitle ? `${routeTitle} | ${baseTitle}` : baseTitle);
       });
   }
 
