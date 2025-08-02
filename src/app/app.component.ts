@@ -14,9 +14,11 @@ import {
   IonLabel,
   
 } from '@ionic/angular/standalone';
-import { Router, RouterLink } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute, NavigationEnd } from '@angular/router';
 import { FirebaseService } from './services/firebase.service';
 import { RoleService } from './services/role.service';
+import { Title } from '@angular/platform-browser';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +42,13 @@ import { RoleService } from './services/role.service';
 export class AppComponent {
   loggedIn = false;
 
-  constructor(private router: Router, private fb: FirebaseService, private roleSvc: RoleService) {
+  constructor(
+    private router: Router,
+    private fb: FirebaseService,
+    private roleSvc: RoleService,
+    private title: Title,
+    private route: ActivatedRoute
+  ) {
     this.fb.auth.onAuthStateChanged((user) => {
       this.loggedIn = !!user;
       const url = this.router.url;
@@ -52,6 +60,18 @@ export class AppComponent {
         this.router.navigateByUrl('/tabs');
       }
     });
+
+    const appTitle = 'Grounded and Fruitful';
+    this.router.events
+      .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
+      .subscribe(() => {
+        let child = this.route.firstChild;
+        while (child && child.firstChild) {
+          child = child.firstChild;
+        }
+        const routeTitle = child?.snapshot.data['title'];
+        this.title.setTitle(routeTitle ? `${routeTitle} | ${appTitle}` : appTitle);
+      });
   }
 
   logout() {
