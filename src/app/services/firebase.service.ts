@@ -91,6 +91,11 @@ export class FirebaseService {
     return (snap.docs[0].data() as ParentChildLink).parentId || null;
   }
 
+  async isChildAccount(userId: string): Promise<boolean> {
+    const profile = await getDoc(doc(this.db, 'childProfiles', userId));
+    return profile.exists();
+  }
+
   async saveDailyCheckin(data: DailyCheckin) {
     const docRef = await addDoc(collection(this.db, 'dailyCheckins'), data);
     if (data.childId) {
