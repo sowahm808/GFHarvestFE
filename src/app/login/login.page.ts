@@ -47,23 +47,7 @@ export class LoginPage {
   async login() {
     try {
       await this.fb.login(this.form.email, this.form.password);
-      const user = this.fb.auth.currentUser;
-      const isChild = user
-        ? await this.fb.isChildAccount(user.uid)
-        : false;
-      if (isChild && this.selectedRole !== 'child') {
-        const errToast = await this.toastCtrl.create({
-          message: 'Child accounts can only use the child role',
-          duration: 1500,
-          position: 'bottom',
-          color: 'danger',
-        });
-        await errToast.present();
-        await this.fb.logout();
-        return;
-      }
-      const role = isChild ? 'child' : this.selectedRole;
-      this.roleSvc.setRole(role);
+      this.roleSvc.setRole(this.selectedRole);
       const toast = await this.toastCtrl.create({
         message: 'Logged in',
         duration: 1500,
@@ -85,23 +69,7 @@ export class LoginPage {
   async loginWithGoogle() {
     try {
       await this.fb.loginWithGoogle();
-      const user = this.fb.auth.currentUser;
-      const isChild = user
-        ? await this.fb.isChildAccount(user.uid)
-        : false;
-      if (isChild && this.selectedRole !== 'child') {
-        const errToast = await this.toastCtrl.create({
-          message: 'Child accounts can only use the child role',
-          duration: 1500,
-          position: 'bottom',
-          color: 'danger',
-        });
-        await errToast.present();
-        await this.fb.logout();
-        return;
-      }
-      const role = isChild ? 'child' : this.selectedRole;
-      this.roleSvc.setRole(role);
+      this.roleSvc.setRole(this.selectedRole);
       const toast = await this.toastCtrl.create({
         message: 'Logged in with Google',
         duration: 1500,
