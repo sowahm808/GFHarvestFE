@@ -12,9 +12,6 @@ import {
   IonToolbar,
   IonHeader,
   IonMenuButton,
-  IonMenuToggle,
-  IonMenu,
-  IonContent,
 } from '@ionic/angular/standalone';
 import { Router, ActivatedRoute, NavigationEnd, RouterLink } from '@angular/router';
 import { RoleService } from '../services/role.service';
@@ -49,7 +46,6 @@ export class TabsPage {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     public roleSvc: RoleService,
     private fb: FirebaseService,
     private title: Title,
@@ -71,7 +67,7 @@ export class TabsPage {
     this.router.events
       .pipe(filter((e): e is NavigationEnd => e instanceof NavigationEnd))
       .subscribe(() => {
-        let child = this.route;
+        let child: ActivatedRoute = this.router.routerState.root;
         while (child.firstChild) {
           child = child.firstChild;
         }
