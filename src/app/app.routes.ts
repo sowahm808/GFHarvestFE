@@ -8,7 +8,7 @@ export const routes: Routes = [
       {
         path: 'home',
         loadComponent: () => import('./home/home.page').then((m) => m.HomePage),
-        data: { title: 'Home' },
+        data: { title: 'Grounded and Fruitful' },
       },
       {
         path: 'check-in',
@@ -68,7 +68,7 @@ export const routes: Routes = [
           import('./child-account/child-account.page').then(
             (m) => m.ChildAccountPage
           ),
-        data: { title: 'Create Child Account' },
+        data: { title: 'Add a Child Account' },
       },
       {
         path: 'group',
