@@ -6,34 +6,31 @@
   </ion-header>
 
   <ion-content class="ion-padding">
-    <ion-img
-  src="  /src/assets/gfharvestLogo1.png"
-  alt=""
-></ion-img>
-  <ion-list>
-    <ion-item>
-      <ion-label position="stacked">Email</ion-label>
-      <ion-input type="email" [(ngModel)]="form.email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Password</ion-label>
-      <ion-input type="password" [(ngModel)]="form.password"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label position="stacked">Role</ion-label>
-      <ion-select [(ngModel)]="selectedRole">
-        <ion-select-option value="parent">Parent</ion-select-option>
-        <ion-select-option value="child">Child</ion-select-option>
-        <ion-select-option value="mentor">Mentor</ion-select-option>
-      </ion-select>
-    </ion-item>
-  </ion-list>
-  <ion-button expand="block" (click)="login()">Login</ion-button>
-  <ion-button expand="block" color="secondary" (click)="loginWithGoogle()">
-    Login with Google
-  </ion-button>
-  <ion-button routerLink="/register" fill="clear" expand="block">
-    Don't have an account? Register
-  </ion-button>
+    <ion-img src="assets/gfharvestLogo1.png" alt="GF Harvest logo"></ion-img>
+    <ion-list>
+      <ion-item>
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input type="email" [(ngModel)]="form.email"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Password</ion-label>
+        <ion-input type="password" [(ngModel)]="form.password"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="stacked">Role</ion-label>
+        <ion-select [(ngModel)]="selectedRole">
+          <ion-select-option value="parent">Parent</ion-select-option>
+          <ion-select-option value="child">Child</ion-select-option>
+          <ion-select-option value="mentor">Mentor</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </ion-list>
+    <ion-button expand="block" (click)="login()">Login</ion-button>
+    <ion-button expand="block" color="secondary" (click)="loginWithGoogle()">
+      Login with Google
+    </ion-button>
+    <ion-button routerLink="/register" fill="clear" expand="block">
+      Don't have an account? Register
+    </ion-button>
   </ion-content>
 
