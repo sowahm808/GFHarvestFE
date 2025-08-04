@@ -42,7 +42,6 @@
               "node_modules/@ionic/angular/css/text-transformation.css",
               "node_modules/@ionic/angular/css/flex-utils.css",
               "node_modules/@ionic/angular/css/display.css",
-              "src/theme/variables.scss",
               "src/global.scss"
             ],
             "scripts": [],
@@ -130,7 +129,6 @@
               "node_modules/@ionic/angular/css/text-transformation.css",
               "node_modules/@ionic/angular/css/flex-utils.css",
               "node_modules/@ionic/angular/css/display.css",
-              "src/theme/variables.scss",
               "src/global.scss"
             ],
             "scripts": []
