@@ -31,5 +31,5 @@ ion-checkbox {
   pointer-events: auto;
 }
 ion-item ion-label {
-  color: var(--ion-text-color, #000);
+  color: var(--ion-text-color, var(--ion-color-dark));
 }
