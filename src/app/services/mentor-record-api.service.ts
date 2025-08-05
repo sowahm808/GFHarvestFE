@@ -9,7 +9,7 @@ import { MentorRecord } from '../models/mentor-record';
 @Injectable({ providedIn: 'root' })
 export class MentorRecordApiService {
   private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
+  private readonly baseUrl = `${environment.apiUrl}/api/mentor-records`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
@@ -18,7 +18,7 @@ export class MentorRecordApiService {
       return from(this.fb.getMentorRecords(childId));
     }
     return this.http
-      .get<MentorRecord[]>(`${this.baseUrl}/${childId}/records`)
+      .get<MentorRecord[]>(`${this.baseUrl}/${childId}`)
       .pipe(catchError(() => from(this.fb.getMentorRecords(childId))));
   }
 }
