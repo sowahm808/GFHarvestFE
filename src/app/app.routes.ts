@@ -55,6 +55,12 @@ export const routes: Routes = [
         data: { title: 'Mentor Board' },
       },
       {
+        path: 'admin',
+        loadComponent: () =>
+          import('./admin/admin.page').then((m) => m.AdminPage),
+        data: { title: 'Assign Mentor' },
+      },
+      {
         path: 'academic-progress',
         loadComponent: () =>
           import('./academic-progress/academic-progress.page').then(
