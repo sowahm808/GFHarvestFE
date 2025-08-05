@@ -8,12 +8,10 @@
     <ion-list>
       <ion-item *ngFor="let rec of records">
         <ion-label>
-          <h2>{{ rec.title }}</h2>
-          <p>{{ rec.outline }}</p>
+          <p>{{ rec.notes }}</p>
           <p>Progress: {{ rec.progress }}%</p>
           <p>Due: {{ rec.dueDate | date }}</p>
           <p>Time remaining: {{ getTimeRemaining(rec.dueDate) }}</p>
-          <p *ngIf="rec.encouragement">{{ rec.encouragement }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
