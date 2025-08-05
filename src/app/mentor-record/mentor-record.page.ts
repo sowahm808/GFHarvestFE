@@ -12,6 +12,7 @@ import {
 import { MentorRecordApiService } from '../services/mentor-record-api.service';
 import { FirebaseService } from '../services/firebase.service';
 import { MentorRecord } from '../models/mentor-record';
+import { User } from 'firebase/auth';
 
 @Component({
   selector: 'app-mentor-record',
@@ -52,11 +53,25 @@ export class MentorRecordPage implements OnInit {
   }
 
   private async loadRecords() {
-    const childId = this.fb.auth.currentUser?.uid;
+    let childId = this.fb.auth.currentUser?.uid;
+    // The auth state can be null on page load. Wait for it to resolve
+    // before attempting to fetch mentor records so the list renders
+    // correctly when navigating directly to this page.
+    if (!childId) {
+      const user = await new Promise<User | null>((resolve) => {
+        const unsub = this.fb.auth.onAuthStateChanged((u) => {
+          unsub();
+          resolve(u);
+        });
+      });
+      childId = user?.uid ?? undefined;
+    }
+
     if (!childId) {
       this.records = [];
       return;
     }
+
     this.api.getRecords(childId).subscribe((recs) => (this.records = recs));
   }
 }
