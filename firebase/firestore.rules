@@ -19,6 +19,17 @@ service cloud.firestore {
       allow write: if request.auth != null && request.auth.uid == request.resource.data.parentId;
     }
 
+    // Links between mentors and children
+    match /mentorChildLinks/{linkId} {
+      // Allow either participant to read the relationship
+      allow read: if request.auth != null &&
+        (request.auth.uid == resource.data.childId || request.auth.uid == resource.data.mentorId);
+      // Children (or admins) may create a link for themselves
+      allow create: if request.auth != null &&
+        (request.auth.uid == request.resource.data.childId || isAdmin());
+      allow update, delete: if false;
+    }
+
     match /dailyCheckins/{docId} {
       allow read: if isParent(resource) || isChild(resource);
       allow create: if isChild(request.resource);
