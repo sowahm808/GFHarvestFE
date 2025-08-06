@@ -30,6 +30,15 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Mentor profiles
+    match /mentors/{mentorId} {
+      // Any authenticated user can read mentor profiles
+      allow read: if request.auth != null;
+      // Only admins may create new mentor profiles
+      allow create: if isAdmin();
+      allow update, delete: if false;
+    }
+
     match /dailyCheckins/{docId} {
       allow read: if isParent(resource) || isChild(resource);
       allow create: if isChild(request.resource);
