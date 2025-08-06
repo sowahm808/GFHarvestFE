@@ -38,6 +38,7 @@ import { MentorChildLink } from '../models/mentor-child-link';
 import { MentorRecord } from '../models/mentor-record';
 import { AppNotification } from '../models/notification';
 import { MentorProfile } from '../models/mentor-profile';
+import { ChildProfile } from '../models/child-profile';
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   private app = initializeApp(environment.firebase);
@@ -286,6 +287,22 @@ export class FirebaseService {
       phone,
     });
     return { id: docRef.id, name, email, phone };
+  }
+
+  async getMentors(): Promise<MentorProfile[]> {
+    const snap = await getDocs(collection(this.db, 'mentors'));
+    return snap.docs.map((d) => ({
+      id: d.id,
+      ...(d.data() as Omit<MentorProfile, 'id'>),
+    }));
+  }
+
+  async getAllChildren(): Promise<ChildProfile[]> {
+    const snap = await getDocs(collection(this.db, 'childProfiles'));
+    return snap.docs.map((d) => ({
+      id: d.id,
+      ...(d.data() as Omit<ChildProfile, 'id'>),
+    }));
   }
 
   assignMentor(mentorId: string, childId: string){
