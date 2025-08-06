@@ -15,6 +15,8 @@ import {
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
+import { ErrorService } from '../services/error.service';
+import { FirebaseError } from 'firebase/app';
 
 @Component({
   selector: 'app-child-account',
@@ -41,7 +43,8 @@ export class ChildAccountPage {
   constructor(
     private fb: FirebaseService,
     private router: Router,
-    private toastCtrl: ToastController
+    private toastCtrl: ToastController,
+    private errorSvc: ErrorService
   ) {}
 
   async create() {
@@ -71,15 +74,12 @@ export class ChildAccountPage {
       await toast.present();
       this.router.navigateByUrl('/tabs/home');
     } catch (err) {
-      const toast = await this.toastCtrl.create({
-        message:
-          err instanceof Error
-            ? err.message
-            : 'Unable to create child account',
-        duration: 2000,
-        position: 'bottom',
-      });
-      await toast.present();
+      if (err instanceof FirebaseError && err.code === 'auth/email-already-in-use') {
+        await this.errorSvc.presentError('The Child you are trying to add already exist');
+      } else {
+        const msg = err instanceof Error ? err.message : 'Unable to create child account';
+        await this.errorSvc.presentError(msg);
+      }
     }
   }
 }

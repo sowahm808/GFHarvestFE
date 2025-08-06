@@ -31,6 +31,7 @@ import {
   menu,
 } from 'ionicons/icons';
 import { AuthInterceptor } from './app/services/auth.interceptor';
+import { ErrorInterceptor } from './app/services/error.interceptor';
 
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
@@ -62,5 +63,6 @@ bootstrapApplication(AppComponent, {
     provideRouter(routes, withPreloading(PreloadAllModules)),
     importProvidersFrom(HttpClientModule),
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
   ],
 });
