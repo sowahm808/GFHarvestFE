@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from } from 'rxjs';
+import { Observable, from, switchMap } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { FirebaseService } from './firebase.service';
@@ -18,7 +18,19 @@ export class MentorApiService {
       return from(this.fb.assignMentor(data.mentorId, data.childId));
     }
 
-    return this.http.post(`${this.baseUrl}/assign`, data).pipe(
+    // Manually attach the Firebase auth token as the backend expects an
+    // Authorization header. Using the interceptor should handle this, but
+    // attaching here avoids 403 responses when the interceptor is skipped.
+    const token$ = from(
+      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
+    );
+
+    return token$.pipe(
+      switchMap((token) =>
+        this.http.post(`${this.baseUrl}/assign`, data, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        })
+      ),
       catchError((err) => {
         console.error('Failed to assign mentor via API, falling back', err);
         return from(this.fb.assignMentor(data.mentorId, data.childId));
@@ -33,15 +45,22 @@ export class MentorApiService {
       );
     }
 
-    return this.http
-      .get<MentorChildren>(`${this.baseUrl}/${mentorId}/children`)
-      .pipe(
-        catchError((err) => {
-          console.error('Failed to fetch mentor children via API, falling back', err);
-          return from(this.fb.getChildForMentor(mentorId)).pipe(
-            map((children) => ({ children }))
-          );
+    const token$ = from(
+      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
+    );
+
+    return token$.pipe(
+      switchMap((token) =>
+        this.http.get<MentorChildren>(`${this.baseUrl}/${mentorId}/children`, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
-      );
+      ),
+      catchError((err) => {
+        console.error('Failed to fetch mentor children via API, falling back', err);
+        return from(this.fb.getChildForMentor(mentorId)).pipe(
+          map((children) => ({ children }))
+        );
+      })
+    );
   }
 }
