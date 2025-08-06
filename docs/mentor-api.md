@@ -4,7 +4,7 @@ The backend provides endpoints for creating mentors and linking them to children
 
 ## Create Mentor
 
-`POST /api/mentors/create`
+`POST /api/mentors`
 
 Body:
 ```json

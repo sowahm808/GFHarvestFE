@@ -27,7 +27,7 @@ export class MentorApiService {
 
     return token$.pipe(
       switchMap((token) =>
-        this.http.post<MentorProfile>(`${this.baseUrl}/create`, data, {
+        this.http.post<MentorProfile>(this.baseUrl, data, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
