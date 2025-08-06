@@ -30,49 +30,57 @@
             <ion-icon slot="start" name="home-outline"></ion-icon>
             <ion-label>Home</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/check-in">
+          <ion-item routerLink="/tabs/check-in" *ngIf="role === 'child'">
             <ion-icon slot="start" name="calendar-outline"></ion-icon>
             <ion-label>Daily Check-In</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/bible-quiz">
+          <ion-item routerLink="/tabs/bible-quiz" *ngIf="role === 'child'">
             <ion-icon slot="start" name="help-outline"></ion-icon>
             <ion-label>Bible Quiz</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/quiz-history">
+          <ion-item routerLink="/tabs/quiz-history" *ngIf="role === 'child'">
             <ion-icon slot="start" name="time-outline"></ion-icon>
             <ion-label>Quiz History</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/essay-tracker">
+          <ion-item routerLink="/tabs/essay-tracker" *ngIf="role === 'child'">
             <ion-icon slot="start" name="create-outline"></ion-icon>
             <ion-label>Essay Tracker</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/project-tracker">
+          <ion-item routerLink="/tabs/project-tracker" *ngIf="role === 'child'">
             <ion-icon slot="start" name="list-outline"></ion-icon>
             <ion-label>Project Tracker</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/academic-progress">
+          <ion-item routerLink="/tabs/academic-progress" *ngIf="role === 'child'">
             <ion-icon slot="start" name="school-outline"></ion-icon>
             <ion-label>Academic Progress</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/mental-status">
+          <ion-item routerLink="/tabs/mental-status" *ngIf="role === 'child'">
             <ion-icon slot="start" name="happy-outline"></ion-icon>
             <ion-label>Mental Status</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/leaderboard">
+          <ion-item routerLink="/tabs/leaderboard" *ngIf="role === 'child' || role === 'parent'">
             <ion-icon slot="start" name="trophy-outline"></ion-icon>
             <ion-label>Leaderboard</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/child-account">
+          <ion-item routerLink="/tabs/child-account" *ngIf="role === 'parent'">
             <ion-icon slot="start" name="person-add-outline"></ion-icon>
             <ion-label>Add a Child</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/reward-center">
+          <ion-item routerLink="/tabs/reward-center" *ngIf="role === 'child'">
             <ion-icon slot="start" name="gift-outline"></ion-icon>
             <ion-label>Reward Center</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/mentor-record">
+          <ion-item routerLink="/tabs/mentor-record" *ngIf="role === 'child' || role === 'parent' || role === 'mentor'">
             <ion-icon slot="start" name="chatbubble-ellipses-outline"></ion-icon>
             <ion-label>Mentor Board</ion-label>
+          </ion-item>
+          <ion-item routerLink="/tabs/group" *ngIf="role === 'parent' || role === 'mentor'">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>Groups</ion-label>
+          </ion-item>
+          <ion-item routerLink="/tabs/admin" *ngIf="role === 'admin'">
+            <ion-icon slot="start" name="shield-outline"></ion-icon>
+            <ion-label>Assign Mentor</ion-label>
           </ion-item>
         </ion-menu-toggle>
       </ion-list>
