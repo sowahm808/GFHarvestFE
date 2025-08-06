@@ -19,6 +19,7 @@ import { FirebaseService } from './services/firebase.service';
 import { RoleService } from './services/role.service';
 import { Title } from '@angular/platform-browser';
 import { filter } from 'rxjs/operators';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +37,8 @@ import { filter } from 'rxjs/operators';
     IonTitle,
     IonIcon,
     IonLabel,
-   RouterLink
+    RouterLink,
+    NgIf
   ],
 })
 export class AppComponent {
@@ -72,6 +74,10 @@ export class AppComponent {
         const routeTitle = child?.snapshot.data['title'];
         this.title.setTitle(routeTitle ? `${routeTitle} | ${appTitle}` : appTitle);
       });
+  }
+
+  get role(): string | null {
+    return this.roleSvc.role;
   }
 
   logout() {
