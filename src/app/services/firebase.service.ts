@@ -37,6 +37,7 @@ import { ParentChildLink } from '../models/parent-child-link';
 import { MentorChildLink } from '../models/mentor-child-link';
 import { MentorRecord } from '../models/mentor-record';
 import { AppNotification } from '../models/notification';
+import { MentorProfile } from '../models/mentor-profile';
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   private app = initializeApp(environment.firebase);
@@ -67,6 +68,7 @@ export class FirebaseService {
     email: string,
     password: string,
     parentId: string,
+    name: string,
     age: number
   ) {
     const cred = await createUserWithEmailAndPassword(this.auth, email, password);
@@ -74,7 +76,7 @@ export class FirebaseService {
       parentId,
       childId: cred.user.uid,
     });
-    await setDoc(doc(this.db, 'childProfiles', cred.user.uid), { age });
+    await setDoc(doc(this.db, 'childProfiles', cred.user.uid), { name, age });
     return cred;
   }
 
@@ -275,6 +277,15 @@ export class FirebaseService {
     return snap.docs.map(
       (d) => ({ id: d.id, ...(d.data() as Omit<LeaderboardEntry, 'id'>) })
     );
+  }
+
+  async createMentor(name: string, email: string, phone: string): Promise<MentorProfile> {
+    const docRef = await addDoc(collection(this.db, 'mentors'), {
+      name,
+      email,
+      phone,
+    });
+    return { id: docRef.id, name, email, phone };
   }
 
   assignMentor(mentorId: string, childId: string){

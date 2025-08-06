@@ -16,7 +16,7 @@ The application defines two roles:
    - Include a `role` field with the value `"parent"` or `"child"`.
    - Parents may also store an array `linkedChildIds` containing the UIDs of all child accounts they manage.
 2. **Child Profile Document**
-   - For each child account, create a `/children/{childId}` document storing the child profile and `parentId` reference.
+   - For each child account, create a `/children/{childId}` document storing the child profile (name and age) and `parentId` reference.
    - This allows security rules to verify ownership and enables parents to view their child's records.
 
 ## Example
@@ -36,8 +36,7 @@ await setDoc(doc(db, 'users', childUid), {
 await setDoc(doc(db, 'children', childUid), {
   parentId: parentUid,
   name: childName,
-  dob: childDob,
-  grade: childGrade,
+  age: childAge,
 });
 ```
 

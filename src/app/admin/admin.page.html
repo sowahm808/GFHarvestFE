@@ -1,18 +1,36 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Assign Mentor</ion-title>
+    <ion-title>Admin Tools</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-item>
-    <ion-label position="stacked">Mentor ID</ion-label>
-    <ion-input [(ngModel)]="mentorId"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Child ID</ion-label>
-    <ion-input [(ngModel)]="childId"></ion-input>
-  </ion-item>
-  <ion-button expand="block" (click)="assign()">Assign</ion-button>
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Mentor Name</ion-label>
+      <ion-input [(ngModel)]="mentor.name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Mentor Email</ion-label>
+      <ion-input type="email" [(ngModel)]="mentor.email"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Mentor Phone</ion-label>
+      <ion-input [(ngModel)]="mentor.phone"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="createMentor()">Create Mentor</ion-button>
+  </ion-list>
+
+  <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Mentor ID</ion-label>
+      <ion-input [(ngModel)]="mentorId"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Child ID</ion-label>
+      <ion-input [(ngModel)]="childId"></ion-input>
+    </ion-item>
+    <ion-button expand="block" (click)="assign()">Assign</ion-button>
+  </ion-list>
 </ion-content>
 

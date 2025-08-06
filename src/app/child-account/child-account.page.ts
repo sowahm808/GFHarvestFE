@@ -36,7 +36,7 @@ import { ToastController } from '@ionic/angular';
   styleUrls: ['./child-account.page.scss'],
 })
 export class ChildAccountPage {
-  form = { email: '', password: '', age: null as number | null };
+  form = { name: '', email: '', password: '', age: null as number | null };
 
   constructor(
     private fb: FirebaseService,
@@ -50,8 +50,8 @@ export class ChildAccountPage {
       return;
     }
 
-    const { email, password, age } = this.form;
-    if (!email || !password || age === null) {
+    const { name, email, password, age } = this.form;
+    if (!name || !email || !password || age === null) {
       const toast = await this.toastCtrl.create({
         message: 'All fields are required',
         duration: 1500,
@@ -62,7 +62,7 @@ export class ChildAccountPage {
     }
 
     try {
-      await this.fb.createChildAccount(email, password, user.uid, age);
+      await this.fb.createChildAccount(email, password, user.uid, name, age);
       const toast = await this.toastCtrl.create({
         message: 'Child account created',
         duration: 1500,

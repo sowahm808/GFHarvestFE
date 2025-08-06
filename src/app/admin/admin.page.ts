@@ -10,6 +10,7 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonList,
 } from '@ionic/angular/standalone';
 import { MentorApiService } from '../services/mentor-api.service';
 import { ToastController } from '@ionic/angular';
@@ -30,16 +31,36 @@ import { ToastController } from '@ionic/angular';
     IonLabel,
     IonInput,
     IonButton,
+    IonList,
   ],
 })
 export class AdminPage {
   mentorId = '';
   childId = '';
+  mentor = { name: '', email: '', phone: '' };
 
   constructor(
     private mentorApi: MentorApiService,
     private toastCtrl: ToastController
   ) {}
+
+  createMentor() {
+    const { name, email, phone } = this.mentor;
+    if (!name || !email || !phone) {
+      return;
+    }
+    this.mentorApi
+      .createMentor({ name, email, phone })
+      .subscribe(async () => {
+        const toast = await this.toastCtrl.create({
+          message: 'Mentor created',
+          duration: 1500,
+          position: 'bottom',
+        });
+        await toast.present();
+        this.mentor = { name: '', email: '', phone: '' };
+      });
+  }
 
   assign() {
     if (!this.mentorId || !this.childId) {
