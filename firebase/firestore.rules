@@ -39,6 +39,17 @@ service cloud.firestore {
       allow update, delete: if false;
     }
 
+    // Child profiles
+    match /childProfiles/{childId} {
+      // Children may access their own profile; admins can access all
+      allow read: if request.auth != null &&
+        (request.auth.uid == childId || isAdmin());
+      // Children can create or update their profile document, admins can manage any
+      allow create, update: if request.auth != null &&
+        (request.auth.uid == childId || isAdmin());
+      allow delete: if false;
+    }
+
     match /dailyCheckins/{docId} {
       allow read: if isParent(resource) || isChild(resource);
       allow create: if isChild(request.resource);
