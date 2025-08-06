@@ -23,12 +23,20 @@
 
   <ion-list>
     <ion-item>
-      <ion-label position="stacked">Mentor ID</ion-label>
-      <ion-input [(ngModel)]="mentorId"></ion-input>
+      <ion-label position="stacked">Mentor</ion-label>
+      <ion-select [(ngModel)]="selectedMentorId">
+        <ion-select-option *ngFor="let m of mentors" [value]="m.id">
+          {{ m.name }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Child ID</ion-label>
-      <ion-input [(ngModel)]="childId"></ion-input>
+      <ion-label position="stacked">Child</ion-label>
+      <ion-select [(ngModel)]="selectedChildId">
+        <ion-select-option *ngFor="let c of children" [value]="c.id">
+          {{ c.name }}
+        </ion-select-option>
+      </ion-select>
     </ion-item>
     <ion-button expand="block" (click)="assign()">Assign</ion-button>
   </ion-list>

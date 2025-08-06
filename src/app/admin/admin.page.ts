@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import {
@@ -11,9 +11,13 @@ import {
   IonInput,
   IonButton,
   IonList,
+  IonSelect,
+  IonSelectOption,
 } from '@ionic/angular/standalone';
 import { MentorApiService } from '../services/mentor-api.service';
 import { ToastController } from '@ionic/angular';
+import { MentorProfile } from '../models/mentor-profile';
+import { ChildProfile } from '../models/child-profile';
 
 @Component({
   selector: 'app-admin',
@@ -32,17 +36,28 @@ import { ToastController } from '@ionic/angular';
     IonInput,
     IonButton,
     IonList,
+    IonSelect,
+    IonSelectOption,
   ],
 })
-export class AdminPage {
-  mentorId = '';
-  childId = '';
+export class AdminPage implements OnInit {
   mentor = { name: '', email: '', phone: '' };
+  mentors: MentorProfile[] = [];
+  children: ChildProfile[] = [];
+  selectedMentorId = '';
+  selectedChildId = '';
 
   constructor(
     private mentorApi: MentorApiService,
     private toastCtrl: ToastController
   ) {}
+
+  ngOnInit() {
+    this.mentorApi.getMentors().subscribe((m) => (this.mentors = m));
+    this.mentorApi
+      .getChildProfiles()
+      .subscribe((c) => (this.children = c));
+  }
 
   createMentor() {
     const { name, email, phone } = this.mentor;
@@ -63,11 +78,14 @@ export class AdminPage {
   }
 
   assign() {
-    if (!this.mentorId || !this.childId) {
+    if (!this.selectedMentorId || !this.selectedChildId) {
       return;
     }
     this.mentorApi
-      .assignMentor({ mentorId: this.mentorId, childId: this.childId })
+      .assignMentor({
+        mentorId: this.selectedMentorId,
+        childId: this.selectedChildId,
+      })
       .subscribe(async () => {
         const toast = await this.toastCtrl.create({
           message: 'Mentor assigned',
@@ -75,8 +93,8 @@ export class AdminPage {
           position: 'bottom',
         });
         await toast.present();
-        this.mentorId = '';
-        this.childId = '';
+        this.selectedMentorId = '';
+        this.selectedChildId = '';
       });
   }
 }

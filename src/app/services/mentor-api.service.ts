@@ -6,11 +6,13 @@ import { environment } from '../../environments/environment';
 import { FirebaseService } from './firebase.service';
 import { MentorAssignment, MentorChildren } from '../models/mentor-assignment';
 import { MentorProfile } from '../models/mentor-profile';
+import { ChildProfile } from '../models/child-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
   private apiEnabled = !!environment.apiUrl;
   private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
+  private readonly childBaseUrl = `${environment.apiUrl}/api/children`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
@@ -32,6 +34,50 @@ export class MentorApiService {
       catchError((err) => {
         console.error('Failed to create mentor via API, falling back', err);
         return from(this.fb.createMentor(data.name, data.email, data.phone));
+      })
+    );
+  }
+
+  getMentors(): Observable<MentorProfile[]> {
+    if (!this.apiEnabled) {
+      return from(this.fb.getMentors());
+    }
+
+    const token$ = from(
+      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
+    );
+
+    return token$.pipe(
+      switchMap((token) =>
+        this.http.get<MentorProfile[]>(this.baseUrl, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        })
+      ),
+      catchError((err) => {
+        console.error('Failed to fetch mentors via API, falling back', err);
+        return from(this.fb.getMentors());
+      })
+    );
+  }
+
+  getChildProfiles(): Observable<ChildProfile[]> {
+    if (!this.apiEnabled) {
+      return from(this.fb.getAllChildren());
+    }
+
+    const token$ = from(
+      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
+    );
+
+    return token$.pipe(
+      switchMap((token) =>
+        this.http.get<ChildProfile[]>(this.childBaseUrl, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        })
+      ),
+      catchError((err) => {
+        console.error('Failed to fetch children via API, falling back', err);
+        return from(this.fb.getAllChildren());
       })
     );
   }
