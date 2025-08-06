@@ -5,6 +5,9 @@ This document describes the Firestore collections and provides basic security ru
 ## Collections
 
 - **parentChildLinks** – links a `parentId` to a `childId`.
+- **children** – child profiles storing `name`, `age`, and `parentId`. Parents must supply both the child's name and age when creating an account.
+- **mentors** – mentor profiles with `name`, `email`, and `phone`.
+- **mentorAssignments** – associates a `mentorId` with a `childId`.
 - **dailyCheckins** – stored check‑in data from the child. Each document should include `childId`, `parentId` and a `timestamp` field.
 - **mentalStatus** – mental health form results. Store `childId`, `parentId` and `timestamp`.
 - **bibleQuizzes** – quiz attempts. Store `childId`, `parentId`, `score` and `timestamp`.

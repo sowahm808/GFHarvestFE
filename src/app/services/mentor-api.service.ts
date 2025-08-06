@@ -5,6 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { FirebaseService } from './firebase.service';
 import { MentorAssignment, MentorChildren } from '../models/mentor-assignment';
+import { MentorProfile } from '../models/mentor-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
@@ -12,6 +13,28 @@ export class MentorApiService {
   private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
+
+  createMentor(data: MentorProfile): Observable<MentorProfile> {
+    if (!this.apiEnabled) {
+      return from(this.fb.createMentor(data.name, data.email, data.phone));
+    }
+
+    const token$ = from(
+      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
+    );
+
+    return token$.pipe(
+      switchMap((token) =>
+        this.http.post<MentorProfile>(`${this.baseUrl}/create`, data, {
+          headers: token ? { Authorization: `Bearer ${token}` } : {},
+        })
+      ),
+      catchError((err) => {
+        console.error('Failed to create mentor via API, falling back', err);
+        return from(this.fb.createMentor(data.name, data.email, data.phone));
+      })
+    );
+  }
 
   assignMentor(data: MentorAssignment): Observable<unknown> {
     if (!this.apiEnabled) {
