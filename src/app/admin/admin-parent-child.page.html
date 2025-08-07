@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Parent-Child Links</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label position="stacked">Parent ID</ion-label>
+    <ion-input [(ngModel)]="parentId" (ionBlur)="loadLinks()"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Child ID</ion-label>
+    <ion-input [(ngModel)]="childId"></ion-input>
+  </ion-item>
+
+  <ion-button expand="block" (click)="link()">Link</ion-button>
+
+  <ion-list *ngIf="linkedChildren.length">
+    <ion-item *ngFor="let child of linkedChildren">
+      <ion-label>{{ child }}</ion-label>
+      <ion-button fill="clear" color="danger" (click)="unlink(child)">
+        Unlink
+      </ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
