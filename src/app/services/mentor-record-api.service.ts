@@ -9,8 +9,8 @@ import { MentorRecord } from '../models/mentor-record';
 @Injectable({ providedIn: 'root' })
 export class MentorRecordApiService {
   private apiEnabled = !!environment.apiUrl;
-  // Mentor record endpoints are nested under the mentors route on the server
-  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
+  // Mentor record endpoints have a dedicated route on the server
+  private readonly baseUrl = `${environment.apiUrl}/api/mentor-records`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
@@ -19,7 +19,7 @@ export class MentorRecordApiService {
       return from(this.fb.getMentorRecords(childId));
     }
     return this.http
-      .get<MentorRecord[]>(`${this.baseUrl}/${childId}/records`)
+      .get<MentorRecord[]>(`${this.baseUrl}/${childId}`)
       .pipe(catchError(() => from(this.fb.getMentorRecords(childId))));
   }
 
@@ -28,7 +28,7 @@ export class MentorRecordApiService {
       return from(this.fb.saveMentorRecord(record));
     }
     return this.http
-      .post(`${this.baseUrl}/records`, record)
+      .post(this.baseUrl, record)
       .pipe(catchError(() => from(this.fb.saveMentorRecord(record))));
   }
 }
