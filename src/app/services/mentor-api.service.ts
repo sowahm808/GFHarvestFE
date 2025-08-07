@@ -27,7 +27,7 @@ export class MentorApiService {
 
     return token$.pipe(
       switchMap((token) =>
-        this.http.post<MentorProfile>(this.baseUrl, data, {
+        this.http.post<MentorProfile>(`${this.baseUrl}/create`, data, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
@@ -93,9 +93,6 @@ export class MentorApiService {
       return from(this.fb.assignMentor(data.mentorId, data.childId));
     }
 
-    // Manually attach the Firebase auth token as the backend expects an
-    // Authorization header. Using the interceptor should handle this, but
-    // attaching here avoids 403 responses when the interceptor is skipped.
     const token$ = from(
       this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
     );
