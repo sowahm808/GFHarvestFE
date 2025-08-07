@@ -131,10 +131,16 @@ export class MentorApiService {
         })
       ),
       catchError((err) => {
-        console.error('Failed to fetch mentor children via API, falling back', err);
-        return from(this.fb.getChildForMentor(mentorId)).pipe(
-          map((children) => ({ children }))
-        );
+        if (err.status === 0) {
+          console.error(
+            'Failed to fetch mentor children via API, falling back',
+            err
+          );
+          return from(this.fb.getChildForMentor(mentorId)).pipe(
+            map((children) => ({ children }))
+          );
+        }
+        return throwError(() => err);
       })
     );
   }
