@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, from, switchMap } from 'rxjs';
+import { Observable, from, switchMap, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { FirebaseService } from './firebase.service';
@@ -54,8 +54,11 @@ export class MentorApiService {
         })
       ),
       catchError((err) => {
-        console.error('Failed to fetch mentors via API, falling back', err);
-        return from(this.fb.getMentors());
+        if (err.status === 0) {
+          console.error('Failed to fetch mentors via API, falling back', err);
+          return from(this.fb.getMentors());
+        }
+        return throwError(() => err);
       })
     );
   }
@@ -76,8 +79,11 @@ export class MentorApiService {
         })
       ),
       catchError((err) => {
-        console.error('Failed to fetch children via API, falling back', err);
-        return from(this.fb.getAllChildren());
+        if (err.status === 0) {
+          console.error('Failed to fetch children via API, falling back', err);
+          return from(this.fb.getAllChildren());
+        }
+        return throwError(() => err);
       })
     );
   }
