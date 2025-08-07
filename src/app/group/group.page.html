@@ -14,30 +14,36 @@
         </ion-select-option>
       </ion-select>
     </ion-item>
-  </ion-list>
 
-  <ion-item>
-    <ion-label>Group Type</ion-label>
-    <ion-select [(ngModel)]="groupType">
-      <ion-select-option value="school">School Based</ion-select-option>
-      <ion-select-option value="neighbourhood">Neighbourhood Based</ion-select-option>
-      <ion-select-option value="family">Family Based</ion-select-option>
-      <ion-select-option value="church">Church Based</ion-select-option>
-      <ion-select-option value="random">Random</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Age Group</ion-label>
-    <ion-input [(ngModel)]="ageGroup"></ion-input>
-  </ion-item>
-  <ion-button expand="block" (click)="createGroup()">Create Group</ion-button>
+    <ion-item>
+      <ion-label>Group Type</ion-label>
+      <ion-select [(ngModel)]="groupType">
+        <ion-select-option value="school">School Based</ion-select-option>
+        <ion-select-option value="neighbourhood">Neighbourhood Based</ion-select-option>
+        <ion-select-option value="family">Family Based</ion-select-option>
+        <ion-select-option value="church">Church Based</ion-select-option>
+        <ion-select-option value="random">Random</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Age Group</ion-label>
+      <ion-input [(ngModel)]="ageGroup" placeholder="e.g. 6-8"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="createGroup()">Create Group</ion-button>
+  </ion-list>
 
   <ion-list>
     <ion-item *ngFor="let g of groups">
       <ion-label>
         {{ g.type }} - Age: {{ g.ageGroup }} ({{ g.members.length }}/5)
       </ion-label>
-      <ion-button slot="end" (click)="joinGroup(g)" [disabled]="g.members.length >= 5">
+      <ion-button
+        slot="end"
+        (click)="joinGroup(g)"
+        [disabled]="g.members.length >= 5"
+      >
         Join
       </ion-button>
     </ion-item>

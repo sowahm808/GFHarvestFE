@@ -7,6 +7,7 @@ export type GroupType =
 
 export interface Group {
   id: string;
+  name: string;
   type: GroupType;
   ageGroup: string;
   members: string[];
