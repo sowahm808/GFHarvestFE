@@ -49,6 +49,8 @@ export class LoginPage {
     try {
       await this.fb.login(this.form.email, this.form.password);
       this.roleSvc.setRole(this.selectedRole);
+      this.fb.auth.currentUser?.getIdTokenResult().then(t => console.log(t.claims));
+
       const toast = await this.toastCtrl.create({
         message: 'Logged in',
         duration: 1500,
