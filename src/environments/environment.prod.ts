@@ -9,5 +9,6 @@ export const environment = {
     appId: "1:54742577057:web:cfca5e902ab173a77025e0",
     measurementId: "G-91V8B05X5E"
   },
-  apiUrl: 'https://gfharvestbackend-1.onrender.com'
+  // Backend routes are served under the /api prefix
+  apiUrl: 'https://gfharvestbackend-1.onrender.com/api'
 };

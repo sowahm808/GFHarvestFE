@@ -10,8 +10,8 @@ import { ChildProfile } from '../models/child-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
-  // Backend mentor endpoints reside under the plural 'mentors' route
-  // The backend no longer prefixes routes with /api
+  // Backend mentor endpoints reside under the plural 'mentors' route.
+  // Ensure the environment.apiUrl includes the `/api` prefix used by the backend.
   private readonly baseUrl = `${environment.apiUrl}/mentors`;
   private readonly childBaseUrl = `${environment.apiUrl}/children`;
 

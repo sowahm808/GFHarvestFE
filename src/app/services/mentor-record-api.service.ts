@@ -9,8 +9,8 @@ import { MentorRecord } from '../models/mentor-record';
 @Injectable({ providedIn: 'root' })
 export class MentorRecordApiService {
   private apiEnabled = !!environment.apiUrl;
-  // Mentor record endpoints live under the mentors route on the backend
-  // The backend no longer uses the /api prefix
+  // Mentor record endpoints live under the mentors route on the backend. The
+  // backend prefixes routes with `/api`, so environment.apiUrl should include it.
   private readonly baseUrl = `${environment.apiUrl}/mentors`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
