@@ -10,7 +10,8 @@ import { MentorRecord } from '../models/mentor-record';
 export class MentorRecordApiService {
   private apiEnabled = !!environment.apiUrl;
   // Mentor record endpoints live under the mentors route on the backend
-  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
+  // The backend no longer uses the /api prefix
+  private readonly baseUrl = `${environment.apiUrl}/mentors`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 

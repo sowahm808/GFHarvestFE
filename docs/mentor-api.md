@@ -4,7 +4,7 @@ The backend provides endpoints for creating mentors and linking them to children
 
 ## Create Mentor
 
-`POST /api/mentors`
+`POST /mentors`
 
 Body:
 ```json
@@ -20,7 +20,7 @@ Only administrators may access this endpoint.
 
 ## Assign Mentor to Child
 
-`POST /api/mentors/assign`
+`POST /mentors/assign`
 
 Body:
 ```json
@@ -29,7 +29,7 @@ Body:
 
 ## Get Mentor's Children
 
-`GET /api/mentors/:mentorId/children`
+`GET /mentors/:mentorId/children`
 
 Returns:
 ```json
