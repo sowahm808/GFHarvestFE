@@ -10,135 +10,73 @@ import { ChildProfile } from '../models/child-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
-  private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
-  private readonly childBaseUrl = `${environment.apiUrl}/api/children`;
+  private readonly baseUrl = `${environment.apiUrl}api/mentors`;
+  private readonly childBaseUrl = `${environment.apiUrl}api/children`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
   createMentor(data: MentorProfile): Observable<MentorProfile> {
-    if (!this.apiEnabled) {
-      return from(this.fb.createMentor(data.name, data.email, data.phone));
-    }
-
-    const token$ = from(
-      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
-    );
-
+    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
     return token$.pipe(
-      switchMap((token) =>
-        this.http.post<MentorProfile>(`${this.baseUrl}/create`, data, {
+      switchMap(token =>
+        this.http.post<MentorProfile>(this.baseUrl, data, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
-      catchError((err) => {
-        console.error('Failed to create mentor via API, falling back', err);
-        return from(this.fb.createMentor(data.name, data.email, data.phone));
+      catchError(err => {
+        console.error('createMentor API error', err);
+        // optional fallback:
+        // return from(this.fb.createMentor(data.name, data.email, data.phone));
+        return throwError(() => err);
       })
     );
   }
 
   getMentors(): Observable<MentorProfile[]> {
-    if (!this.apiEnabled) {
-      return from(this.fb.getMentors());
-    }
-
-    const token$ = from(
-      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
-    );
-
+    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
     return token$.pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.get<MentorProfile[]>(this.baseUrl, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
-      catchError((err) => {
-        if (err.status === 0) {
-          console.error('Failed to fetch mentors via API, falling back', err);
-          return from(this.fb.getMentors());
-        }
-        return throwError(() => err);
-      })
+      catchError(err => throwError(() => err))
     );
   }
 
   getChildProfiles(): Observable<ChildProfile[]> {
-    if (!this.apiEnabled) {
-      return from(this.fb.getAllChildren());
-    }
-
-    const token$ = from(
-      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
-    );
-
+    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
     return token$.pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.get<ChildProfile[]>(this.childBaseUrl, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
-      catchError((err) => {
-        if (err.status === 0) {
-          console.error('Failed to fetch children via API, falling back', err);
-          return from(this.fb.getAllChildren());
-        }
-        return throwError(() => err);
-      })
+      catchError(err => throwError(() => err))
     );
   }
 
   assignMentor(data: MentorAssignment): Observable<unknown> {
-    if (!this.apiEnabled) {
-      return from(this.fb.assignMentor(data.mentorId, data.childId));
-    }
-
-    const token$ = from(
-      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
-    );
-
+    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
     return token$.pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.post(`${this.baseUrl}/assign`, data, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
-      catchError((err) => {
-        console.error('Failed to assign mentor via API, falling back', err);
-        return from(this.fb.assignMentor(data.mentorId, data.childId));
-      })
+      catchError(err => throwError(() => err))
     );
   }
 
   getChildren(mentorId: string): Observable<MentorChildren> {
-    if (!this.apiEnabled) {
-      return from(this.fb.getChildForMentor(mentorId)).pipe(
-        map((children) => ({ children }))
-      );
-    }
-
-    const token$ = from(
-      this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')
-    );
-
+    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
     return token$.pipe(
-      switchMap((token) =>
+      switchMap(token =>
         this.http.get<MentorChildren>(`${this.baseUrl}/${mentorId}/children`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {},
         })
       ),
-      catchError((err) => {
-        if (err.status === 0) {
-          console.error(
-            'Failed to fetch mentor children via API, falling back',
-            err
-          );
-          return from(this.fb.getChildForMentor(mentorId)).pipe(
-            map((children) => ({ children }))
-          );
-        }
-        return throwError(() => err);
-      })
+      catchError(err => throwError(() => err))
     );
   }
 }
