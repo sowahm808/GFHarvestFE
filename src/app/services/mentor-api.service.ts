@@ -10,7 +10,8 @@ import { ChildProfile } from '../models/child-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
-  private readonly baseUrl = `${environment.apiUrl}/api/mentor`;
+  // Backend mentor endpoints reside under the plural 'mentors' route
+  private readonly baseUrl = `${environment.apiUrl}/api/mentors`;
   private readonly childBaseUrl = `${environment.apiUrl}/api/children`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
