@@ -5,7 +5,8 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ParentChildService {
-  private readonly baseUrl = `${environment.apiUrl}/api/parent-child`;
+  // Backend routes no longer include the /api prefix
+  private readonly baseUrl = `${environment.apiUrl}/parent-child`;
 
   constructor(private http: HttpClient) {}
 
