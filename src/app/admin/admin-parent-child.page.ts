@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ParentChildService } from '../services/parent-child.service';
 import { FirebaseService } from '../services/firebase.service';
 import { IonButton, IonContent, IonHeader, IonInput, IonItem, IonLabel, IonList, IonTitle, IonToolbar } from '@ionic/angular/standalone';
@@ -24,7 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     ReactiveFormsModule
    ]
 })
-export class AdminParentChildPage implements OnInit {
+export class AdminParentChildPage {
   parentId = '';
   childId = '';
   linkedChildren: string[] = [];
@@ -34,7 +34,6 @@ export class AdminParentChildPage implements OnInit {
     private fb: FirebaseService
   ) {}
 
-  ngOnInit(): void {}
 
   link() {
     if (!this.parentId || !this.childId) return;
