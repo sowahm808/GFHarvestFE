@@ -67,8 +67,17 @@ export class MentorApiService {
 
   getChildProfiles(): Observable<ChildProfile[]> {
     return this.withToken((token) =>
-      this.http.get<ChildProfile[]>(this.childBaseUrl, {
-        headers: { Authorization: `Bearer ${token}` },
+      this.http.get<ChildProfile[] | { children: ChildProfile[] }>(
+        this.childBaseUrl,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      )
+    ).pipe(
+      map((res) => (Array.isArray(res) ? res : res.children ?? [])),
+      catchError((err) => {
+        console.error('getChildProfiles API error', err);
+        return throwError(() => err);
       })
     );
   }
