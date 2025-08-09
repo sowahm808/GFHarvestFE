@@ -10,75 +10,79 @@ import { ChildProfile } from '../models/child-profile';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
-  // Backend mentor endpoints reside under the plural 'mentors' route.
-  // Ensure the environment.apiUrl includes the `/api` prefix used by the backend.
-  private readonly baseUrl = `${environment.apiUrl}/mentors`;
-  private readonly childBaseUrl = `${environment.apiUrl}/children`;
+  // Normalize base URL so both '.../api' and '...' work.
+  private readonly root = environment.apiUrl.replace(/\/+$/, '');
+  private readonly apiBase = `${this.root}${this.root.endsWith('/api') ? '' : '/api'}`;
 
-  constructor(private http: HttpClient, private fb: FirebaseService) {}
+  private readonly baseUrl = `${this.apiBase}/mentors`;
+  private readonly childBaseUrl = `${this.apiBase}/children`;
+
+  constructor(private http: HttpClient, private fb: FirebaseService) {
+    // One-time debug to verify actual URL used at runtime
+    // Remove after verifying
+    // eslint-disable-next-line no-console
+    console.log('[MentorApiService] baseUrl =', this.baseUrl);
+  }
+
+  private withToken<T>(work: (token: string) => Observable<T>): Observable<T> {
+    return from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')).pipe(
+      switchMap((token) => {
+        if (!token) {
+          return throwError(() => new Error('Missing auth token — are you logged in as an admin?'));
+        }
+        return work(token);
+      })
+    );
+  }
 
   createMentor(data: MentorProfile): Observable<MentorProfile> {
-    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
-    return token$.pipe(
-      switchMap(token =>
-        this.http.post<MentorProfile>(this.baseUrl, data, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-      ),
-      catchError(err => {
+    return this.withToken((token) =>
+      this.http.post<MentorProfile>(this.baseUrl, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
+    ).pipe(
+      catchError((err) => {
         console.error('createMentor API error', err);
-        // optional fallback:
-        // return from(this.fb.createMentor(data.name, data.email, data.phone));
         return throwError(() => err);
       })
     );
   }
 
   getMentors(): Observable<MentorProfile[]> {
-    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
-    return token$.pipe(
-      switchMap(token =>
-        this.http.get<MentorProfile[]>(this.baseUrl, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-      ),
-      catchError(err => throwError(() => err))
+    return this.withToken((token) =>
+      this.http.get<MentorProfile[]>(this.baseUrl, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
     );
   }
 
   getChildProfiles(): Observable<ChildProfile[]> {
-    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
-    return token$.pipe(
-      switchMap(token =>
-        this.http.get<ChildProfile[]>(this.childBaseUrl, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-      ),
-      catchError(err => throwError(() => err))
+    return this.withToken((token) =>
+      this.http.get<ChildProfile[]>(this.childBaseUrl, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
     );
   }
 
   assignMentor(data: MentorAssignment): Observable<unknown> {
-    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
-    return token$.pipe(
-      switchMap(token =>
-        this.http.post(`${this.baseUrl}/assign`, data, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-      ),
-      catchError(err => throwError(() => err))
+    return this.withToken((token) =>
+      this.http.post(`${this.baseUrl}/assign`, data, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
+      })
     );
   }
 
   getChildren(mentorId: string): Observable<MentorChildren> {
-    const token$ = from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve(''));
-    return token$.pipe(
-      switchMap(token =>
-        this.http.get<MentorChildren>(`${this.baseUrl}/${mentorId}/children`, {
-          headers: token ? { Authorization: `Bearer ${token}` } : {},
-        })
-      ),
-      catchError(err => throwError(() => err))
+    return this.withToken((token) =>
+      this.http.get<MentorChildren>(`${this.baseUrl}/${mentorId}/children`, {
+        headers: { Authorization: `Bearer ${token}` },
+      })
     );
   }
 }
