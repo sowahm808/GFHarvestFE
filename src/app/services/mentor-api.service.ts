@@ -53,8 +53,14 @@ export class MentorApiService {
 
   getMentors(): Observable<MentorProfile[]> {
     return this.withToken((token) =>
-      this.http.get<MentorProfile[]>(this.baseUrl, {
+      this.http.get<MentorProfile[] | { mentors: MentorProfile[] }>(this.baseUrl, {
         headers: { Authorization: `Bearer ${token}` },
+      })
+    ).pipe(
+      map((res) => (Array.isArray(res) ? res : res.mentors ?? [])),
+      catchError((err) => {
+        console.error('getMentors API error', err);
+        return from(this.fb.getMentors());
       })
     );
   }
