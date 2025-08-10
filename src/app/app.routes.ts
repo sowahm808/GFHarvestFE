@@ -61,6 +61,14 @@ export const routes: Routes = [
         data: { title: 'Assign Mentor' },
       },
       {
+        path: 'admin-users',
+        loadComponent: () =>
+          import('./admin/admin-user-management.page').then(
+            (m) => m.AdminUserManagementPage
+          ),
+        data: { title: 'User Management' },
+      },
+      {
         path: 'academic-progress',
         loadComponent: () =>
           import('./academic-progress/academic-progress.page').then(
