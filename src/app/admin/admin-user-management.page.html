@@ -8,16 +8,21 @@
   <ion-list>
     <ion-item *ngFor="let user of users">
       <ion-label>{{ user.displayName || user.email }}</ion-label>
-    <ion-select placeholder="Select Role" interface="popover" class="centered-select">
-  <ion-select-option     
-  class="wrap-option"
-
+    <ion-select
+  placeholder="Select Role"
+  interface="popover"
+  class="centered-select"
+  [interfaceOptions]="{ cssClass: 'role-popover' }"
+>
+  <ion-select-option
     *ngFor="let r of roles"
     [value]="r"
+    class="wrap-option"
   >
     {{ r }}
   </ion-select-option>
 </ion-select>
+
 
 
       <ion-button (click)="updateRole(user)">Update</ion-button>

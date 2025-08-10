@@ -1,12 +1,16 @@
-/* Center the text inside the select dropdown */
-ion-popover ion-list ion-item,
-.alert-radio-label,
-ion-select-option {
-  text-align: center !important;
-  justify-content: center !important;
+/* Center the text inside the popover options */
+:host ::ng-deep .role-popover .select-interface-option {
+  justify-content: center;  /* center the ion-item contents */
+  text-align: center;
 }
 
-/* Ensures the label spans full width so centering applies */
-.alert-radio-label {
+:host ::ng-deep .role-popover .select-interface-option ion-label {
   width: 100%;
+  text-align: center;
+}
+
+/* (Optional) center the selected value when the select is closed */
+.centered-select {
+  text-align: center;
+  justify-content: center;
 }
