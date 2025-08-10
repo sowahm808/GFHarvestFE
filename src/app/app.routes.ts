@@ -61,12 +61,20 @@ export const routes: Routes = [
         data: { title: 'Assign Mentor' },
       },
       {
-        path: 'admin-users',
+        path: 'admin-user-management',
         loadComponent: () =>
           import('./admin/admin-user-management.page').then(
             (m) => m.AdminUserManagementPage
           ),
         data: { title: 'User Management' },
+      },
+      {
+        path: 'admin-parent-child',
+        loadComponent: () =>
+          import('./admin/admin-parent-child.page').then(
+            (m) => m.AdminParentChildPage
+          ),
+        data: { title: 'Parent Child' },
       },
       {
         path: 'academic-progress',
