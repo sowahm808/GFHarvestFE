@@ -78,21 +78,30 @@ ion-select.centered-select::part(text) {
   text-align: center;
 }
 
-/* Center each option inside the POPOVER overlay safely */
-ion-popover.role-popover .select-interface-option ion-label {
-  display: block;        /* ensure label can take width */
-  width: 100%;
-  text-align: center;
-  white-space: normal;   /* allow wrap, no ellipsis */
-  overflow: visible;
-  text-overflow: clip;
-  padding: 0 16px;       /* keep normal left/right space so no clipping */
-}
-
-/* Optional: keep default item paddings (prevents first-letter cut) */
+/* ========== POPUP LIST (popover interface) ========== */
+/* Keep default paddings so the first character isn't clipped */
 ion-popover.role-popover .select-interface-option {
   --inner-padding-start: 16px;
   --inner-padding-end: 16px;
+  --padding-start: 16px;
+  --padding-end: 16px;
+}
+
+/* Center just the label text (safe across Ionic 6/7, iOS/MD) */
+ion-popover.role-popover .select-interface-option ion-label,
+ion-popover.role-popover .select-interface-option ion-label .label-text {
+  display: block;
+  width: 100%;
+  text-align: center;
+  white-space: normal;   /* no truncation/ellipsis */
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* (Optional) Make divider lines span fully without pushing text */
+ion-popover.role-popover .select-interface-option::part(native) {
+  display: flex;
+  align-items: center;
 }
 
 /* Center option text in the alert-style select menu */
