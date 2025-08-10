@@ -71,52 +71,52 @@ ion-checkbox {
 }
 
 
-/* Center the selected value when the select is closed */
-ion-select.centered-select::part(text) {
-  display: block;
-  width: 100%;
-  text-align: center;
-}
+// /* Center the selected value when the select is closed */
+// ion-select.centered-select::part(text) {
+//   display: block;
+//   width: 100%;
+//   text-align: center;
+// }
 
-/* ========== POPUP LIST (popover interface) ========== */
-/* Keep default paddings so the first character isn't clipped */
-ion-popover.role-popover .select-interface-option {
-  --inner-padding-start: 16px;
-  --inner-padding-end: 16px;
-  --padding-start: 16px;
-  --padding-end: 16px;
-}
+// /* ========== POPUP LIST (popover interface) ========== */
+// /* Keep default paddings so the first character isn't clipped */
+// ion-popover.role-popover .select-interface-option {
+//   --inner-padding-start: 16px;
+//   --inner-padding-end: 16px;
+//   --padding-start: 16px;
+//   --padding-end: 16px;
+// }
 
-/* Center just the label text (safe across Ionic 6/7, iOS/MD) */
-ion-popover.role-popover .select-interface-option ion-label,
-ion-popover.role-popover .select-interface-option ion-label .label-text {
-  display: block;
-  width: 100%;
-  text-align: center;
-  white-space: normal;   /* no truncation/ellipsis */
-  overflow: visible;
-  text-overflow: clip;
-}
+// /* Center just the label text (safe across Ionic 6/7, iOS/MD) */
+// ion-popover.role-popover .select-interface-option ion-label,
+// ion-popover.role-popover .select-interface-option ion-label .label-text {
+//   display: block;
+//   width: 100%;
+//   text-align: center;
+//   white-space: normal;   /* no truncation/ellipsis */
+//   overflow: visible;
+//   text-overflow: clip;
+// }
 
-/* (Optional) Make divider lines span fully without pushing text */
-ion-popover.role-popover .select-interface-option::part(native) {
-  display: flex;
-  align-items: center;
-}
+// /* (Optional) Make divider lines span fully without pushing text */
+// ion-popover.role-popover .select-interface-option::part(native) {
+//   display: flex;
+//   align-items: center;
+// }
 
-/* Center option text in the alert-style select menu */
-.alert-radio-label {
-  width: 100%;
-  text-align: center;
-  white-space: normal;
-  overflow: visible;
-  text-overflow: clip;
-}
+// /* Center option text in the alert-style select menu */
+// .alert-radio-label {
+//   width: 100%;
+//   text-align: center;
+//   white-space: normal;
+//   overflow: visible;
+//   text-overflow: clip;
+// }
 
-/* Center the logo and limit size */
-ion-content.login .logo {
-  display: block;
-  margin: 24px auto 8px;
-  max-width: 160px;
-  height: auto;
-}
+// /* Center the logo and limit size */
+// ion-content.login .logo {
+//   display: block;
+//   margin: 24px auto 8px;
+//   max-width: 160px;
+//   height: auto;
+// }
