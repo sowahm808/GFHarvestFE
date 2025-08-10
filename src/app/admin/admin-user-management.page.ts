@@ -48,11 +48,12 @@ export class AdminUserManagementPage implements OnInit {
 
   loadUsers() {
     this.userApi.getUsers().subscribe({
-      next: (users) => (this.users = users),
+      next: (users) => {
+        this.users = users;
+        console.log('Users', this.users);
+      },
       error: (err) => console.error('Failed to load users', err),
     });
-          console.log("Users",this.users)
-
   }
 
     trackByUid = (_: number, u: User) => u.uid;
