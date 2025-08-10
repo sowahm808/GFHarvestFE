@@ -71,37 +71,26 @@ ion-checkbox {
 }
 
 
-/* 1) Center the selected value (when the select is closed) */
+/* Center the selected value when the select is closed */
 ion-select.centered-select::part(text) {
   display: block;
   width: 100%;
   text-align: center;
 }
 
-/* 2) Center each option INSIDE the POPOVER overlay */
-ion-popover.role-popover .select-interface-option {
-  /* restore normal paddings so text isn’t clipped */
-  --inner-padding-start: 16px;
-  --inner-padding-end: 16px;
-}
-
-/* Keep native row flex so label can take the width */
-ion-popover.role-popover .select-interface-option::part(native) {
-  display: flex;
-  align-items: center;
-}
-
-/* Center the actual text without removing padding */
+/* Center each option inside the POPOVER overlay safely */
 ion-popover.role-popover .select-interface-option ion-label {
-  flex: 1 1 auto;       /* let label fill the row */
-  text-align: center;   /* center text */
-  white-space: normal;  /* no truncation */
+  display: block;        /* ensure label can take width */
+  width: 100%;
+  text-align: center;
+  white-space: normal;   /* allow wrap, no ellipsis */
   overflow: visible;
   text-overflow: clip;
+  padding: 0 16px;       /* keep normal left/right space so no clipping */
 }
 
-/* (Extra safe) Some Ionic builds wrap text in .label-text */
-ion-popover.role-popover .select-interface-option ion-label .label-text {
-  display: block;
-  text-align: center;
+/* Optional: keep default item paddings (prevents first-letter cut) */
+ion-popover.role-popover .select-interface-option {
+  --inner-padding-start: 16px;
+  --inner-padding-end: 16px;
 }
