@@ -8,7 +8,7 @@
   <ion-list>
     <ion-item *ngFor="let user of users; trackBy: trackByUid">
       <ion-label>{{ user.displayName || user.email }}</ion-label>
-      <ion-select placeholder="Select Role" interface="popover" [interfaceOptions]="{ cssClass: 'role-popover' }"
+      <ion-select placeholder="Select Role" interface="alert" [interfaceOptions]="{ cssClass: 'role-popover' }"
         >
         <!-- <ion-select-option *ngFor="let r of roles" [value]="r">
           {{ r }}
