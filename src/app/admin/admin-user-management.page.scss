@@ -1,16 +1,31 @@
-/* Center the text inside the popover options */
-:host ::ng-deep .role-popover .select-interface-option {
-  justify-content: center;  /* center the ion-item contents */
-  text-align: center;
-}
-
-:host ::ng-deep .role-popover .select-interface-option ion-label {
+/* Center the selected value when the select is closed */
+.centered-select::part(text) {
+  display: block;        /* ensures text-align applies */
   width: 100%;
   text-align: center;
 }
 
-/* (Optional) center the selected value when the select is closed */
-.centered-select {
+/* Center each option in the POPOVER overlay */
+:host ::ng-deep .role-popover ion-item.select-interface-option {
+  /* ion-item is a shadow host; use both part + fallback rules */
   text-align: center;
-  justify-content: center;
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+:host ::ng-deep .role-popover ion-item.select-interface-option::part(native) {
+  display: flex;
+  justify-content: center;   /* centers the row content */
+}
+
+/* Center the label text inside each option */
+:host ::ng-deep .role-popover ion-item.select-interface-option ion-label {
+  width: 100%;
+  text-align: center;
+}
+
+/* (Optional) for older Ionic builds where alert interface might be used somewhere */
+:host ::ng-deep .alert-radio-label {
+  width: 100%;
+  text-align: center;
 }

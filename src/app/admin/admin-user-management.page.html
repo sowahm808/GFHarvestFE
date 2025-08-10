@@ -14,14 +14,11 @@
   class="centered-select"
   [interfaceOptions]="{ cssClass: 'role-popover' }"
 >
-  <ion-select-option
-    *ngFor="let r of roles"
-    [value]="r"
-    class="wrap-option"
-  >
+  <ion-select-option *ngFor="let r of roles" [value]="r">
     {{ r }}
   </ion-select-option>
 </ion-select>
+
 
 
 
