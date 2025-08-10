@@ -10,9 +10,14 @@
       <ion-label>{{ user.displayName || user.email }}</ion-label>
       <ion-select placeholder="Select Role" interface="popover" [interfaceOptions]="{ cssClass: 'role-popover' }"
         class="centered-select">
-        <ion-select-option *ngFor="let r of roles" [value]="r">
+        <!-- <ion-select-option *ngFor="let r of roles" [value]="r">
           {{ r }}
-        </ion-select-option>
+        </ion-select-option> -->
+        <ion-select-option value="apple">Parent</ion-select-option>
+      <ion-select-option value="banana">Child</ion-select-option>
+      <ion-select-option value="orange">Mentor</ion-select-option>
+      <ion-select-option value="orange">Admin</ion-select-option>
+
       </ion-select>
 
       <ion-button (click)="updateRole(user)">Update</ion-button>
