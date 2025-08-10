@@ -13,5 +13,8 @@
       </ion-select>
       <ion-button (click)="updateRole(user)">Update</ion-button>
     </ion-item>
+    <ion-item *ngIf="users.length === 0">
+      <ion-label>No users found.</ion-label>
+    </ion-item>
   </ion-list>
 </ion-content>

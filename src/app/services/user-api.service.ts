@@ -28,10 +28,21 @@ export class UserApiService {
 
   getUsers(): Observable<User[]> {
     return this.withToken((token) =>
-      this.http.get<User[] | { users: User[] }>(this.baseUrl, {
+      this.http.get<User[] | { users: unknown }>(this.baseUrl, {
         headers: { Authorization: `Bearer ${token}` },
       })
-    ).pipe(map((res) => (Array.isArray(res) ? res : res.users ?? [])));
+    ).pipe(
+      map((res) => {
+        if (Array.isArray(res)) {
+          return res;
+        }
+        // Some backends return an object keyed by user id. Normalize it to an array
+        const users = (res as { users?: unknown }).users;
+        return Array.isArray(users)
+          ? users
+          : Object.values((users as Record<string, User>) ?? {});
+      })
+    );
   }
 
   assignRole(uid: string, role: string): Observable<unknown> {
