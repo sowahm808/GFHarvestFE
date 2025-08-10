@@ -55,6 +55,9 @@ export class AdminUserManagementPage implements OnInit {
 
   }
 
+    trackByUid = (_: number, u: User) => u.uid;
+
+
   updateRole(user: User) {
     if (!user.uid || !user.role) return;
     this.userApi.assignRole(user.uid, user.role).subscribe({

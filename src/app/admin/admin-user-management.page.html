@@ -6,7 +6,7 @@
 
 <ion-content class="ion-padding">
   <ion-list>
-    <ion-item *ngFor="let user of users">
+    <ion-item *ngFor="let user of users; trackBy: trackByUid">
       <ion-label>{{ user.displayName || user.email }}</ion-label>
       <ion-select placeholder="Select Role" interface="popover" [interfaceOptions]="{ cssClass: 'role-popover' }"
         class="centered-select">
