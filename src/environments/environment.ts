@@ -14,10 +14,10 @@ export const environment = {
     appId: "1:54742577057:web:cfca5e902ab173a77025e0",
     measurementId: "G-91V8B05X5E"
   },
-  // Base URL for the backend API. Use the local server during development.
-  // Set to an empty string ('') to fall back to Firebase when the backend is
-  // not running.
-  apiUrl: 'http://localhost:3000/api'
+  // Base URL for the backend API. Default to an empty string so the app falls
+  // back to Firebase when a local backend isn't running. Change this to your
+  // development server's URL (e.g. 'http://localhost:3000/api') when needed.
+  apiUrl: ''
 };
 
 
