@@ -51,6 +51,8 @@ export class AdminUserManagementPage implements OnInit {
       next: (users) => (this.users = users),
       error: (err) => console.error('Failed to load users', err),
     });
+          console.log("Users",this.users)
+
   }
 
   updateRole(user: User) {
