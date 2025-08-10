@@ -1,12 +1,20 @@
-/* Empty */
-ion-select {
-  width: 100%;             /* allow the select itself to use available width */
+.centered-select {
+  text-align: center;
+  justify-content: center;
 }
 
 .wrap-option {
-  white-space: normal;     /* allow long text to wrap instead of being truncated */
+  text-align: center;
 }
 
-.select-popover {          /* optional: widen the popover if needed */
-  --width: 250px;          /* adjust to fit the longest option */
+/* For popover interface */
+ion-popover ion-list ion-item {
+  justify-content: center;
+  text-align: center;
+}
+
+/* For alert interface */
+.alert-radio-label {
+  text-align: center;
+  width: 100%;
 }
