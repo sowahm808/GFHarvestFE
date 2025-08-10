@@ -9,10 +9,11 @@
     <ion-item *ngFor="let user of users">
       <ion-label>{{ user.displayName || user.email }}</ion-label>
     <ion-select placeholder="Select Role" interface="popover" class="centered-select">
-  <ion-select-option
+  <ion-select-option     
+  class="wrap-option"
+
     *ngFor="let r of roles"
     [value]="r"
-    class="wrap-option"
   >
     {{ r }}
   </ion-select-option>
