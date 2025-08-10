@@ -82,6 +82,14 @@
             <ion-icon slot="start" name="shield-outline"></ion-icon>
             <ion-label>Assign Mentor</ion-label>
           </ion-item>
+          <ion-item routerLink="/tabs/admin-parent-child" *ngIf="role === 'admin'">
+            <ion-icon slot="start" name="people-outline"></ion-icon>
+            <ion-label>Parent Child</ion-label>
+          </ion-item>
+          <ion-item routerLink="/tabs/admin-user-management" *ngIf="role === 'admin'">
+            <ion-icon slot="start" name="person-outline"></ion-icon>
+            <ion-label>User Management</ion-label>
+          </ion-item>
         </ion-menu-toggle>
       </ion-list>
     </ion-content>
