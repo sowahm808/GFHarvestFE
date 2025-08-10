@@ -94,3 +94,20 @@ ion-popover.role-popover .select-interface-option {
   --inner-padding-start: 16px;
   --inner-padding-end: 16px;
 }
+
+/* Center option text in the alert-style select menu */
+.alert-radio-label {
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
+
+/* Center the logo and limit size */
+ion-content.login .logo {
+  display: block;
+  margin: 24px auto 8px;
+  max-width: 160px;
+  height: auto;
+}
