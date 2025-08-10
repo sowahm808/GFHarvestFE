@@ -69,3 +69,31 @@ ion-radio,
 ion-checkbox {
   transform: scale(1.2); // optional for better visibility
 }
+/* Center the selected value (when select is closed) */
+ion-select.centered-select::part(text) {
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+
+/* Center each option INSIDE the POPOVER overlay */
+ion-popover.role-popover ion-item.select-interface-option {
+  --inner-padding-start: 0;
+  --inner-padding-end: 0;
+  text-align: center;
+}
+
+/* Ensure the row itself centers its contents */
+ion-popover.role-popover ion-item.select-interface-option::part(native) {
+  display: flex;
+  justify-content: center;
+}
+
+/* Center the text and prevent truncation */
+ion-popover.role-popover ion-item.select-interface-option ion-label {
+  width: 100%;
+  text-align: center;
+  white-space: normal;    /* allow wrapping */
+  overflow: visible;      /* don't clip */
+  text-overflow: clip;    /* remove ellipsis */
+}
