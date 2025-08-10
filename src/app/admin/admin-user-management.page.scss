@@ -1,1 +1,12 @@
 /* Empty */
+ion-select {
+  width: 100%;             /* allow the select itself to use available width */
+}
+
+.wrap-option {
+  white-space: normal;     /* allow long text to wrap instead of being truncated */
+}
+
+.select-popover {          /* optional: widen the popover if needed */
+  --width: 250px;          /* adjust to fit the longest option */
+}
