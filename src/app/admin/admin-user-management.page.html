@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>User Management</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item *ngFor="let user of users">
+      <ion-label>{{ user.displayName || user.email }}</ion-label>
+      <ion-select [(ngModel)]="user.role" interface="popover">
+        <ion-select-option *ngFor="let r of roles" [value]="r">{{ r }}</ion-select-option>
+      </ion-select>
+      <ion-button (click)="updateRole(user)">Update</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>
