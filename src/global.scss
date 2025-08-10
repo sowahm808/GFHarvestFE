@@ -97,3 +97,10 @@ ion-popover.role-popover ion-item.select-interface-option ion-label {
   overflow: visible;      /* don't clip */
   text-overflow: clip;    /* remove ellipsis */
 }
+.alert-radio-label {
+  width: 100%;
+  text-align: center;
+  white-space: normal;
+  overflow: visible;
+  text-overflow: clip;
+}
