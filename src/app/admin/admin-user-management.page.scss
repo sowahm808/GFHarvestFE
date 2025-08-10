@@ -1,20 +1,12 @@
-.centered-select {
-  text-align: center;
-  justify-content: center;
+/* Center the text inside the select dropdown */
+ion-popover ion-list ion-item,
+.alert-radio-label,
+ion-select-option {
+  text-align: center !important;
+  justify-content: center !important;
 }
 
-.wrap-option {
-  text-align: center;
-}
-
-/* For popover interface */
-ion-popover ion-list ion-item {
-  justify-content: center;
-  text-align: center;
-}
-
-/* For alert interface */
+/* Ensures the label spans full width so centering applies */
 .alert-radio-label {
-  text-align: center;
   width: 100%;
 }
