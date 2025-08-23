@@ -54,4 +54,16 @@ export class ChurchesPage {
       this.logoUrl = '';
     });
   }
+
+  onLogoFileChange(event: Event): void {
+    const file = (event.target as HTMLInputElement).files?.[0];
+    if (!file) {
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.logoUrl = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  }
 }
