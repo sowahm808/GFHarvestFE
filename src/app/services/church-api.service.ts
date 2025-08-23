@@ -19,7 +19,7 @@ export class ChurchApiService {
     return this.http.get<Church[]>(this.baseUrl);
   }
 
-  create(church: { name: string; logoUrl: string }): Observable<Church> {
+  create(church: { name: string; logoUrl?: string }): Observable<Church> {
     if (!this.apiEnabled) {
       const newChurch: Church = { id: `${Date.now()}`, ...church };
       this.fallback.push(newChurch);
