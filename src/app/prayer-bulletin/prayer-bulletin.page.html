@@ -6,26 +6,71 @@
 
 <ion-content>
   <ion-list>
-    <ng-container *ngFor="let group of groups">
-      <ion-item lines="full">
-        <ion-label><strong>ID: {{ group.userId }}</strong></ion-label>
-        <ion-button
-          slot="end"
-          size="small"
-          (click)="markAllForUser(group.userId)"
-          >Mark All Prayed</ion-button
+    <ng-container *ngIf="role !== 'church'; else churchList">
+      <ng-container *ngFor="let group of groups">
+        <ion-item lines="full">
+          <ion-label><strong>ID: {{ group.userId }}</strong></ion-label>
+          <ion-button
+            slot="end"
+            size="small"
+            (click)="markAllForUser(group.userId)"
+            >Mark All Prayed</ion-button
+          >
+        </ion-item>
+        <ion-item
+          *ngFor="let req of group.requests"
+          [style.border-left]="'4px solid ' + req.color"
         >
-      </ion-item>
+          <ion-label>
+            <div *ngIf="!editing[req.id!]">
+              <h3>{{ req.text }}</h3>
+            </div>
+            <ion-input *ngIf="editing[req.id!]" [(ngModel)]="editText[req.id!]"></ion-input>
+            <p *ngIf="req.age !== undefined">
+              Age: {{ req.age }} ({{ req.ageGroup }})
+            </p>
+            <p *ngIf="req.prayedAt">Prayed at: {{ req.prayedAt | date: 'short' }}</p>
+          </ion-label>
+          <ion-button
+            slot="end"
+            *ngIf="!req.prayedAt && !editing[req.id!]"
+            (click)="markPrayed(req)"
+            >Mark Prayed</ion-button
+          >
+          <ion-button
+            slot="end"
+            color="medium"
+            *ngIf="!editing[req.id!]"
+            (click)="startEdit(req)"
+            >Edit</ion-button
+          >
+          <ion-button
+            slot="end"
+            color="success"
+            *ngIf="editing[req.id!]"
+            (click)="save(req)"
+            >Save</ion-button
+          >
+          <ion-button
+            slot="end"
+            color="light"
+            *ngIf="editing[req.id!]"
+            (click)="cancelEdit(req)"
+            >Cancel</ion-button
+          >
+        </ion-item>
+      </ng-container>
+    </ng-container>
+    <ng-template #churchList>
       <ion-item
-        *ngFor="let req of group.requests"
+        *ngFor="let req of requests"
         [style.border-left]="'4px solid ' + req.color"
       >
         <ion-label>
           <div *ngIf="!editing[req.id!]">
             <h3>{{ req.text }}</h3>
           </div>
-          <ion-input *ngIf="editing[req.id!]" [(ngModel)]="editText[req.id!]"
-          ></ion-input>
+          <ion-input *ngIf="editing[req.id!]" [(ngModel)]="editText[req.id!]"></ion-input>
           <p *ngIf="req.age !== undefined">
             Age: {{ req.age }} ({{ req.ageGroup }})
           </p>
@@ -59,10 +104,10 @@
           >Cancel</ion-button
         >
       </ion-item>
-    </ng-container>
+    </ng-template>
   </ion-list>
 
-  <ion-item>
+  <ion-item *ngIf="role !== 'church'">
     <ion-input placeholder="Your ID" [(ngModel)]="userId"></ion-input>
   </ion-item>
   <ion-item>

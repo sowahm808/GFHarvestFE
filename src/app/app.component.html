@@ -62,11 +62,11 @@
             <ion-icon slot="start" name="trophy-outline"></ion-icon>
             <ion-label>Leaderboard</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/churches">
+          <ion-item routerLink="/tabs/churches" *ngIf="role === 'admin' || role === 'church'">
             <ion-icon slot="start" name="business-outline"></ion-icon>
             <ion-label>Churches</ion-label>
           </ion-item>
-          <ion-item routerLink="/tabs/prayer-bulletin">
+          <ion-item routerLink="/tabs/prayer-bulletin" *ngIf="role === 'admin' || role === 'church'">
             <ion-icon slot="start" name="newspaper-outline"></ion-icon>
             <ion-label>Prayer Bulletin</ion-label>
           </ion-item>
