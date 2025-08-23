@@ -46,4 +46,12 @@ export class ChurchApiService {
     }
     return this.http.patch<Church>(`${this.baseUrl}/${id}`, updates);
   }
+
+  delete(id: string): Observable<void> {
+    if (!this.apiEnabled) {
+      this.fallback = this.fallback.filter((c) => c.id !== id);
+      return of(void 0);
+    }
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
+  }
 }

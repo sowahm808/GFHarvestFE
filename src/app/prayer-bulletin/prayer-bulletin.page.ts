@@ -14,6 +14,8 @@ import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
 import { PrayerRequestApiService } from '../services/prayer-request-api.service';
 import { PrayerRequest } from '../models/prayer-request';
+import { RoleService } from '../services/role.service';
+import { FirebaseService } from '../services/firebase.service';
 
 @Component({
   selector: 'app-prayer-bulletin',
@@ -43,11 +45,18 @@ export class PrayerBulletinPage {
   birthday = '';
   timeZone = '';
   gender = '';
+  role: string | null = null;
 
   editing: Record<string, boolean> = {};
   editText: Record<string, string> = {};
 
-  constructor(private api: PrayerRequestApiService) {}
+  constructor(
+    private api: PrayerRequestApiService,
+    private roleSvc: RoleService,
+    private fb: FirebaseService
+  ) {
+    this.roleSvc.role$.subscribe((r) => (this.role = r));
+  }
 
   ionViewWillEnter(): void {
     this.load();
@@ -55,19 +64,25 @@ export class PrayerBulletinPage {
 
   load(): void {
     this.api.list().subscribe((rs) => {
-      this.requests = rs
+      let reqs = rs
         .map((r) => this.enrichRequest(r))
         .filter((r) => !this.isExpired(r));
+      if (this.role === 'church') {
+        const uid = this.fb.auth.currentUser?.uid;
+        reqs = reqs.filter((r) => r.userId === uid);
+      }
+      this.requests = reqs;
     });
   }
 
   add(): void {
-    if (!this.userId || !this.text) {
+    const id = this.role === 'church' ? this.fb.auth.currentUser?.uid : this.userId;
+    if (!id || !this.text) {
       return;
     }
     this.api
       .create({
-        userId: this.userId,
+        userId: id,
         text: this.text,
         birthday: this.birthday || null,
         timeZone: this.timeZone || null,
@@ -76,7 +91,9 @@ export class PrayerBulletinPage {
       .subscribe((r) => {
         this.enrichRequest(r);
         this.requests.push(r);
-        this.userId = '';
+        if (this.role !== 'church') {
+          this.userId = '';
+        }
         this.text = '';
         this.birthday = '';
         this.timeZone = '';

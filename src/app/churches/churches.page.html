@@ -9,19 +9,39 @@
     <ion-item *ngFor="let church of churches">
       <ion-avatar slot="start">
         <img
-          [src]="church.logoUrl || 'assets/icon/favicon.png'"
+          [src]="
+            editing[church.id!]
+              ? editLogoUrl[church.id!] || church.logoUrl || 'assets/icon/favicon.png'
+              : church.logoUrl || 'assets/icon/favicon.png'
+          "
           alt="{{ church.name }} logo"
         />
       </ion-avatar>
-      <ion-label>{{ church.name }}</ion-label>
+
+      <ng-container *ngIf="!editing[church.id!]; else editBlock">
+        <ion-label>{{ church.name }}</ion-label>
+      </ng-container>
+      <ng-template #editBlock>
+        <ion-input [(ngModel)]="editName[church.id!]"></ion-input>
+        <input type="file" (change)="onEditLogoFileChange($event, church)" />
+      </ng-template>
+
+      <ng-container *ngIf="role === 'admin'">
+        <ion-button *ngIf="!editing[church.id!]" slot="end" (click)="startEdit(church)">Edit</ion-button>
+        <ion-button *ngIf="!editing[church.id!]" color="danger" slot="end" (click)="remove(church)">Delete</ion-button>
+        <ion-button *ngIf="editing[church.id!]" color="success" slot="end" (click)="save(church)">Save</ion-button>
+        <ion-button *ngIf="editing[church.id!]" color="medium" slot="end" (click)="cancelEdit(church)">Cancel</ion-button>
+      </ng-container>
     </ion-item>
   </ion-list>
 
-  <ion-item>
-    <ion-input placeholder="Church Name" [(ngModel)]="name"></ion-input>
-  </ion-item>
-  <ion-item>
-    <input type="file" (change)="onLogoFileChange($event)" />
-  </ion-item>
-  <ion-button expand="block" (click)="add()">Add Church</ion-button>
+  <ng-container *ngIf="role === 'admin'">
+    <ion-item>
+      <ion-input placeholder="Church Name" [(ngModel)]="name"></ion-input>
+    </ion-item>
+    <ion-item>
+      <input type="file" (change)="onLogoFileChange($event)" />
+    </ion-item>
+    <ion-button expand="block" (click)="add()">Add Church</ion-button>
+  </ng-container>
 </ion-content>
