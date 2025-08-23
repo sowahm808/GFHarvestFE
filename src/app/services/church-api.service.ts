@@ -27,4 +27,23 @@ export class ChurchApiService {
     }
     return this.http.post<Church>(this.baseUrl, church);
   }
+
+  get(id: string): Observable<Church> {
+    if (!this.apiEnabled) {
+      const church = this.fallback.find((c) => c.id === id);
+      return of(church as Church);
+    }
+    return this.http.get<Church>(`${this.baseUrl}/${id}`);
+  }
+
+  update(id: string, updates: { name?: string; logoUrl?: string }): Observable<Church> {
+    if (!this.apiEnabled) {
+      const church = this.fallback.find((c) => c.id === id);
+      if (church) {
+        Object.assign(church, updates);
+      }
+      return of({ id, ...(church as Church) });
+    }
+    return this.http.patch<Church>(`${this.baseUrl}/${id}`, updates);
+  }
 }

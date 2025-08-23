@@ -6,10 +6,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let req of requests">
+    <ion-item *ngFor="let req of requests" [style.border-left]="'4px solid ' + req.color">
       <ion-label>
         <h3>{{ req.text }}</h3>
         <p>ID: {{ req.userId }}</p>
+        <p *ngIf="req.age !== undefined">Age: {{ req.age }} ({{ req.ageGroup }})</p>
         <p *ngIf="req.prayedAt">Prayed at: {{ req.prayedAt | date:'short' }}</p>
       </ion-label>
       <ion-button slot="end" *ngIf="!req.prayedAt" (click)="markPrayed(req)">Mark Prayed</ion-button>
@@ -21,6 +22,15 @@
   </ion-item>
   <ion-item>
     <ion-input placeholder="Prayer request" [(ngModel)]="text"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="date" placeholder="Birthday" [(ngModel)]="birthday"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Time Zone" [(ngModel)]="timeZone"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Gender" [(ngModel)]="gender"></ion-input>
   </ion-item>
   <ion-button expand="block" (click)="add()">Add Request</ion-button>
 </ion-content>

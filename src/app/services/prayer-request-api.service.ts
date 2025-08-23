@@ -19,7 +19,13 @@ export class PrayerRequestApiService {
     return this.http.get<PrayerRequest[]>(this.baseUrl);
   }
 
-  create(req: { userId: string; text: string }): Observable<PrayerRequest> {
+  create(req: {
+    userId: string;
+    text: string;
+    birthday?: string | null;
+    timeZone?: string | null;
+    gender?: string | null;
+  }): Observable<PrayerRequest> {
     if (!this.apiEnabled) {
       const newReq: PrayerRequest = {
         id: `${Date.now()}`,
@@ -31,6 +37,25 @@ export class PrayerRequestApiService {
       return of(newReq);
     }
     return this.http.post<PrayerRequest>(this.baseUrl, req);
+  }
+
+  update(
+    id: string,
+    updates: {
+      text?: string;
+      birthday?: string | null;
+      timeZone?: string | null;
+      gender?: string | null;
+    }
+  ): Observable<PrayerRequest> {
+    if (!this.apiEnabled) {
+      const req = this.fallback.find((r) => r.id === id);
+      if (req) {
+        Object.assign(req, updates);
+      }
+      return of({ id, ...(req as PrayerRequest) });
+    }
+    return this.http.patch<PrayerRequest>(`${this.baseUrl}/${id}`, updates);
   }
 
   markPrayed(id: string): Observable<{ id: string; prayedAt: string }> {
