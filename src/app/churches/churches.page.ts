@@ -41,10 +41,14 @@ export class ChurchesPage {
   }
 
   add(): void {
-    if (!this.name || !this.logoUrl) {
+    if (!this.name) {
       return;
     }
-    this.api.create({ name: this.name, logoUrl: this.logoUrl }).subscribe((c) => {
+    const payload: { name: string; logoUrl?: string } = { name: this.name };
+    if (this.logoUrl) {
+      payload.logoUrl = this.logoUrl;
+    }
+    this.api.create(payload).subscribe((c) => {
       this.churches.push(c);
       this.name = '';
       this.logoUrl = '';
