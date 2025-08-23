@@ -21,7 +21,7 @@
     <ion-input placeholder="Church Name" [(ngModel)]="name"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Logo URL" [(ngModel)]="logoUrl"></ion-input>
+    <input type="file" (change)="onLogoFileChange($event)" />
   </ion-item>
   <ion-button expand="block" (click)="add()">Add Church</ion-button>
 </ion-content>
