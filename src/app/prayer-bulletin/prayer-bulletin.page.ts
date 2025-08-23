@@ -29,6 +29,9 @@ export class PrayerBulletinPage {
   requests: PrayerRequest[] = [];
   userId = '';
   text = '';
+  birthday = '';
+  timeZone = '';
+  gender = '';
 
   constructor(private api: PrayerRequestApiService) {}
 
@@ -44,11 +47,22 @@ export class PrayerBulletinPage {
     if (!this.userId || !this.text) {
       return;
     }
-    this.api.create({ userId: this.userId, text: this.text }).subscribe((r) => {
-      this.requests.push(r);
-      this.userId = '';
-      this.text = '';
-    });
+    this.api
+      .create({
+        userId: this.userId,
+        text: this.text,
+        birthday: this.birthday || null,
+        timeZone: this.timeZone || null,
+        gender: this.gender || null,
+      })
+      .subscribe((r) => {
+        this.requests.push(r);
+        this.userId = '';
+        this.text = '';
+        this.birthday = '';
+        this.timeZone = '';
+        this.gender = '';
+      });
   }
 
   markPrayed(req: PrayerRequest): void {
