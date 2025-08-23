@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Churches</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let church of churches">
+      <ion-avatar slot="start">
+        <img [src]="church.logoUrl" alt="{{ church.name }} logo" />
+      </ion-avatar>
+      <ion-label>{{ church.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-input placeholder="Church Name" [(ngModel)]="name"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Logo URL" [(ngModel)]="logoUrl"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="add()">Add Church</ion-button>
+</ion-content>
