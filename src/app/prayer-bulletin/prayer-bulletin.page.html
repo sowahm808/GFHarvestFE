@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Prayer Bulletin</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let req of requests">
+      <ion-label>
+        <h3>{{ req.text }}</h3>
+        <p>ID: {{ req.userId }}</p>
+        <p *ngIf="req.prayedAt">Prayed at: {{ req.prayedAt | date:'short' }}</p>
+      </ion-label>
+      <ion-button slot="end" *ngIf="!req.prayedAt" (click)="markPrayed(req)">Mark Prayed</ion-button>
+    </ion-item>
+  </ion-list>
+
+  <ion-item>
+    <ion-input placeholder="Your ID" [(ngModel)]="userId"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input placeholder="Prayer request" [(ngModel)]="text"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="add()">Add Request</ion-button>
+</ion-content>

@@ -121,6 +121,20 @@ export const routes: Routes = [
         data: { title: 'Mental & Emotional Status' },
       },
       {
+        path: 'churches',
+        loadComponent: () =>
+          import('./churches/churches.page').then((m) => m.ChurchesPage),
+        data: { title: 'Churches' },
+      },
+      {
+        path: 'prayer-bulletin',
+        loadComponent: () =>
+          import('./prayer-bulletin/prayer-bulletin.page').then(
+            (m) => m.PrayerBulletinPage
+          ),
+        data: { title: 'Prayer Bulletin' },
+      },
+      {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full',
