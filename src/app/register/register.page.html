@@ -15,6 +15,16 @@
       <ion-label position="stacked">Password</ion-label>
       <ion-input type="password" [(ngModel)]="form.password"></ion-input>
     </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Role</ion-label>
+      <ion-select [(ngModel)]="selectedRole" interface="alert" placeholder="Select Role">
+        <ion-select-option value="parent">Parent</ion-select-option>
+        <ion-select-option value="child">Child</ion-select-option>
+        <ion-select-option value="mentor">Mentor</ion-select-option>
+        <ion-select-option value="church">Church</ion-select-option>
+        <ion-select-option value="admin">Admin</ion-select-option>
+      </ion-select>
+    </ion-item>
   </ion-list>
   <ion-button expand="block" (click)="register()">Register</ion-button>
   <ion-button expand="block" color="secondary" (click)="registerWithGoogle()">

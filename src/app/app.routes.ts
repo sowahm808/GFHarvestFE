@@ -77,6 +77,14 @@ export const routes: Routes = [
         data: { title: 'Parent Child' },
       },
       {
+        path: 'admin-approvals',
+        loadComponent: () =>
+          import('./admin/admin-approvals.page').then(
+            (m) => m.AdminApprovalsPage
+          ),
+        data: { title: 'Pending Approvals' },
+      },
+      {
         path: 'academic-progress',
         loadComponent: () =>
           import('./academic-progress/academic-progress.page').then(

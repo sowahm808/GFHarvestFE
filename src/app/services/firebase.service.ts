@@ -24,6 +24,7 @@ import {
   orderBy,
   where,
   limit,
+  deleteDoc,
 } from 'firebase/firestore';
 import { environment } from '../../environments/environment';
 import { DailyCheckin } from '../models/daily-checkin';
@@ -39,6 +40,7 @@ import { MentorRecord } from '../models/mentor-record';
 import { AppNotification } from '../models/notification';
 import { MentorProfile } from '../models/mentor-profile';
 import { ChildProfile } from '../models/child-profile';
+import { RoleRequest } from '../models/role-request';
 @Injectable({ providedIn: 'root' })
 export class FirebaseService {
   private app = initializeApp(environment.firebase);
@@ -63,6 +65,26 @@ export class FirebaseService {
 
   logout(): Promise<void> {
     return signOut(this.auth);
+  }
+
+  /**
+   * Create a role request to be approved by an admin.
+   */
+  requestRole(uid: string, role: string, email: string) {
+    return addDoc(collection(this.db, 'roleRequests'), {
+      uid,
+      role,
+      email,
+    });
+  }
+
+  async getRoleRequests(): Promise<RoleRequest[]> {
+    const snap = await getDocs(collection(this.db, 'roleRequests'));
+    return snap.docs.map((d) => ({ id: d.id, ...(d.data() as RoleRequest) }));
+  }
+
+  async deleteRoleRequest(id: string) {
+    await deleteDoc(doc(this.db, 'roleRequests', id));
   }
 
   async createChildAccount(

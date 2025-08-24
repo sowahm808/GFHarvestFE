@@ -1,7 +1,19 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonInput, IonItem, IonLabel, IonButton, IonList } from '@ionic/angular/standalone';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonInput,
+  IonItem,
+  IonLabel,
+  IonButton,
+  IonList,
+  IonSelect,
+  IonSelectOption,
+} from '@ionic/angular/standalone';
 import { RouterLink } from '@angular/router';
 import { FirebaseService } from '../services/firebase.service';
 import { Router } from '@angular/router';
@@ -23,6 +35,8 @@ import { ToastController } from '@ionic/angular';
     IonLabel,
     IonButton,
     IonList,
+    IonSelect,
+    IonSelectOption,
     RouterLink,
   ],
   templateUrl: './register.page.html',
@@ -30,6 +44,7 @@ import { ToastController } from '@ionic/angular';
 })
 export class RegisterPage {
   form = { email: '', password: '' };
+  selectedRole = 'child';
 
   constructor(
     private fb: FirebaseService,
@@ -38,9 +53,11 @@ export class RegisterPage {
   ) {}
 
   async register() {
-    await this.fb.register(this.form.email, this.form.password);
+    const cred = await this.fb.register(this.form.email, this.form.password);
+    await this.fb.requestRole(cred.user.uid, this.selectedRole, this.form.email);
+    await this.fb.logout();
     const toast = await this.toastCtrl.create({
-      message: 'Registration successful',
+      message: 'Registration submitted for approval',
       duration: 1500,
       position: 'bottom',
     });
@@ -49,9 +66,15 @@ export class RegisterPage {
   }
 
   async registerWithGoogle() {
-    await this.fb.loginWithGoogle();
+    const cred = await this.fb.loginWithGoogle();
+    await this.fb.requestRole(
+      cred.user.uid,
+      this.selectedRole,
+      cred.user.email || ''
+    );
+    await this.fb.logout();
     const toast = await this.toastCtrl.create({
-      message: 'Registered with Google',
+      message: 'Registration submitted for approval',
       duration: 1500,
       position: 'bottom',
     });
