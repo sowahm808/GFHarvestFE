@@ -5,8 +5,20 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-content>
+<ion-content>
   <ion-list>
+    <ion-item>
+      <ion-label position="stacked">Favorite Subject This Week</ion-label>
+      <ion-input [(ngModel)]="form.favoriteSubject"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Struggling Subject</ion-label>
+      <ion-input [(ngModel)]="form.strugglingSubject"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Needs Help?</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="form.needsHelp"></ion-checkbox>
+    </ion-item>
     <ion-item>
       <ion-label position="stacked">Test Score</ion-label>
       <ion-input type="number" [(ngModel)]="form.testScore"></ion-input>
@@ -16,8 +28,16 @@
       <ion-checkbox slot="start" [(ngModel)]="form.shareResult"></ion-checkbox>
     </ion-item>
     <ion-item>
-      <ion-label>Needs Help?</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.needsHelp"></ion-checkbox>
+      <ion-label>Completed Weekly Assignment?</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="form.completedWeeklyAssignment"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label>Participating in Weekly Challenges?</ion-label>
+      <ion-checkbox slot="start" [(ngModel)]="form.participatingChallenges"></ion-checkbox>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Challenges to Submit (0-6)</ion-label>
+      <ion-input type="number" [(ngModel)]="form.challengesToSubmit"></ion-input>
     </ion-item>
   </ion-list>
   <div class="ion-padding">
