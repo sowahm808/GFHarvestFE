@@ -18,6 +18,16 @@
       </ion-item>
 
       <ion-item>
+        <ion-label position="stacked">Book Title</ion-label>
+        <ion-input [(ngModel)]="form.bookTitle" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="stacked">Book Summary</ion-label>
+        <ion-textarea [(ngModel)]="form.bookSummary" required></ion-textarea>
+      </ion-item>
+
+      <ion-item>
         <ion-label>Need Help?</ion-label>
         <ion-checkbox slot="start" [(ngModel)]="form.needsHelp"></ion-checkbox>
       </ion-item>

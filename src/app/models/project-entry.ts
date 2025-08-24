@@ -4,6 +4,8 @@ export interface ProjectEntry {
   needsHelp: boolean;
   enjoyment: number;
   progress: string;
+  bookTitle: string;
+  bookSummary: string;
   quarter: string;
   childId?: string | null;
   date: string;

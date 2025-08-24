@@ -14,6 +14,7 @@ import {
   IonCheckbox,
   IonSelect,
   IonSelectOption,
+  IonTextarea,
   
 } from '@ionic/angular/standalone';
 import { FirebaseService } from '../services/firebase.service';
@@ -38,6 +39,7 @@ import { ToastController } from '@ionic/angular';
     IonCheckbox,
     IonSelect,
     IonSelectOption,
+    IonTextarea,
     CommonModule,
     ReactiveFormsModule
   ],
@@ -53,12 +55,20 @@ export class ProjectTrackerPage {
     needsHelp: false,
     enjoyment: 3,
     progress: 'in progress',
+    bookTitle: '',
+    bookSummary: '',
   };
 
   constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
 
   async submit() {
-    if (!this.form.title || !this.form.presentationDate || !this.form.enjoyment) {
+    if (
+      !this.form.title ||
+      !this.form.presentationDate ||
+      !this.form.enjoyment ||
+      !this.form.bookTitle ||
+      !this.form.bookSummary
+    ) {
       alert('Please fill in all required fields');
       return;
     }
@@ -82,6 +92,8 @@ export class ProjectTrackerPage {
       needsHelp: false,
       enjoyment: 3,
       progress: 'in progress',
+      bookTitle: '',
+      bookSummary: '',
     };
   }
 
