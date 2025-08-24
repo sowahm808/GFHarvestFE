@@ -139,12 +139,19 @@ export class FirebaseService {
 
   async saveMentalStatus(data: MentalStatus) {
     const docRef = await addDoc(collection(this.db, 'mentalStatus'), data);
-    if (data.childId) {
+    if (data.childId && data.redFlag) {
       const parentId = await this.getParentIdForChild(data.childId);
-      if (parentId && (data.bullied || data.notifyParent)) {
+      if (parentId) {
         await this.sendNotification(
           parentId,
           'Your child reported a concern in mental status form.'
+        );
+      }
+      const mentorId = await this.getMentorIdForChild(data.childId);
+      if (mentorId) {
+        await this.sendMentorNotification(
+          mentorId,
+          'A child you mentor reported a concern in mental status form.'
         );
       }
     }
