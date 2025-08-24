@@ -38,7 +38,7 @@ import { User } from '../models/user';
 })
 export class AdminUserManagementPage implements OnInit {
   users: User[] = [];
-  roles = ['mentor', 'child', 'parent', 'admin'];
+  roles = ['mentor', 'child', 'parent', 'admin', 'church'];
 
   constructor(private userApi: UserApiService) {}
 
