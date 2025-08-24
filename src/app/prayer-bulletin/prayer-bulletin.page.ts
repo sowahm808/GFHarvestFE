@@ -9,6 +9,8 @@ import {
   IonLabel,
   IonInput,
   IonButton,
+  IonSelect,
+  IonSelectOption,
 } from '@ionic/angular/standalone';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
@@ -32,6 +34,8 @@ import { FirebaseService } from '../services/firebase.service';
     IonLabel,
     IonInput,
     IonButton,
+    IonSelect,
+    IonSelectOption,
     FormsModule,
     NgFor,
     NgIf,
@@ -46,6 +50,11 @@ export class PrayerBulletinPage {
   birthday = '';
   timeZone = '';
   gender = '';
+  timeZones: string[] =
+    (Intl as any).supportedValuesOf
+      ? (Intl as any).supportedValuesOf('timeZone')
+      : [];
+  genders: string[] = ['Male', 'Female'];
   role: string | null = null;
 
   editing: Record<string, boolean> = {};
