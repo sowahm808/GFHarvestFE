@@ -9,7 +9,7 @@ import { UserStats } from '../models/user-stats';
 @Injectable({ providedIn: 'root' })
 export class PointsApiService {
   private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/points`;
+  private readonly baseUrl = `${environment.apiUrl}/points`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 

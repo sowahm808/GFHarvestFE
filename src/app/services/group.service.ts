@@ -7,7 +7,7 @@ import { Observable, from } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class GroupService {
-  private readonly baseUrl = `${environment.apiUrl}/api/groups`;
+  private readonly baseUrl = `${environment.apiUrl}/groups`;
   private groups: Group[] = [];
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
