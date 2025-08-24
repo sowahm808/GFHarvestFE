@@ -8,16 +8,44 @@
   <ion-content>
   <ion-list>
     <ion-item>
-      <ion-label position="stacked">Gratitude 1</ion-label>
-      <ion-input [(ngModel)]="form.gratitude1"></ion-input>
+      <ion-label>Grateful for your talents or something new you've learned?</ion-label>
+      <ion-toggle [(ngModel)]="form.talent"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="form.talent">
+      <ion-label position="stacked">What is it?</ion-label>
+      <ion-input [(ngModel)]="form.talentText"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Gratitude 2</ion-label>
-      <ion-input [(ngModel)]="form.gratitude2"></ion-input>
+      <ion-label>Grateful for something about your home?</ion-label>
+      <ion-toggle [(ngModel)]="form.home"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="form.home">
+      <ion-label position="stacked">What is it?</ion-label>
+      <ion-input [(ngModel)]="form.homeText"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-label position="stacked">Gratitude 3</ion-label>
-      <ion-input [(ngModel)]="form.gratitude3"></ion-input>
+      <ion-label>Grateful for your physical being or health?</ion-label>
+      <ion-toggle [(ngModel)]="form.physical"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="form.physical">
+      <ion-label position="stacked">What is it?</ion-label>
+      <ion-input [(ngModel)]="form.physicalText"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Grateful for caring people around you?</ion-label>
+      <ion-toggle [(ngModel)]="form.people"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="form.people">
+      <ion-label position="stacked">What is it?</ion-label>
+      <ion-input [(ngModel)]="form.peopleText"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Did you make someone smile today?</ion-label>
+      <ion-toggle [(ngModel)]="form.giving"></ion-toggle>
+    </ion-item>
+    <ion-item *ngIf="form.giving">
+      <ion-label position="stacked">What did you do?</ion-label>
+      <ion-input [(ngModel)]="form.givingText"></ion-input>
     </ion-item>
     <ion-item>
       <ion-label position="stacked">One Wish</ion-label>

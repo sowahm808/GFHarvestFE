@@ -116,6 +116,19 @@ export class FirebaseService {
     return (snap.docs[0].data() as ParentChildLink).parentId || null;
   }
 
+  async getMentorIdForChild(childId: string): Promise<string | null> {
+    const q = query(
+      collection(this.db, 'mentorChildLinks'),
+      where('childId', '==', childId),
+      limit(1)
+    );
+    const snap = await getDocs(q);
+    if (snap.empty) {
+      return null;
+    }
+    return (snap.docs[0].data() as MentorChildLink).mentorId || null;
+  }
+
   async saveDailyCheckin(data: DailyCheckin) {
     const docRef = await addDoc(collection(this.db, 'dailyCheckins'), data);
     if (data.childId) {
@@ -211,6 +224,14 @@ export class FirebaseService {
     });
   }
 
+  async sendMentorNotification(mentorId: string, message: string) {
+    return addDoc(collection(this.db, 'notifications'), {
+      mentorId,
+      message,
+      date: new Date().toISOString(),
+    });
+  }
+
   async getNotifications(userId: string, limitCount = 10): Promise<AppNotification[]> {
     const parentQuery = query(
       collection(this.db, 'notifications'),
@@ -224,11 +245,18 @@ export class FirebaseService {
       orderBy('date', 'desc'),
       limit(limitCount)
     );
-    const [parentSnap, childSnap] = await Promise.all([
+    const mentorQuery = query(
+      collection(this.db, 'notifications'),
+      where('mentorId', '==', userId),
+      orderBy('date', 'desc'),
+      limit(limitCount)
+    );
+    const [parentSnap, childSnap, mentorSnap] = await Promise.all([
       getDocs(parentQuery),
       getDocs(childQuery),
+      getDocs(mentorQuery),
     ]);
-    const docs = [...parentSnap.docs, ...childSnap.docs];
+    const docs = [...parentSnap.docs, ...childSnap.docs, ...mentorSnap.docs];
     return docs
       .sort((a, b) =>
         (b.data()['date'] || '').localeCompare(a.data()['date'] || '')
