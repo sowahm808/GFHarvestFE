@@ -41,6 +41,11 @@
 //   --color: var(--ion-color-light);
 // }
 
+/* Ensure pages remain scrollable */
+ion-content {
+  overflow-y: auto;
+}
+
 ion-tab-bar {
   /* Use a light background so icons remain visible */
   --background: var(--ion-color-light);
