@@ -25,7 +25,23 @@ export class MentorApiService {
   }
 
   private withToken<T>(work: (token: string) => Observable<T>): Observable<T> {
-    return from(this.fb.auth.currentUser?.getIdToken() ?? Promise.resolve('')).pipe(
+    const tokenPromise = this.fb.auth.currentUser
+      ? this.fb.auth.currentUser.getIdToken()
+      : new Promise<string>((resolve, reject) => {
+          const unsub = this.fb.auth.onAuthStateChanged(
+            (user) => {
+              unsub();
+              if (user) {
+                user.getIdToken().then(resolve).catch(reject);
+              } else {
+                resolve('');
+              }
+            },
+            reject
+          );
+        });
+
+    return from(tokenPromise).pipe(
       switchMap((token) => {
         if (!token) {
           return throwError(() => new Error('Missing auth token — are you logged in as an admin?'));
