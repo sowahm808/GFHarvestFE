@@ -47,12 +47,20 @@ export const routes: Routes = [
         data: { title: 'Project Tracker' },
       },
       {
+        path: 'mentor-board',
+        loadComponent: () =>
+          import('./mentor-board/mentor-board.page').then(
+            (m) => m.MentorBoardPage
+          ),
+        data: { title: 'Mentor Board' },
+      },
+      {
         path: 'mentor-record',
         loadComponent: () =>
           import('./mentor-record/mentor-record.page').then(
             (m) => m.MentorRecordPage
           ),
-        data: { title: 'Mentor Board' },
+        data: { title: 'Mentor Records' },
       },
       {
         path: 'admin',
