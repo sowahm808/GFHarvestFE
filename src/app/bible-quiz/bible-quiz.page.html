@@ -6,9 +6,12 @@
   </ion-header>
 
   <ion-content>
-    <h3>Hello! 🙌</h3>
-    <p>Great to pause and lift a greeting to Jesus—He’s always listening. I hope you had a chance to pray and reflect on today’s reading. Now, let’s dive into a Bible Quiz!</p>
-  <ion-spinner *ngIf="loading" name="dots" class="center-spinner"></ion-spinner>
+    <div class="greeting">
+      <h3>Hello! 🙌</h3>
+      <p>Great to pause and lift a greeting to Jesus—He’s always listening. I hope you had a chance to pray and reflect on today’s reading. Now, let’s dive into a Bible Quiz!</p>
+    </div>
+    
+  <ion-spinner *ngIf="loading" name="dots" class="center-spinner">Loading Quiz</ion-spinner>
   <ion-list *ngIf="!loading && currentQuestion">
     <ion-item>
       <ion-label position="stacked">Question {{ currentIndex + 1 }} of {{ questions.length }}</ion-label>
