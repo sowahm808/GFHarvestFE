@@ -117,10 +117,20 @@
     <ion-input type="date" placeholder="Birthday" [(ngModel)]="birthday"></ion-input>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Time Zone" [(ngModel)]="timeZone"></ion-input>
+    <ion-select placeholder="Time Zone" [(ngModel)]="timeZone">
+      <ion-select-option
+        *ngFor="let tz of timeZones"
+        [value]="tz"
+        >{{ tz }}</ion-select-option
+      >
+    </ion-select>
   </ion-item>
   <ion-item>
-    <ion-input placeholder="Gender" [(ngModel)]="gender"></ion-input>
+    <ion-select placeholder="Gender" [(ngModel)]="gender">
+      <ion-select-option *ngFor="let g of genders" [value]="g"
+        >{{ g }}</ion-select-option
+      >
+    </ion-select>
   </ion-item>
   <ion-button expand="block" (click)="add()">Add Request</ion-button>
 </ion-content>
