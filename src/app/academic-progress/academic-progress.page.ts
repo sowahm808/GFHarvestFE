@@ -43,6 +43,11 @@ export class AcademicProgressPage {
     testScore: null as number | null,
     shareResult: false,
     needsHelp: false,
+    favoriteSubject: '',
+    strugglingSubject: '',
+    completedWeeklyAssignment: false,
+    participatingChallenges: false,
+    challengesToSubmit: null as number | null,
   };
 
   constructor(private fb: FirebaseService, private toastCtrl: ToastController) {}
