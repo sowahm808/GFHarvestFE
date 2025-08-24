@@ -40,6 +40,7 @@ import { FirebaseService } from '../services/firebase.service';
 })
 export class PrayerBulletinPage {
   requests: PrayerRequest[] = [];
+  groupedRequests: { userId: string; requests: PrayerRequest[] }[] = [];
   userId = '';
   text = '';
   birthday = '';
@@ -72,6 +73,7 @@ export class PrayerBulletinPage {
         reqs = reqs.filter((r) => r.userId === uid);
       }
       this.requests = reqs;
+      this.computeGroups();
     });
   }
 
@@ -91,6 +93,7 @@ export class PrayerBulletinPage {
       .subscribe((r) => {
         this.enrichRequest(r);
         this.requests.push(r);
+        this.computeGroups();
         if (this.role !== 'church') {
           this.userId = '';
         }
@@ -110,6 +113,7 @@ export class PrayerBulletinPage {
       if (this.isExpired(req)) {
         this.requests = this.requests.filter((r) => r.id !== req.id);
       }
+      this.computeGroups();
     });
   }
 
@@ -144,7 +148,15 @@ export class PrayerBulletinPage {
       .forEach((r) => this.markPrayed(r));
   }
 
-  get groups(): { userId: string; requests: PrayerRequest[] }[] {
+  trackGroup(_: number, group: { userId: string }): string {
+    return group.userId;
+  }
+
+  trackRequest(_: number, req: PrayerRequest): string | undefined {
+    return req.id;
+  }
+
+  private computeGroups(): void {
     const map: Record<string, PrayerRequest[]> = {};
     for (const r of this.requests) {
       if (!map[r.userId]) {
@@ -152,7 +164,10 @@ export class PrayerBulletinPage {
       }
       map[r.userId].push(r);
     }
-    return Object.entries(map).map(([userId, requests]) => ({ userId, requests }));
+    this.groupedRequests = Object.entries(map).map(([userId, requests]) => ({
+      userId,
+      requests,
+    }));
   }
 
   private enrichRequest(req: PrayerRequest): PrayerRequest {
