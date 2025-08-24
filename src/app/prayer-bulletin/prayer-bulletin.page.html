@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ng-container *ngIf="role !== 'church'; else churchList">
-      <ng-container *ngFor="let group of groups">
+      <ng-container *ngFor="let group of groupedRequests; trackBy: trackGroup">
         <ion-item lines="full">
           <ion-label><strong>ID: {{ group.userId }}</strong></ion-label>
           <ion-button
@@ -18,7 +18,7 @@
           >
         </ion-item>
         <ion-item
-          *ngFor="let req of group.requests"
+          *ngFor="let req of group.requests; trackBy: trackRequest"
           [style.border-left]="'4px solid ' + req.color"
         >
           <ion-label>
@@ -63,7 +63,7 @@
     </ng-container>
     <ng-template #churchList>
       <ion-item
-        *ngFor="let req of requests"
+        *ngFor="let req of requests; trackBy: trackRequest"
         [style.border-left]="'4px solid ' + req.color"
       >
         <ion-label>
