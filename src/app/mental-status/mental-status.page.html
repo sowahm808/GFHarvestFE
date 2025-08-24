@@ -1,28 +1,158 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Mental & Emotional Status</ion-title>
+  </ion-toolbar>
+</ion-header>
 
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>Mental & Emotional Status</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <ion-content>
+<ion-content>
   <ion-list>
     <ion-item>
-      <ion-label>Well Treated at School</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.treatmentSchool"></ion-checkbox>
+      <ion-label position="stacked">How is everyone treating you at home?</ion-label>
+      <ion-select [(ngModel)]="form.treatmentHome">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
     </ion-item>
+
     <ion-item>
-      <ion-label>Well Treated at Home</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.treatmentHome"></ion-checkbox>
+      <ion-label position="stacked">How is everyone treating you at school?</ion-label>
+      <ion-select [(ngModel)]="form.treatmentSchool">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
     </ion-item>
+
     <ion-item>
-      <ion-label>Were you bullied?</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.bullied"></ion-checkbox>
+      <ion-label position="stacked">How are your teachers or adults during lectures?</ion-label>
+      <ion-select [(ngModel)]="form.teachersLectures">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
     </ion-item>
+
     <ion-item>
-      <ion-label>Notify Parent if bullied?</ion-label>
-      <ion-checkbox slot="start" [(ngModel)]="form.notifyParent"></ion-checkbox>
+      <ion-label position="stacked">How are your teachers or adults during recess?</ion-label>
+      <ion-select [(ngModel)]="form.teachersRecess">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
     </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">How are your teachers or adults during free time?</ion-label>
+      <ion-select [(ngModel)]="form.teachersFreeTime">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">How are your teachers or adults during lunch time?</ion-label>
+      <ion-select [(ngModel)]="form.teachersLunchTime">
+        <ion-select-option value="very_nice">Very nice</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_comment">I prefer not to talk about it</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Are you getting bullied at school?</ion-label>
+      <ion-select [(ngModel)]="form.bulliedSchool">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Are you getting bullied in your neighbourhood?</ion-label>
+      <ion-select [(ngModel)]="form.bulliedNeighborhood">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Are you getting bullied at home or church?</ion-label>
+      <ion-select [(ngModel)]="form.bulliedHome">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="form.bulliedSchool || form.bulliedNeighborhood || form.bulliedHome">
+      <ion-label>Have you discussed this with your parents?</ion-label>
+      <ion-select [(ngModel)]="form.discussedWithParents">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Do you love your life?</ion-label>
+      <ion-select [(ngModel)]="form.loveLife">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Have you thought about hurting anyone?</ion-label>
+      <ion-select [(ngModel)]="form.hurtOthers">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Have you recently thought about hurting yourself or hated yourself?</ion-label>
+      <ion-select [(ngModel)]="form.hurtSelf">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item *ngIf="form.hurtSelf">
+      <ion-label>Have you thought about a plan to hurt yourself?</ion-label>
+      <ion-select [(ngModel)]="form.planHurtSelf">
+        <ion-select-option [value]="true">Yes</ion-select-option>
+        <ion-select-option [value]="false">No</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">How has your sleep been?</ion-label>
+      <ion-select [(ngModel)]="form.sleep">
+        <ion-select-option value="good_dreams">Full of good dreams</ion-select-option>
+        <ion-select-option value="no_dreams">No dream</ion-select-option>
+        <ion-select-option value="nightmares">Nightmares</ion-select-option>
+        <ion-select-option value="difficulty">I find it difficult to fall asleep every night</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">How is your appetite?</ion-label>
+      <ion-select [(ngModel)]="form.appetite">
+        <ion-select-option value="great">Great</ion-select-option>
+        <ion-select-option value="overeat">I overeat most of the time</ion-select-option>
+        <ion-select-option value="so_so">So so</ion-select-option>
+        <ion-select-option value="yuck">Yuck</ion-select-option>
+        <ion-select-option value="no_appetite">I don't feel like eating most of the time</ion-select-option>
+        <ion-select-option value="prefer_away">I prefer eating when I am away from home</ion-select-option>
+        <ion-select-option value="throw_up">When I am at home I feel like throwing up if I see food</ion-select-option>
+      </ion-select>
+    </ion-item>
+
     <ion-item>
       <ion-label position="stacked">Suggestions</ion-label>
       <ion-textarea [(ngModel)]="form.suggestions"></ion-textarea>
@@ -31,5 +161,4 @@
   <div class="ion-padding">
     <ion-button expand="block" (click)="submit()">Submit</ion-button>
   </div>
-  </ion-content>
-
+</ion-content>
