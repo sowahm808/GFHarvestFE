@@ -25,7 +25,7 @@ export class BibleQuizApiService {
 
     return this.http
       .get<BibleQuestion[]>(
-        `${environment.apiUrl}/api/quizzes/today?count=${count}`
+        `${environment.apiUrl}/quizzes/today?count=${count}`
       )
       .pipe(
         timeout(5000),
@@ -57,7 +57,7 @@ export class BibleQuizApiService {
       answers: [data.answer],
     };
     return this.http
-      .post(`${environment.apiUrl}/api/quizzes/submit`, payload)
+      .post(`${environment.apiUrl}/quizzes/submit`, payload)
       .pipe(
         timeout(5000),
         catchError(() => {
@@ -79,7 +79,7 @@ export class BibleQuizApiService {
     }
 
     return this.http
-      .get<BibleQuizResult[]>(`${environment.apiUrl}/api/quizzes/${childId}/history`)
+      .get<BibleQuizResult[]>(`${environment.apiUrl}/quizzes/${childId}/history`)
       .pipe(
         timeout(5000),
         catchError(() => from(this.fb.getBibleQuizHistory(childId)))

@@ -9,7 +9,7 @@ import { FirebaseService } from './firebase.service';
 @Injectable({ providedIn: 'root' })
 export class GroupApiService {
   private apiEnabled = !!environment.apiUrl;
-  private readonly baseUrl = `${environment.apiUrl}/api/groups`;
+  private readonly baseUrl = `${environment.apiUrl}/groups`;
 
   constructor(private http: HttpClient, private fb: FirebaseService) {}
 
