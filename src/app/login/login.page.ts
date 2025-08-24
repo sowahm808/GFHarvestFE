@@ -57,7 +57,9 @@ export class LoginPage {
         position: 'bottom',
       });
       await toast.present();
-      this.router.navigateByUrl('/tabs');
+      const target =
+        this.selectedRole === 'church' ? '/tabs/prayer-bulletin' : '/tabs';
+      this.router.navigateByUrl(target);
     } catch (err: any) {
       const toast = await this.toastCtrl.create({
         message: err?.message || 'Login failed',
@@ -79,7 +81,9 @@ export class LoginPage {
         position: 'bottom',
       });
       await toast.present();
-      this.router.navigateByUrl('/tabs');
+      const target =
+        this.selectedRole === 'church' ? '/tabs/prayer-bulletin' : '/tabs';
+      this.router.navigateByUrl(target);
     } catch (err: any) {
       const toast = await this.toastCtrl.create({
         message: err?.message || 'Google login failed',
