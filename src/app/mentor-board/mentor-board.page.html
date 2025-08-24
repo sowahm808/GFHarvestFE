@@ -1,0 +1,27 @@
+<div class="ion-page">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Mentor Board</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item *ngFor="let mentor of mentors">
+        <ion-label>
+          <h2>{{ mentor.name }}</h2>
+          <p>Church: {{ mentor.church }}</p>
+          <p>Years in Christ: {{ mentor.yearsInChrist }}</p>
+          <p>Years served: {{ mentor.yearsServed }}</p>
+          <p>Education: {{ mentor.education }}</p>
+          <p>Kids mentored: {{ mentor.childCount }}</p>
+          <p>Improved last quarter: {{ mentor.improvementLastQuarter }}%</p>
+          <p>Improved last year: {{ mentor.improvementLastYear }}%</p>
+          <p>Certificate rate: {{ mentor.certificateRate }}%</p>
+        </ion-label>
+      </ion-item>
+      <ion-item *ngIf="mentors.length === 0">
+        <ion-label>No mentors found.</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</div>
