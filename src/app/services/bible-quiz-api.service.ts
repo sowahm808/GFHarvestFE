@@ -24,9 +24,7 @@ export class BibleQuizApiService {
     }
 
     return this.http
-      .get<BibleQuestion[]>(
-        `${environment.apiUrl}/quizzes/today?count=${count}`
-      )
+      .get<BibleQuestion[]>(`${environment.apiUrl}/quizzes?count=${count}`)
       .pipe(
         timeout(5000),
         catchError(() =>
