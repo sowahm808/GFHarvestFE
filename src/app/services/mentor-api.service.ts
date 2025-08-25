@@ -7,6 +7,7 @@ import { FirebaseService } from './firebase.service';
 import { MentorAssignment, MentorChildren } from '../models/mentor-assignment';
 import { MentorProfile } from '../models/mentor-profile';
 import { ChildProfile } from '../models/child-profile';
+import { RoleService } from './role.service';
 
 @Injectable({ providedIn: 'root' })
 export class MentorApiService {
@@ -17,7 +18,11 @@ export class MentorApiService {
   private readonly baseUrl = `${this.apiBase}/mentors`;
   private readonly childBaseUrl = `${this.apiBase}/children`;
 
-  constructor(private http: HttpClient, private fb: FirebaseService) {
+  constructor(
+    private http: HttpClient,
+    private fb: FirebaseService,
+    private roleSvc: RoleService
+  ) {
     // One-time debug to verify actual URL used at runtime
     // Remove after verifying
     // eslint-disable-next-line no-console
@@ -68,6 +73,12 @@ export class MentorApiService {
   }
 
   getMentors(): Observable<MentorProfile[]> {
+    // Only admins should query the backend. Other roles read directly from
+    // Firestore, which avoids a 403 from the API when logged in as a child.
+    if (this.roleSvc.role !== 'admin') {
+      return from(this.fb.getMentors());
+    }
+
     return this.withToken((token) =>
       this.http.get<MentorProfile[] | { mentors: MentorProfile[] }>(this.baseUrl, {
         headers: { Authorization: `Bearer ${token}` },
